@@ -1,13 +1,10 @@
-import React from 'react';
 import styled from 'styled-components';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-// Componentes de Layout
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
 
-// Páginas
 import Home from './pages/Home';
 import About from './pages/About';
 import Services from './pages/Services';
@@ -16,7 +13,6 @@ import BlogPost from './pages/BlogPost';
 import Contact from './pages/Contact';
 import NotFound from './pages/NotFound';
 
-// Estilos Globais
 import GlobalStyles from './styles/GlobalStyles';
 
 const AppContainer = styled.div`
@@ -42,7 +38,6 @@ function App() {
             <Route path="/sobre" element={<About />} />
             <Route path="/servicos" element={<Services />} />
             <Route path="/blog" element={<Blog />} />
-            {/* Correção: Alterado :id para :slug para corresponder ao componente BlogPost */}
             <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/contato" element={<Contact />} />
             <Route path="*" element={<NotFound />} />
