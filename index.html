@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/public/iconyellow.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="UnoVitta - Juntos, para cuidar melhor de você. Serviços de saúde de alta qualidade com foco no bem-estar e na satisfação dos nossos pacientes." />
+  <meta name="keyword"
+    content=" odontologia, odontopediatria, ortodontia, implantes, dentes, saude bucal, qualidade de vida, cuidar bem, cuidar de quem quer" />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="Unovitta Clínicas" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="UnoVitta | Juntos, para cuidar melhor de você" />
+  <meta property="og:url" content="https://unovitta.com.br" />
+  <meta property="og:site_name" content="UnoVitta" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta name="image" property="og:image"
+    content="https://images.unsplash.com/photo-1629909613654-28e377c37b09?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" />
+  <meta property="og:description"
+    content="UnoVitta - Juntos, para cuidar melhor de você. Serviços de saúde de alta qualidade com foco no bem-estar e na satisfação dos nossos pacientes." />
+  <meta property="og:image"
+    content="https://images.unsplash.com/photo-1629909613654-28e377c37b09?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" />
+  <meta name="theme-color" content="#0056b3" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <title>UnoVitta | Juntos, para cuidar melhor de você</title>
+
+  <!-- Google tag (gtag.js ) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-962820594"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag("js", new Date());
+
+    gtag("config", "AW-962820594");
+  </script>
+
+  <!-- Event snippet for WhatsApp Click conversion -->
+  <!-- This function can be called for clicks leading away from the page -->
+  <!-- For the WhatsApp button opening a new tab, the event is triggered directly in the component -->
+  <script>
+    function gtag_report_conversion_whatsapp(url) {
+      var callback = function () {
+        if (typeof (url) != "undefined") {
+          window.location = url;
+        }
+      };
+      gtag("event", "conversion", {
+        "send_to": "AW-962820594/aXk3CITIqMQaEPLzjcsD", // ID for WhatsApp click conversion
+        "value": 1.0,
+        "currency": "BRL",
+        "event_callback": callback
+      });
+      return false;
+    }
+  </script>
+
+  <!-- Event snippet for another conversion (e.g., Contact Form) -->
+  <!-- Renamed to avoid conflict -->
+  <script>
+    function gtag_report_conversion_contact(url) {
+      var callback = function () {
+        if (typeof (url) != "undefined") {
+          window.location = url;
+        }
+      };
+      gtag("event", "conversion", {
+        "send_to": "AW-962820594/0EUkCN3XqcQaEPLzjcsD", // ID for Contact conversion
+        "value": 1.0,
+        "currency": "BRL",
+        "event_callback": callback
+      });
+      return false;
+    }
+  </script>
+
+
+
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+
+</html>
