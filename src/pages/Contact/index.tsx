@@ -158,7 +158,7 @@ const Contact: React.FC = () => {
         title="Contato"
         description="Entre em contato com a Clínica Odontológica UnoVitta. Estamos prontos para atender você e responder todas as suas dúvidas sobre nossos tratamentos odontológicos."
         keywords="contato, agendar consulta, localização, telefone, email, WhatsApp, clínica odontológica, UnoVitta"
-        canonical="/contato"
+        canonical="https://unovitta.com.br/contato"
       />
 
       <ContentContainer>

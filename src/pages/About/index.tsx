@@ -178,7 +178,7 @@ const About: React.FC = () => {
         title="Sobre Nós"
         description="Conheça a UnoVitta, uma clínica odontológica comprometida com a excelência em saúde bucal, oferecendo atendimento humanizado e soluções personalizadas para cada paciente."
         keywords="clínica odontológica, sobre nós, equipe odontológica, dentistas, missão, valores, história"
-        canonical="/sobre"
+        canonical="https://unovitta.com.br/sobre"
       />
 
       <ContentContainer>
