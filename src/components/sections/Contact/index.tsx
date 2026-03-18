@@ -43,13 +43,6 @@ const Divider = styled.div`
   margin: 0 auto var(--spacing-6) auto;
 `;
 
-const PageDescription = styled.p`
-  font-size: 1.125rem;
-  color: var(--color-gray-600);
-  max-width: 48rem;
-  margin: 0 auto;
-`;
-
 const ContactGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr;
@@ -148,6 +141,83 @@ const MapContainer = styled.div`
   }
 `;
 
+const ContactCardsGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-6);
+  margin-bottom: var(--spacing-12);
+  
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+`;
+
+const ContactCard = styled.div`
+  background-color: var(--color-white);
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-8);
+  text-align: center;
+  transition: var(--transition-default);
+  
+  &.primary {
+    border: 2px solid var(--color-primary);
+    background-color: rgba(var(--color-primary-rgb), 0.05);
+  }
+  
+  &:hover {
+    box-shadow: var(--shadow-md);
+  }
+`;
+
+const ContactCardEmoji = styled.div`
+  font-size: 3rem;
+  margin-bottom: var(--spacing-4);
+`;
+
+const ContactCardTitle = styled.h3`
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-foreground);
+  margin-bottom: var(--spacing-2);
+`;
+
+const ContactCardDescription = styled.p`
+  font-size: 0.9rem;
+  color: var(--color-gray-600);
+  margin-bottom: var(--spacing-4);
+`;
+
+const ContactCardLink = styled.a`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+  font-weight: 600;
+  text-decoration: none;
+  
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
+const ContactSectionTitle = styled.h2`
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: var(--spacing-4);
+  
+  @media (min-width: 768px) {
+    font-size: 2.5rem;
+  }
+`;
+
+const ContactSectionDescription = styled.p`
+  font-size: 1.125rem;
+  color: var(--color-gray-600);
+  max-width: 48rem;
+  margin: 0 auto var(--spacing-12);
+`;
+
 const Contact: React.FC = () => {
   const handleWhatsAppClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     const url = event.currentTarget.href;
@@ -169,11 +239,47 @@ const Contact: React.FC = () => {
 
       <ContentContainer>
         <PageHeader>
-          <PageTitle>Entre em Contato</PageTitle>
+          <ContactSectionTitle>Agende sua avaliação agora</ContactSectionTitle>
           <Divider />
-          <PageDescription>
-            Estamos prontos para atender você e responder todas as suas dúvidas. Entre em contato conosco pelos canais abaixo.
-          </PageDescription>
+          <ContactSectionDescription>
+            Escolha o melhor canal para falar conosco e dê o próximo passo com segurança.
+          </ContactSectionDescription>
+        </PageHeader>
+
+        <ContactCardsGrid>
+          <ContactCard className="primary">
+            <ContactCardEmoji>💬</ContactCardEmoji>
+            <ContactCardTitle>WhatsApp</ContactCardTitle>
+            <ContactCardDescription>Resposta rápida e agendamento direto</ContactCardDescription>
+            <ContactCardLink 
+              href="https://api.whatsapp.com/send?phone=61996548591&text=Quero%20agendar%20uma%20consulta!"
+              target="_blank"
+              rel="noopener noreferrer" 
+              aria-label="Agende sua consulta via WhatsApp"
+              onClick={handleWhatsAppClick} 
+            >
+              (61) 99654-8591
+            </ContactCardLink>
+          </ContactCard>
+
+          <ContactCard>
+            <ContactCardEmoji>☎️</ContactCardEmoji>
+            <ContactCardTitle>Telefone</ContactCardTitle>
+            <ContactCardDescription>Ligue para agendar sua consulta</ContactCardDescription>
+            <ContactCardLink href="tel:+556134794514" aria-label="Ligue para nós">
+              (61) 3479-4514
+            </ContactCardLink>
+          </ContactCard>
+
+          <ContactCard>
+            <ContactCardEmoji>🕐</ContactCardEmoji>
+            <ContactCardTitle>Horário</ContactCardTitle>
+            <ContactCardDescription>Seg-Sex: 8h-18h | Sábado: 8h-12h</ContactCardDescription>
+          </ContactCard>
+        </ContactCardsGrid>
+
+        <PageHeader style={{ marginTop: 'var(--spacing-12)' }}>
+          <PageTitle style={{ fontSize: '1.5rem' }}>Detalhes de Contato</PageTitle>
         </PageHeader>
 
         <ContactGrid>

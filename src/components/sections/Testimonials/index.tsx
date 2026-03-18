@@ -116,6 +116,54 @@ const AuthorName = styled.h4`
   margin-bottom: 0.25rem;
 `;
 
+const StarsContainer = styled.div`
+  display: flex;
+  gap: 0.25rem;
+  margin-bottom: var(--spacing-4);
+`;
+
+const Star = styled.svg`
+  width: 1.25rem;
+  height: 1.25rem;
+  fill: var(--color-accent);
+`;
+
+const TrustIndicatorsSection = styled.div`
+  margin-top: var(--spacing-12);
+  padding-top: var(--spacing-12);
+  border-top: 1px solid var(--color-gray-200);
+`;
+
+const IndicatorsGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-8);
+  
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+`;
+
+const IndicatorCard = styled.div`
+  text-align: center;
+`;
+
+const IndicatorNumber = styled.div`
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-2);
+`;
+
+const IndicatorText = styled.p`
+  font-size: 0.9rem;
+  color: var(--color-gray-600);
+`;
+
 const TestimonialsSection: React.FC = () => {
   const testimonials = [
     {
@@ -176,6 +224,17 @@ const TestimonialsSection: React.FC = () => {
         <TestimonialsGrid>
           {testimonials.map((testimonial) => (
             <TestimonialCard key={testimonial.id}>
+              <StarsContainer>
+                {[...Array(5)].map((_, i) => (
+                  <Star
+                    key={i}
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                  </Star>
+                ))}
+              </StarsContainer>
               <QuoteIcon>
                 <svg fill="currentColor" viewBox="0 0 24 24">
                   <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
@@ -199,6 +258,27 @@ const TestimonialsSection: React.FC = () => {
             </TestimonialCard>
           ))}
         </TestimonialsGrid>
+
+        <TrustIndicatorsSection>
+          <IndicatorsGrid>
+            <IndicatorCard>
+              <IndicatorNumber>5.000+</IndicatorNumber>
+              <IndicatorText>Pacientes satisfeitos</IndicatorText>
+            </IndicatorCard>
+            <IndicatorCard>
+              <IndicatorNumber>4.9★</IndicatorNumber>
+              <IndicatorText>Avaliação média</IndicatorText>
+            </IndicatorCard>
+            <IndicatorCard>
+              <IndicatorNumber>100%</IndicatorNumber>
+              <IndicatorText>Tecnologia de ponta</IndicatorText>
+            </IndicatorCard>
+            <IndicatorCard>
+              <IndicatorNumber>15+</IndicatorNumber>
+              <IndicatorText>Anos de experiência</IndicatorText>
+            </IndicatorCard>
+          </IndicatorsGrid>
+        </TrustIndicatorsSection>
       </ContentContainer>
     </TestimonialsContainer>
   );

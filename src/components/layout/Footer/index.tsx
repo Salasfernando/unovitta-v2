@@ -150,6 +150,81 @@ const Copyright = styled.div`
   font-size: 0.8rem;
 `;
 
+const FooterCTASection = styled.section`
+  background: var(--color-accent);
+  padding: var(--spacing-16) 0;
+  text-align: center;
+  width: 100%;
+`;
+
+const FooterCTAContainer = styled.div`
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-4);
+`;
+
+const FooterCTATitle = styled.h2`
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-gray-900);
+  margin-bottom: var(--spacing-4);
+  
+  @media (min-width: 768px) {
+    font-size: 2.25rem;
+  }
+`;
+
+const FooterCTADescription = styled.p`
+  font-size: 1rem;
+  color: var(--color-white);
+  margin-bottom: var(--spacing-8);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+`;
+
+const FooterCTAButtons = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+  justify-content: center;
+  
+  @media (min-width: 640px) {
+    flex-direction: row;
+  }
+`;
+
+const FooterCTAButton = styled.a`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-4) var(--spacing-8);
+  background-color: var(--color-white);
+  color: var(--color-primary);
+  font-weight: 600;
+  border-radius: var(--border-radius);
+  transition: var(--transition-default);
+  text-decoration: none;
+  cursor: pointer;
+  
+  &:hover {
+    background-color: var(--color-gray-100);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  }
+  
+  &.secondary {
+    background-color: var(--color-white);
+    color: var(--color-primary);
+    border: 2px solid var(--color-white);
+    
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+  }
+`;
+
 const Footer: React.FC = () => {
 
   const handleWhatsAppClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
@@ -162,9 +237,35 @@ const Footer: React.FC = () => {
   };
 
   return (
-    <FooterContainer>
-      <FooterContent>
-        <FooterGrid>
+    <>
+      <FooterCTASection>
+        <FooterCTAContainer>
+          <FooterCTATitle>Agende sua avaliação agora e dê o próximo passo com segurança</FooterCTATitle>
+          <FooterCTADescription>
+            Nossos profissionais estão prontos para ajudar você a alcançar o sorriso dos seus sonhos.
+          </FooterCTADescription>
+          <FooterCTAButtons>
+            <FooterCTAButton 
+              href="https://api.whatsapp.com/send?phone=61996548591&text=Quero%20agendar%20uma%20consulta!"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={handleWhatsAppClick} 
+            >
+              📱 Agendar via WhatsApp
+            </FooterCTAButton>
+            <FooterCTAButton 
+              href="tel:+556134794514"
+              className="secondary"
+            >
+              ☎️ Ligar agora
+            </FooterCTAButton>
+          </FooterCTAButtons>
+        </FooterCTAContainer>
+      </FooterCTASection>
+
+      <FooterContainer>
+        <FooterContent>
+          <FooterGrid>
           <FooterColumn>
             <img src={imgLogo} alt="Logo da Unovitta Clínicas" />
             <FooterText>
@@ -271,6 +372,7 @@ const Footer: React.FC = () => {
         </Copyright>
       </FooterContent>
     </FooterContainer>
+    </>
   );
 };
 

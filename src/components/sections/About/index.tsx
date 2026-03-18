@@ -1,7 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import imgLogo from '../../../assets/logo.png';
 
 const AboutContainer = styled.section`
   padding: var(--spacing-20) 0;
@@ -44,88 +42,50 @@ const SectionDescription = styled.p`
   margin: 0 auto;
 `;
 
-const Grid = styled.div`
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--spacing-12);
-  align-items: center;
-  
-  @media (min-width: 768px) {
-    grid-template-columns: 1fr 1fr;
-  }
-`;
-
-const ImageWrapper = styled.div`
-  background-color: var(--color-gray-100);
-  padding: var(--spacing-4);
+const TrustCard = styled.div`
+  background-color: var(--color-white);
+  border: 1px solid var(--color-gray-200);
   border-radius: var(--border-radius-lg);
-`;
-
-const AboutImage = styled.img`
-  width: 100%;
-  height: auto;
-  border-radius: var(--border-radius-lg);
-`;
-
-const ContentBlock = styled.div``;
-
-const SubTitle = styled.h3`
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin-bottom: var(--spacing-4);
-  
-  @media (min-width: 768px) {
-    font-size: 2rem;
-  }
-`;
-
-const Paragraph = styled.p`
-  color: var(--color-gray-700);
-  margin-bottom: var(--spacing-6);
-`;
-
-const ValuesList = styled.ul`
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  margin-bottom: var(--spacing-8);
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-3);
-`;
-
-const ValueItem = styled.li`
-  display: flex;
-  align-items: flex-start;
-`;
-
-const ValueIcon = styled.svg`
-  width: 1.5rem;
-  height: 1.5rem;
-  color: var(--color-accent);
-  margin-right: var(--spacing-2);
-  flex-shrink: 0;
-`;
-
-const ValueText = styled.span`
-  color: var(--color-gray-700);
-`;
-
-const LearnMoreButton = styled(Link)`
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--spacing-3) var(--spacing-6);
-  background-color: transparent;
-  color: var(--color-primary);
-  font-weight: 500;
-  border: 2px solid var(--color-primary);
-  border-radius: var(--border-radius);
+  padding: var(--spacing-8);
+  text-align: center;
   transition: var(--transition-default);
   
   &:hover {
-    background-color: var(--color-primary);
-    color: var(--color-white);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-4px);
+  }
+`;
+
+const CardNumber = styled.div`
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-2);
+`;
+
+const CardTitle = styled.h3`
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-foreground);
+  margin-bottom: var(--spacing-2);
+`;
+
+const CardDescription = styled.p`
+  font-size: 0.9rem;
+  color: var(--color-gray-600);
+`;
+
+const TrustCardsGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-8);
+  
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
   }
 `;
 
@@ -134,64 +94,32 @@ const AboutSection: React.FC = () => {
     <AboutContainer id="sobre">
       <ContentContainer>
         <SectionHeader>
-          <SectionTitle>Conheça a UnoVitta</SectionTitle>
+          <SectionTitle>Por que escolher a UnoVitta?</SectionTitle>
           <Divider />
           <SectionDescription>
-            A UnoVitta é uma clínica odontológica dedicada a oferecer cuidados de saúde de alta qualidade,
-            com uma abordagem centrada no paciente e foco na inovação e humanização do atendimento.
+            Confiança, segurança e excelência em cada atendimento. Conheça nossos diferenciais.
           </SectionDescription>
         </SectionHeader>
 
-        <Grid>
-          <ImageWrapper>
-            <AboutImage
-              src={imgLogo}
-              alt="Clínica UnoVitta"
-              loading="lazy"
-            />
-          </ImageWrapper>
+        <TrustCardsGrid>
+          <TrustCard>
+            <CardNumber>15+</CardNumber>
+            <CardTitle>Anos de Mercado</CardTitle>
+            <CardDescription>Experiencia comprovada em odontologia de excelencia</CardDescription>
+          </TrustCard>
 
-          <ContentBlock>
-            <SubTitle>Nossa Missão</SubTitle>
-            <Paragraph>
-              Na Unovitta Clínicas, nossa missão é transformar sorrisos e vidas por meio de um atendimento humanizado, ético e de excelência. Comprometemo-nos a oferecer tratamentos odontológicos de alta qualidade, utilizando tecnologia de ponta e técnicas atualizadas, sempre com foco no bem-estar, conforto e segurança de cada paciente.
-              <br />
-              Acreditamos que um sorriso saudável vai além da estética — é parte essencial da saúde e da autoestima. Por isso, trabalhamos diariamente para proporcionar experiências positivas, baseadas na confiança, no respeito e na valorização do ser humano.
-            </Paragraph>
+          <TrustCard>
+            <CardNumber>🤝</CardNumber>
+            <CardTitle>Atendimento Humanizado</CardTitle>
+            <CardDescription>Estrutura moderna e orientação profissional para sua confiança</CardDescription>
+          </TrustCard>
 
-            <SubTitle>Nossos Valores</SubTitle>
-            <ValuesList>
-              <ValueItem>
-                <ValueIcon fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                </ValueIcon>
-                <ValueText><strong>Excelência:</strong> Buscamos a perfeição em cada atendimento.</ValueText>
-              </ValueItem>
-              <ValueItem>
-                <ValueIcon fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                </ValueIcon>
-                <ValueText><strong>Humanização:</strong> Tratamos cada paciente com empatia e respeito.</ValueText>
-              </ValueItem>
-              <ValueItem>
-                <ValueIcon fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                </ValueIcon>
-                <ValueText><strong>Inovação:</strong> Utilizamos tecnologia de ponta para melhores resultados.</ValueText>
-              </ValueItem>
-              <ValueItem>
-                <ValueIcon fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                </ValueIcon>
-                <ValueText><strong>Ética:</strong> Agimos com transparência e responsabilidade.</ValueText>
-              </ValueItem>
-            </ValuesList>
-
-            <LearnMoreButton to="/sobre">
-              Saiba mais sobre nós
-            </LearnMoreButton>
-          </ContentBlock>
-        </Grid>
+          <TrustCard>
+            <CardNumber>5K+</CardNumber>
+            <CardTitle>Pacientes Satisfeitos</CardTitle>
+            <CardDescription>Avaliação média de 4.9★ e múltiplos depoimentos positivos</CardDescription>
+          </TrustCard>
+        </TrustCardsGrid>
       </ContentContainer>
     </AboutContainer>
   );

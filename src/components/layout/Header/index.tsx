@@ -46,12 +46,22 @@ const DesktopNav = styled.nav`
 `;
 
 const NavLink = styled(Link)`
-  color: var(--color-dark);
+  color: var(--color-gray-900);
   transition: var(--transition-default);
   text-decoration: none; 
   
   &:hover {
     color: var(--color-primary);
+  }
+`;
+
+const WhatsAppNavLink = styled.a`
+  color: var(--color-gray-900);
+  transition: var(--transition-default);
+  text-decoration: none;
+
+  &:hover {
+    text-decoration:  underline;
   }
 `;
 
@@ -172,21 +182,26 @@ const Header: React.FC = () => {
         </LogoContainer>
 
         <DesktopNav>
-          <NavLink to="/">Início</NavLink>
-          <NavLink to="/sobre">Sobre</NavLink>
-          <NavLink to="/servicos">Serviços</NavLink>
-          <NavLink to="/blog">Blog</NavLink>
-          <NavLink to="/contato">Contato</NavLink>
+          <NavLink to="/servicos" style={{ fontWeight: 600 }}>Tratamentos</NavLink>
+          <NavLink to="/sobre">Sobre Nós</NavLink>
+          <WhatsAppNavLink
+            href="https://api.whatsapp.com/send/?phone=5561996548591&text=Ol%C3%A1%2C+gostaria+de+agendar+uma+consulta+na+UnoVitta&type=phone_number&app_absent=0"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={handleWhatsAppClick}
+          >
+            💬 WhatsApp
+          </WhatsAppNavLink>
         </DesktopNav>
 
         <CTAButton 
           href="https://api.whatsapp.com/send/?phone=5561996548591&text=Ol%C3%A1%2C+gostaria+de+agendar+uma+consulta+na+UnoVitta&type=phone_number&app_absent=0"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Agende sua consulta via WhatsApp"
+          aria-label="Agende sua avaliação via WhatsApp"
           onClick={handleWhatsAppClick} 
         >
-          Agende sua consulta
+          Agende sua avaliação
         </CTAButton>
 
         <MobileMenuButton
@@ -214,20 +229,11 @@ const Header: React.FC = () => {
 
       {isMenuOpen && (
         <MobileMenu>
-          <MobileNavLink to="/" onClick={() => setIsMenuOpen(false)}>
-            Início
+          <MobileNavLink to="/servicos" onClick={() => setIsMenuOpen(false)}>
+            Tratamentos
           </MobileNavLink>
           <MobileNavLink to="/sobre" onClick={() => setIsMenuOpen(false)}>
-            Sobre
-          </MobileNavLink>
-          <MobileNavLink to="/servicos" onClick={() => setIsMenuOpen(false)}>
-            Serviços
-          </MobileNavLink>
-          <MobileNavLink to="/blog" onClick={() => setIsMenuOpen(false)}>
-            Blog
-          </MobileNavLink>
-          <MobileNavLink to="/contato" onClick={() => setIsMenuOpen(false)}>
-            Contato
+            Sobre Nós
           </MobileNavLink>
           <MobileCTAButton
             href="https://api.whatsapp.com/send/?phone=5561996548591&text=Ol%C3%A1%2C+gostaria+de+agendar+uma+consulta+na+UnoVitta&type=phone_number&app_absent=0"
@@ -236,7 +242,7 @@ const Header: React.FC = () => {
             aria-label="Agende sua consulta via WhatsApp"
             onClick={handleMobileWhatsAppClick} 
           >
-            Agende sua consulta
+            Agende sua avaliação
           </MobileCTAButton>
         </MobileMenu>
       )}

@@ -168,10 +168,10 @@ const HeroSection: React.FC = () => {
         <Grid>
           <div>
             <HeroTitle>
-              Seu sorriso merece o melhor cuidado
+              Avaliação odontológica com segurança, clareza e um plano certo para o seu sorriso.
             </HeroTitle>
             <HeroText>
-              Na UnoVitta, oferecemos tratamentos odontológicos de alta qualidade com foco no bem-estar e na satisfação dos nossos pacientes. Agende sua consulta hoje mesmo!
+              Na UnoVitta, você encontra atendimento humanizado, estrutura moderna e orientação profissional para iniciar seu tratamento com confiança.
             </HeroText>
             <ButtonGroup>
               <PrimaryButton
