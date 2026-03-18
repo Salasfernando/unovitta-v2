@@ -105,7 +105,7 @@ const AboutSection: React.FC = () => {
           <TrustCard>
             <CardNumber>15+</CardNumber>
             <CardTitle>Anos de Mercado</CardTitle>
-            <CardDescription>Experiencia comprovada em odontologia de excelencia</CardDescription>
+            <CardDescription>Experiência comprovada em odontologia de excelência</CardDescription>
           </TrustCard>
 
           <TrustCard>
@@ -115,7 +115,7 @@ const AboutSection: React.FC = () => {
           </TrustCard>
 
           <TrustCard>
-            <CardNumber>5K+</CardNumber>
+            <CardNumber>8K+</CardNumber>
             <CardTitle>Pacientes Satisfeitos</CardTitle>
             <CardDescription>Avaliação média de 4.9★ e múltiplos depoimentos positivos</CardDescription>
           </TrustCard>
