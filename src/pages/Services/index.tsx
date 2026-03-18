@@ -239,8 +239,11 @@ const Services: React.FC = () => {
       });
     }
     
-    // Redirecionar para página de contato
-    window.location.href = '/contato?service=' + serviceId;
+    // Abrir WhatsApp com mensagem personalizada
+    const whatsappNumber = '5561996548591';
+    const message = `Olá, gostaria de agendar uma consulta para: ${serviceTitle}`;
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
   };
 
   return (
