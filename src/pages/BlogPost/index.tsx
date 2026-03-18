@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { useParams, Link } from 'react-router-dom';
 import SEO from '../../components/SEO';
+import { getWhatsAppLinkProps } from '../../utils/whatsapp';
 
 const BlogPostContainer = styled.div`
   padding: var(--spacing-20) 0;
@@ -652,6 +653,7 @@ const allPostsPreviews: RelatedPostPreview[] = Object.values(postsData).map(p =>
 }));
 
 const BlogPost = () => {
+  const whatsappLinkProps = getWhatsAppLinkProps();
   const { slug } = useParams<{ slug: string }>();
 
   // Correção: Usar o mapa postsData para buscar o post pelo slug
@@ -763,7 +765,7 @@ const BlogPost = () => {
                 {/* Ícone do LinkedIn (exemplo) */}
                 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-3.06v8.37h3.06v-4.93c0-.81.61-1.41 1.41-1.41 .82 0 1.41.6 1.41 1.41v4.93h3.06M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" /></svg>
               </ShareButton>
-              <ShareButton href={shareUrls.whatsapp} target="_blank" rel="noopener noreferrer" aria-label="Compartilhar no WhatsApp">
+              <ShareButton href={shareUrls.whatsapp} {...whatsappLinkProps} aria-label="Compartilhar no WhatsApp">
                 {/* Ícone do WhatsApp (exemplo) */}
                 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.07 21.94L7.27 20.56C8.72 21.33 10.35 21.78 12.04 21.78C17.5 21.78 21.95 17.33 21.95 11.87C21.95 6.41 17.5 2 12.04 2M12.04 20.13C10.56 20.13 9.12 19.74 7.89 19L7.5 18.78L4.41 19.65L5.31 16.64L5.07 16.26C4.24 14.96 3.79 13.47 3.79 11.91C3.79 7.35 7.49 3.65 12.04 3.65C16.59 3.65 20.29 7.35 20.29 11.91C20.29 16.47 16.59 20.13 12.04 20.13M17.41 14.26C17.16 14.14 16.05 13.59 15.82 13.51C15.59 13.42 15.42 13.38 15.26 13.61C15.1 13.84 14.5 14.44 14.33 14.6C14.16 14.76 14 14.78 13.75 14.66C13.5 14.54 12.6 14.24 11.53 13.29C10.69 12.54 10.13 11.64 9.96 11.31C9.79 10.98 9.89 10.89 10.02 10.76C10.13 10.66 10.27 10.47 10.4 10.33C10.53 10.19 10.57 10.08 10.65 9.92C10.73 9.76 10.69 9.61 10.63 9.5C10.57 9.39 10.06 8.18 9.87 7.73C9.68 7.28 9.49 7.34 9.36 7.34C9.23 7.34 9.07 7.34 8.9 7.34C8.74 7.34 8.49 7.39 8.29 7.73C8.09 8.06 7.49 8.65 7.49 9.82C7.49 10.99 8.33 12.11 8.49 12.3C8.65 12.49 10.06 14.83 12.49 15.76C13.01 15.97 13.4 16.09 13.73 16.18C14.26 16.32 14.78 16.27 15.21 16.18C15.68 16.08 16.79 15.48 17.02 14.88C17.25 14.28 17.25 13.79 17.16 13.67C17.08 13.55 16.92 13.49 16.67 13.37C16.42 13.25 17.66 14.38 17.41 14.26Z" /></svg>
               </ShareButton>

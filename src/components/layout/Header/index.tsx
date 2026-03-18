@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom'; 
 import imgLogo from '../../../assets/logo.png'; 
+import { getWhatsAppLinkProps } from '../../../utils/whatsapp';
 
 declare global {
   interface Window {
@@ -153,6 +154,7 @@ const MobileCTAButton = styled.a`
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const whatsappLinkProps = getWhatsAppLinkProps();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -186,8 +188,7 @@ const Header: React.FC = () => {
           <NavLink to="/sobre">Sobre Nós</NavLink>
           <WhatsAppNavLink
             href="https://api.whatsapp.com/send/?phone=5561996548591&text=Ol%C3%A1%2C+gostaria+de+agendar+uma+consulta+na+UnoVitta&type=phone_number&app_absent=0"
-            target="_blank"
-            rel="noopener noreferrer"
+            {...whatsappLinkProps}
             onClick={handleWhatsAppClick}
           >
             💬 WhatsApp
@@ -196,8 +197,7 @@ const Header: React.FC = () => {
 
         <CTAButton 
           href="https://api.whatsapp.com/send/?phone=5561996548591&text=Ol%C3%A1%2C+gostaria+de+agendar+uma+consulta+na+UnoVitta&type=phone_number&app_absent=0"
-          target="_blank"
-          rel="noopener noreferrer"
+          {...whatsappLinkProps}
           aria-label="Agende sua avaliação via WhatsApp"
           onClick={handleWhatsAppClick} 
         >
@@ -237,8 +237,7 @@ const Header: React.FC = () => {
           </MobileNavLink>
           <MobileCTAButton
             href="https://api.whatsapp.com/send/?phone=5561996548591&text=Ol%C3%A1%2C+gostaria+de+agendar+uma+consulta+na+UnoVitta&type=phone_number&app_absent=0"
-            target="_blank"
-            rel="noopener noreferrer"
+            {...whatsappLinkProps}
             aria-label="Agende sua consulta via WhatsApp"
             onClick={handleMobileWhatsAppClick} 
           >

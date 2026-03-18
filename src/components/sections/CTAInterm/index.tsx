@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { getWhatsAppLinkProps } from '../../../utils/whatsapp';
 
 const CTAContainer = styled.section`
   background-color: var(--color-accent);
@@ -54,6 +55,8 @@ const CTAIntermediate: React.FC<CTAIntermediateProps> = ({
   title = "Quero entender o melhor tratamento para meu caso",
   buttonText = "Falar no WhatsApp"
 }) => {
+  const whatsappLinkProps = getWhatsAppLinkProps();
+
   const handleWhatsAppClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     const url = event.currentTarget.href;
     if (typeof window !== 'undefined' && typeof window.gtag_report_conversion_whatsapp === 'function') {
@@ -67,8 +70,7 @@ const CTAIntermediate: React.FC<CTAIntermediateProps> = ({
         <CTATitle>{title}</CTATitle>
         <CTAButton 
           href="https://api.whatsapp.com/send?phone=61996548591&text=Quero%20entender%20qual%20%C3%A9%20o%20melhor%20tratamento%20para%20meu%20caso!"
-          target="_blank"
-          rel="noopener noreferrer"
+          {...whatsappLinkProps}
           onClick={handleWhatsAppClick}
         >
           {buttonText}

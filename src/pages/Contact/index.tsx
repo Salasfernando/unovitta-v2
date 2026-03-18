@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import SEO from '../../components/SEO';
+import { getWhatsAppLinkProps } from '../../utils/whatsapp';
 
 const ContactContainer = styled.div`
   padding: var(--spacing-20) 0;
@@ -141,6 +142,7 @@ const MapContainer = styled.div`
 `;
 
 const Contact: React.FC = () => {
+  const whatsappLinkProps = getWhatsAppLinkProps();
 
   // Google Ads conversion tracking
   /*if (typeof window !== 'undefined' && window.gtag) {
@@ -212,9 +214,8 @@ const Contact: React.FC = () => {
                   </a>
                     <br />
                     <a href="https://api.whatsapp.com/send?phone=61996548591&text=Quero%20agendar%20uma%20consulta!"
-                      target='_blank'
-                      rel="noopener noreferrer" aria-label="Agende sua consulta"
-                      onClick={() => { window.open("https://api.whatsapp.com/send?phone=61996548591&text=Quero%20agendar%20uma%20consulta!", "_blank") }}
+                      {...whatsappLinkProps}
+                      aria-label="Agende sua consulta"
                     >
                       (61) 99654-8591
                     </a>

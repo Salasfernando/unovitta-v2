@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import SEO from '../../SEO';
 
+import { getWhatsAppLinkProps } from '../../../utils/whatsapp';
+
 declare global {
   interface Window {
     gtag?: (...args: unknown[]) => void;
@@ -219,6 +221,8 @@ const ContactSectionDescription = styled.p`
 `;
 
 const Contact: React.FC = () => {
+  const whatsappLinkProps = getWhatsAppLinkProps();
+
   const handleWhatsAppClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     const url = event.currentTarget.href;
     if (typeof window !== 'undefined' && typeof window.gtag_report_conversion_whatsapp === 'function') {
@@ -253,8 +257,7 @@ const Contact: React.FC = () => {
             <ContactCardDescription>Resposta rápida e agendamento direto</ContactCardDescription>
             <ContactCardLink 
               href="https://api.whatsapp.com/send?phone=61996548591&text=Quero%20agendar%20uma%20consulta!"
-              target="_blank"
-              rel="noopener noreferrer" 
+              {...whatsappLinkProps}
               aria-label="Agende sua consulta via WhatsApp"
               onClick={handleWhatsAppClick} 
             >
@@ -323,8 +326,7 @@ const Contact: React.FC = () => {
                     <br />
                     <ContactLink 
                       href="https://api.whatsapp.com/send?phone=61996548591&text=Quero%20agendar%20uma%20consulta!"
-                      target='_blank'
-                      rel="noopener noreferrer" 
+                      {...whatsappLinkProps}
                       aria-label="Agende sua consulta via WhatsApp"
                       onClick={handleWhatsAppClick} 
                     >

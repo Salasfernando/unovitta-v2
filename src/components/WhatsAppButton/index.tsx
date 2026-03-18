@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { getWhatsAppLinkProps } from '../../utils/whatsapp';
 
 declare global {
   interface Window {
@@ -35,6 +36,8 @@ const WhatsAppIcon = styled.svg`
 `;
 
 const WhatsAppButton: React.FC = () => {
+  const whatsappLinkProps = getWhatsAppLinkProps();
+
   const handleWhatsAppClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
 
     const url = event.currentTarget.href;
@@ -50,8 +53,7 @@ const WhatsAppButton: React.FC = () => {
   return (
     <WhatsAppButtonContainer
       href="https://wa.me/5561996548591?text=Olá,%20gostaria%20de%20agendar%20uma%20consulta%20na%20UnoVitta"
-      target="_blank"
-      rel="noopener noreferrer"
+      {...whatsappLinkProps}
       aria-label="Contato via WhatsApp"
       onClick={handleWhatsAppClick} 
     >

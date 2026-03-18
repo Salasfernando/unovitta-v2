@@ -37,20 +37,14 @@
   </script>
 
   <!-- Event snippet for WhatsApp Click conversion -->
-  <!-- This function can be called for clicks leading away from the page -->
-  <!-- For the WhatsApp button opening a new tab, the event is triggered directly in the component -->
+  <!-- This function only reports the conversion. Navigation is handled by the link/button itself. -->
   <script>
     function gtag_report_conversion_whatsapp(url) {
-      var callback = function () {
-        if (typeof (url) != "undefined") {
-          window.location = url;
-        }
-      };
       gtag("event", "conversion", {
         "send_to": "AW-962820594/aXk3CITIqMQaEPLzjcsD", // ID for WhatsApp click conversion
         "value": 1.0,
         "currency": "BRL",
-        "event_callback": callback
+        "event_callback": function () {}
       });
       return false;
     }

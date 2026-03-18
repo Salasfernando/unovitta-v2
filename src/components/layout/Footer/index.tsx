@@ -3,6 +3,7 @@ import { FaFacebook, FaInstagram, FaPhoneSquareAlt, FaWhatsapp } from 'react-ico
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import imgLogo from '../../../assets/images/logowhite.png'; 
+import { getWhatsAppLinkProps } from '../../../utils/whatsapp';
 
 declare global {
   interface Window {
@@ -226,6 +227,7 @@ const FooterCTAButton = styled.a`
 `;
 
 const Footer: React.FC = () => {
+  const whatsappLinkProps = getWhatsAppLinkProps();
 
   const handleWhatsAppClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     const url = event.currentTarget.href;
@@ -247,8 +249,7 @@ const Footer: React.FC = () => {
           <FooterCTAButtons>
             <FooterCTAButton 
               href="https://api.whatsapp.com/send?phone=61996548591&text=Quero%20agendar%20uma%20consulta!"
-              target="_blank"
-              rel="noopener noreferrer"
+              {...whatsappLinkProps}
               onClick={handleWhatsAppClick} 
             >
               📱 Agendar via WhatsApp
@@ -280,8 +281,7 @@ const Footer: React.FC = () => {
               </SocialLink>
               <SocialLink
                 href="https://api.whatsapp.com/send?phone=61996548591&text=Quero%20agendar%20uma%20consulta!"
-                target="_blank"
-                rel="noopener noreferrer"
+                {...whatsappLinkProps}
                 aria-label="WhatsApp"
                 onClick={handleWhatsAppClick} 
               >
@@ -342,8 +342,7 @@ const Footer: React.FC = () => {
               <ContactText>
                 <a
                   href="https://api.whatsapp.com/send?phone=61996548591&text=Quero%20agendar%20uma%20consulta!"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  {...whatsappLinkProps}
                   aria-label="Agende sua consulta via WhatsApp"
                   onClick={handleWhatsAppClick} 
                 >

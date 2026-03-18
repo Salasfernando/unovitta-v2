@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import SEO from '../../components/SEO';
+import { openWhatsAppLink } from '../../utils/whatsapp';
 
 const ServicesContainer = styled.div`
   padding: var(--spacing-20) 0;
@@ -228,7 +229,7 @@ const Services: React.FC = () => {
     }
   ];
 
-  const handleSchedule = (serviceId: number, serviceTitle: string) => {
+  const handleSchedule = (_serviceId: number, serviceTitle: string) => {
     // Google Ads conversion tracking
     if (typeof window !== 'undefined' && window.gtag) {
       window.gtag('event', 'conversion', {
@@ -243,7 +244,7 @@ const Services: React.FC = () => {
     const whatsappNumber = '5561996548591';
     const message = `Olá, gostaria de agendar uma consulta para: ${serviceTitle}`;
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, '_blank');
+    openWhatsAppLink(whatsappUrl);
   };
 
   return (

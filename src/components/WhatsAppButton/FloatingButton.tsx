@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaWhatsapp } from 'react-icons/fa';
 import styled from 'styled-components';
+import { getWhatsAppLinkProps } from '../../utils/whatsapp';
 
 const FloatingWhatsAppButton = styled.a`
   position: fixed;
@@ -37,6 +38,8 @@ const FloatingWhatsAppButton = styled.a`
 `;
 
 const FloatingWhatsApp: React.FC = () => {
+  const whatsappLinkProps = getWhatsAppLinkProps();
+
   const handleWhatsAppClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     const url = event.currentTarget.href;
     if (typeof window !== 'undefined' && typeof window.gtag_report_conversion_whatsapp === 'function') {
@@ -47,8 +50,7 @@ const FloatingWhatsApp: React.FC = () => {
   return (
     <FloatingWhatsAppButton
       href="https://api.whatsapp.com/send?phone=61996548591&text=Ol%C3%A1%2C+gostaria+de+agendar+uma+consulta+na+UnoVitta&type=phone_number&app_absent=0"
-      target="_blank"
-      rel="noopener noreferrer"
+      {...whatsappLinkProps}
       title="Fale conosco no WhatsApp"
       aria-label="Abrir WhatsApp"
       onClick={handleWhatsAppClick}

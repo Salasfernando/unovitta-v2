@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom'; 
+import { getWhatsAppLinkProps } from '../../../utils/whatsapp';
 
 declare global {
   interface Window {
@@ -139,6 +140,7 @@ const HeroImage = styled.img`
 `;
 
 const HeroSection: React.FC = () => {
+  const whatsappLinkProps = getWhatsAppLinkProps();
 
   const handleWhatsAppClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     const url = event.currentTarget.href;
@@ -176,8 +178,7 @@ const HeroSection: React.FC = () => {
             <ButtonGroup>
               <PrimaryButton
                 href="https://api.whatsapp.com/send/?phone=5561996548591&text=Ol%C3%A1%2C+gostaria+de+agendar+uma+consulta+na+UnoVitta&type=phone_number&app_absent=0"
-                target="_blank" 
-                rel="noopener noreferrer"
+                {...whatsappLinkProps}
                 aria-label="Agende sua consulta via WhatsApp"
                 onClick={handleWhatsAppClick}
               >
