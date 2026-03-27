@@ -187,7 +187,7 @@ const Header: React.FC = () => {
           <NavLink to="/servicos" style={{ fontWeight: 600 }}>Tratamentos</NavLink>
           <NavLink to="/sobre">Sobre Nós</NavLink>
           <WhatsAppNavLink
-            href="https://api.whatsapp.com/send/?phone=5561996548591&text=Ol%C3%A1%2C+gostaria+de+agendar+uma+consulta+na+UnoVitta&type=phone_number&app_absent=0"
+            href="https://api.whatsapp.com/send/?phone=556134794514&text=Ol%C3%A1%2C+gostaria+de+agendar+uma+consulta+na+UnoVitta&type=phone_number&app_absent=0"
             {...whatsappLinkProps}
             onClick={handleWhatsAppClick}
           >
@@ -196,7 +196,7 @@ const Header: React.FC = () => {
         </DesktopNav>
 
         <CTAButton 
-          href="https://api.whatsapp.com/send/?phone=5561996548591&text=Ol%C3%A1%2C+gostaria+de+agendar+uma+consulta+na+UnoVitta&type=phone_number&app_absent=0"
+          href="https://api.whatsapp.com/send/?phone=556134794514&text=Ol%C3%A1%2C+gostaria+de+agendar+uma+consulta+na+UnoVitta&type=phone_number&app_absent=0"
           {...whatsappLinkProps}
           aria-label="Agende sua avaliação via WhatsApp"
           onClick={handleWhatsAppClick} 
@@ -236,7 +236,7 @@ const Header: React.FC = () => {
             Sobre Nós
           </MobileNavLink>
           <MobileCTAButton
-            href="https://api.whatsapp.com/send/?phone=5561996548591&text=Ol%C3%A1%2C+gostaria+de+agendar+uma+consulta+na+UnoVitta&type=phone_number&app_absent=0"
+            href="https://api.whatsapp.com/send/?phone=556134794514&text=Ol%C3%A1%2C+gostaria+de+agendar+uma+consulta+na+UnoVitta&type=phone_number&app_absent=0"
             {...whatsappLinkProps}
             aria-label="Agende sua consulta via WhatsApp"
             onClick={handleMobileWhatsAppClick} 

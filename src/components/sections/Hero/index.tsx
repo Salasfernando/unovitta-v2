@@ -177,7 +177,7 @@ const HeroSection: React.FC = () => {
             </HeroText>
             <ButtonGroup>
               <PrimaryButton
-                href="https://api.whatsapp.com/send/?phone=5561996548591&text=Ol%C3%A1%2C+gostaria+de+agendar+uma+consulta+na+UnoVitta&type=phone_number&app_absent=0"
+                href="https://api.whatsapp.com/send/?phone=556134794514&text=Ol%C3%A1%2C+gostaria+de+agendar+uma+consulta+na+UnoVitta&type=phone_number&app_absent=0"
                 {...whatsappLinkProps}
                 aria-label="Agende sua consulta via WhatsApp"
                 onClick={handleWhatsAppClick}

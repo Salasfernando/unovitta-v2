@@ -8,7 +8,7 @@ declare global {
   interface Window {
     gtag?: (...args: unknown[]) => void;
     gtag_report_conversion_whatsapp?: (url?: string) => boolean;
-    gtag_report_conversion_contact?: (url?: string) => boolean; 
+    gtag_report_conversion_contact?: (url?: string) => boolean;
   }
 }
 
@@ -107,6 +107,7 @@ const ContactLabel = styled.h3`
 const ContactText = styled.p`
   color: var(--color-gray-600);
   margin-bottom: var(--spacing-2);
+  
 `;
 
 const ContactLink = styled.a`
@@ -255,13 +256,13 @@ const Contact: React.FC = () => {
             <ContactCardEmoji>💬</ContactCardEmoji>
             <ContactCardTitle>WhatsApp</ContactCardTitle>
             <ContactCardDescription>Resposta rápida e agendamento direto</ContactCardDescription>
-            <ContactCardLink 
-              href="https://api.whatsapp.com/send?phone=61996548591&text=Quero%20agendar%20uma%20consulta!"
+            <ContactCardLink
+              href="https://api.whatsapp.com/send?phone=6134794514&text=Quero%20agendar%20uma%20consulta!"
               {...whatsappLinkProps}
               aria-label="Agende sua consulta via WhatsApp"
-              onClick={handleWhatsAppClick} 
+              onClick={handleWhatsAppClick}
             >
-              (61) 99654-8591
+              (61) 3479-4514
             </ContactCardLink>
           </ContactCard>
 
@@ -312,7 +313,7 @@ const Contact: React.FC = () => {
                 </ContactDetails>
               </ContactItem>
 
-              <ContactItem>
+              <ContactItem style={{ alignItems: 'center' }}>
                 <ContactIcon>
                   <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
@@ -322,15 +323,6 @@ const Contact: React.FC = () => {
                   <ContactLabel>
                     <ContactLink href="tel:+556134794514" aria-label="Ligue para nós">
                       (61) 3479-4514
-                    </ContactLink>
-                    <br />
-                    <ContactLink 
-                      href="https://api.whatsapp.com/send?phone=61996548591&text=Quero%20agendar%20uma%20consulta!"
-                      {...whatsappLinkProps}
-                      aria-label="Agende sua consulta via WhatsApp"
-                      onClick={handleWhatsAppClick} 
-                    >
-                      (61) 99654-8591 (WhatsApp)
                     </ContactLink>
                   </ContactLabel>
                 </ContactDetails>

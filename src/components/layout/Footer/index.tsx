@@ -248,7 +248,7 @@ const Footer: React.FC = () => {
           </FooterCTADescription>
           <FooterCTAButtons>
             <FooterCTAButton 
-              href="https://api.whatsapp.com/send?phone=61996548591&text=Quero%20agendar%20uma%20consulta!"
+              href="https://api.whatsapp.com/send?phone=6134794514&text=Quero%20agendar%20uma%20consulta!"
               {...whatsappLinkProps}
               onClick={handleWhatsAppClick} 
             >
@@ -280,7 +280,7 @@ const Footer: React.FC = () => {
                 <FaInstagram />
               </SocialLink>
               <SocialLink
-                href="https://api.whatsapp.com/send?phone=61996548591&text=Quero%20agendar%20uma%20consulta!"
+                href="https://api.whatsapp.com/send?phone=6134794514&text=Quero%20agendar%20uma%20consulta!"
                 {...whatsappLinkProps}
                 aria-label="WhatsApp"
                 onClick={handleWhatsAppClick} 
@@ -341,12 +341,12 @@ const Footer: React.FC = () => {
               <ContactIconWrapper><FaWhatsapp /></ContactIconWrapper>
               <ContactText>
                 <a
-                  href="https://api.whatsapp.com/send?phone=61996548591&text=Quero%20agendar%20uma%20consulta!"
+                  href="https://api.whatsapp.com/send?phone=6134794514&text=Quero%20agendar%20uma%20consulta!"
                   {...whatsappLinkProps}
                   aria-label="Agende sua consulta via WhatsApp"
                   onClick={handleWhatsAppClick} 
                 >
-                  (61) 99654-8591
+                  (61) 3479-4514
                 </a>
               </ContactText>
             </ContactItem>
@@ -367,7 +367,7 @@ const Footer: React.FC = () => {
 
         <Copyright>
           <p>&copy; {new Date().getFullYear()} UnoVitta Clínicas. Todos os direitos reservados.</p>
-          <p>Desenvolvido por Salas Tech Solutions.</p>
+          <p>Desenvolvido por Salas Tech.</p>
         </Copyright>
       </FooterContent>
     </FooterContainer>

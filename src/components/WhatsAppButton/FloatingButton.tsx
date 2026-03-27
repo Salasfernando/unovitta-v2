@@ -49,7 +49,7 @@ const FloatingWhatsApp: React.FC = () => {
 
   return (
     <FloatingWhatsAppButton
-      href="https://api.whatsapp.com/send?phone=61996548591&text=Ol%C3%A1%2C+gostaria+de+agendar+uma+consulta+na+UnoVitta&type=phone_number&app_absent=0"
+      href="https://api.whatsapp.com/send?phone=6134794514&text=Ol%C3%A1%2C+gostaria+de+agendar+uma+consulta+na+UnoVitta&type=phone_number&app_absent=0"
       {...whatsappLinkProps}
       title="Fale conosco no WhatsApp"
       aria-label="Abrir WhatsApp"

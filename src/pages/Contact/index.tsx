@@ -213,11 +213,11 @@ const Contact: React.FC = () => {
                     (61) 3479-4514
                   </a>
                     <br />
-                    <a href="https://api.whatsapp.com/send?phone=61996548591&text=Quero%20agendar%20uma%20consulta!"
+                    <a href="https://api.whatsapp.com/send?phone=6134794514&text=Quero%20agendar%20uma%20consulta!"
                       {...whatsappLinkProps}
                       aria-label="Agende sua consulta"
                     >
-                      (61) 99654-8591
+                      (61) 3479-4514
                     </a>
                   </ContactLabel>
                   <ContactLink href="tel:+556134794514">

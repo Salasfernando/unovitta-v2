@@ -241,7 +241,7 @@ const Services: React.FC = () => {
     }
     
     // Abrir WhatsApp com mensagem personalizada
-    const whatsappNumber = '5561996548591';
+    const whatsappNumber = '556134794514';
     const message = `Olá, gostaria de agendar uma consulta para: ${serviceTitle}`;
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
     openWhatsAppLink(whatsappUrl);
