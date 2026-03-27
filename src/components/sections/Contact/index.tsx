@@ -257,7 +257,7 @@ const Contact: React.FC = () => {
             <ContactCardTitle>WhatsApp</ContactCardTitle>
             <ContactCardDescription>Resposta rápida e agendamento direto</ContactCardDescription>
             <ContactCardLink
-              href="https://api.whatsapp.com/send?phone=6134794514&text=Quero%20agendar%20uma%20consulta!"
+              href="https://api.whatsapp.com/send?phone=556134794514&text=Quero%20agendar%20uma%20consulta!"
               {...whatsappLinkProps}
               aria-label="Agende sua consulta via WhatsApp"
               onClick={handleWhatsAppClick}
