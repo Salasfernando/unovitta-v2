@@ -233,6 +233,13 @@ const Contact: React.FC = () => {
     }
   };
 
+  const handleContactClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    const url = event.currentTarget.href;
+    if (typeof window !== 'undefined' && typeof window.gtag_report_conversion_contact === 'function') {
+      window.gtag_report_conversion_contact(url);
+    }
+  };
+
   return (
     <ContactContainer>
       <SEO
@@ -321,7 +328,7 @@ const Contact: React.FC = () => {
                 </ContactIcon>
                 <ContactDetails>
                   <ContactLabel>
-                    <ContactLink href="tel:+556134794514" aria-label="Ligue para nós">
+                    <ContactLink href="tel:+556134794514" aria-label="Ligue para nós" onClick={handleContactClick}>
                       (61) 3479-4514
                     </ContactLink>
                   </ContactLabel>
@@ -337,7 +344,7 @@ const Contact: React.FC = () => {
                 <ContactDetails>
                   <ContactLabel>Email</ContactLabel>
                   <ContactText>contato@unovitta.com.br</ContactText>
-                  <ContactLink href="mailto:contato@unovitta.com.br">
+                  <ContactLink href="mailto:contato@unovitta.com.br" onClick={handleContactClick}>
                     Enviar email
                   </ContactLink>
                 </ContactDetails>
