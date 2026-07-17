@@ -19,11 +19,26 @@ const PageHeader = styled.header`
   margin-bottom: var(--spacing-12);
 `;
 
-const PageTitle = styled.h1`
-  font-size: 2.5rem;
+const Eyebrow = styled.span`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: var(--border-radius-full);
+  background: rgba(15, 118, 110, 0.1);
+  color: var(--color-primary);
+  font-size: 0.82rem;
   font-weight: 700;
-  margin-bottom: var(--spacing-4);
-  
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+`;
+
+const PageTitle = styled.h1`
+  font-size: 2.35rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+
   @media (min-width: 768px) {
     font-size: 3rem;
   }
@@ -32,12 +47,12 @@ const PageTitle = styled.h1`
 const Divider = styled.div`
   width: 5rem;
   height: 0.25rem;
-  background-color: var(--color-accent);
-  margin: 0 auto var(--spacing-6) auto;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+  margin: 0 auto 1.2rem auto;
 `;
 
 const PageDescription = styled.p`
-  font-size: 1.125rem;
+  font-size: 1.05rem;
   color: var(--color-gray-600);
   max-width: 48rem;
   margin: 0 auto;
@@ -46,20 +61,21 @@ const PageDescription = styled.p`
 const ServicesGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--spacing-8);
-  
+  gap: 1.4rem;
+
   @media (min-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
   }
 `;
 
 const ServiceCard = styled.div`
-  background-color: var(--color-white);
-  border-radius: var(--border-radius-lg);
+  background: rgba(255, 255, 255, 0.86);
+  border: 1px solid rgba(15, 118, 110, 0.12);
+  border-radius: var(--border-radius-xl);
   overflow: hidden;
   box-shadow: var(--shadow);
   transition: var(--transition-default);
-  
+
   &:hover {
     transform: translateY(-0.25rem);
     box-shadow: var(--shadow-md);
@@ -68,15 +84,15 @@ const ServiceCard = styled.div`
 
 const ServiceImage = styled.div`
   width: 100%;
-  height: 250px;
+  height: 240px;
   overflow: hidden;
-  
+
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.3s ease;
-    
+    transition: transform 0.35s ease;
+
     ${ServiceCard}:hover & {
       transform: scale(1.05);
     }
@@ -84,36 +100,38 @@ const ServiceImage = styled.div`
 `;
 
 const ServiceContent = styled.div`
-  padding: var(--spacing-6);
+  padding: 1.2rem;
 `;
 
 const ServiceTitle = styled.h2`
-  font-size: 1.5rem;
+  font-size: 1.35rem;
   font-weight: 700;
-  margin-bottom: var(--spacing-3);
+  margin-bottom: 0.6rem;
 `;
 
 const ServiceDescription = styled.p`
   color: var(--color-gray-700);
-  margin-bottom: var(--spacing-4);
+  margin-bottom: 1rem;
 `;
 
 const ServiceFeatures = styled.ul`
   list-style: none;
   padding: 0;
-  margin: 0 0 var(--spacing-4) 0;
+  margin: 0 0 1rem 0;
 `;
 
 const ServiceFeatureItem = styled.li`
   display: flex;
   align-items: flex-start;
-  margin-bottom: var(--spacing-2);
-  
+  gap: 0.55rem;
+  margin-bottom: 0.45rem;
+  color: var(--color-gray-700);
+
   svg {
-    width: 1.25rem;
-    height: 1.25rem;
+    width: 1rem;
+    height: 1rem;
     color: var(--color-accent);
-    margin-right: var(--spacing-2);
+    margin-top: 0.2rem;
     flex-shrink: 0;
   }
 `;
@@ -122,18 +140,17 @@ const ServiceCTA = styled.button`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: var(--spacing-3) var(--spacing-6);
-  background-color: var(--color-primary);
+  padding: 0.8rem 1.05rem;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
   color: var(--color-white);
-  font-weight: 500;
-  border-radius: var(--border-radius);
-  transition: var(--transition-default);
+  font-weight: 700;
+  border-radius: var(--border-radius-full);
   border: none;
   cursor: pointer;
-  
+
   &:hover {
-    background-color: var(--color-primary);
-    opacity: 0.9;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(15, 118, 110, 0.2);
   }
 `;
 
@@ -198,7 +215,7 @@ const Services: React.FC = () => {
       ],
       image: 'https://images.unsplash.com/photo-1468493858157-0da44aaf1d13?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
     },
-    
+
     {
       id: 5,
       title: 'Endodontia',
@@ -230,17 +247,15 @@ const Services: React.FC = () => {
   ];
 
   const handleSchedule = (_serviceId: number, serviceTitle: string) => {
-    // Google Ads conversion tracking
     if (typeof window !== 'undefined' && window.gtag) {
       window.gtag('event', 'conversion', {
-        'send_to': 'AW-CONVERSION_ID/CONVERSION_LABEL',
-        'event_category': 'Services',
-        'event_label': `Schedule_${serviceTitle}`,
-        'value': 1
+        send_to: 'AW-CONVERSION_ID/CONVERSION_LABEL',
+        event_category: 'Services',
+        event_label: `Schedule_${serviceTitle}`,
+        value: 1
       });
     }
-    
-    // Abrir WhatsApp com mensagem personalizada
+
     const whatsappNumber = '556134794514';
     const message = `Olá, gostaria de agendar uma consulta para: ${serviceTitle}`;
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
@@ -258,6 +273,7 @@ const Services: React.FC = () => {
       
       <ContentContainer>
         <PageHeader>
+          <Eyebrow>Especialidades premium</Eyebrow>
           <PageTitle>Nossos Serviços</PageTitle>
           <Divider />
           <PageDescription>

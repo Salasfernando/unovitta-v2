@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import SEO from '../../SEO';
-
 import { getWhatsAppLinkProps } from '../../../utils/whatsapp';
 
 declare global {
@@ -12,7 +11,7 @@ declare global {
   }
 }
 
-const ContactContainer = styled.div`
+const ContactContainer = styled.section`
   padding: var(--spacing-20) 0;
 `;
 
@@ -28,45 +27,131 @@ const PageHeader = styled.header`
   margin-bottom: var(--spacing-12);
 `;
 
-const PageTitle = styled.h1`
-  font-size: 2.5rem;
+const Eyebrow = styled.span`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4rem 0.8rem;
+  border-radius: var(--border-radius-full);
+  background: rgba(15, 118, 110, 0.1);
+  color: var(--color-primary);
+  font-size: 0.8rem;
   font-weight: 700;
-  margin-bottom: var(--spacing-4);
-  
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.9rem;
+`;
+
+const ContactSectionTitle = styled.h2`
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 0.85rem;
+
   @media (min-width: 768px) {
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
 `;
 
 const Divider = styled.div`
   width: 5rem;
   height: 0.25rem;
-  background-color: var(--color-accent);
-  margin: 0 auto var(--spacing-6) auto;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+  margin: 0 auto 1.1rem auto;
+`;
+
+const ContactSectionDescription = styled.p`
+  font-size: 1.05rem;
+  color: var(--color-gray-600);
+  max-width: 48rem;
+  margin: 0 auto;
+`;
+
+const ContactCardsGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-bottom: var(--spacing-12);
+
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+`;
+
+const ContactCard = styled.a`
+  display: block;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(15, 118, 110, 0.12);
+  border-radius: var(--border-radius-xl);
+  padding: 1.2rem;
+  text-align: center;
+  box-shadow: var(--shadow);
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+    background: rgba(255, 255, 255, 1);
+  }
+`;
+
+const ContactCardEmoji = styled.div`
+  font-size: 2.4rem;
+  margin-bottom: 0.8rem;
+`;
+
+const ContactCardTitle = styled.h3`
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-dark);
+  margin-bottom: 0.4rem;
+`;
+
+const ContactCardDescription = styled.p`
+  font-size: 0.95rem;
+  color: var(--color-gray-600);
+  margin-bottom: 0.7rem;
+`;
+
+const ContactCardLink = styled.a`
+  color: var(--color-primary);
+  font-weight: 700;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 const ContactGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--spacing-8);
-  
+
   @media (min-width: 768px) {
     grid-template-columns: 1fr 1fr;
   }
 `;
 
-const ContactInfo = styled.div``;
+const ContactInfo = styled.div`
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(15, 118, 110, 0.12);
+  border-radius: var(--border-radius-xl);
+  padding: 1.4rem;
+  box-shadow: var(--shadow);
+`;
 
-const ContactInfoTitle = styled.h2`
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin-bottom: var(--spacing-6);
+const ContactInfoTitle = styled.h3`
+  font-size: 1.4rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  color: var(--color-dark);
 `;
 
 const ContactInfoList = styled.div`
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-6);
+  gap: 1rem;
 `;
 
 const ContactItem = styled.div`
@@ -77,148 +162,70 @@ const ContactItem = styled.div`
 const ContactIcon = styled.div`
   width: 3rem;
   height: 3rem;
-  background-color: var(--color-primary);
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
   color: var(--color-white);
-  border-radius: var(--border-radius);
+  border-radius: var(--border-radius-full);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: var(--spacing-4);
+  margin-right: 0.85rem;
   flex-shrink: 0;
-  
+
   svg {
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 1.3rem;
+    height: 1.3rem;
   }
 `;
 
 const ContactDetails = styled.div``;
 
-const ContactLabel = styled.h3`
-  font-size: 1.125rem;
-  font-weight: lighter;
-  margin-bottom: var(--spacing-2);
-
-  &:hover {
-    color: var(--color-secondary);
-  }
+const ContactLabel = styled.h4`
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+  color: var(--color-dark);
 `;
 
 const ContactText = styled.p`
   color: var(--color-gray-600);
-  margin-bottom: var(--spacing-2);
-  
+  margin-bottom: 0.25rem;
 `;
 
 const ContactLink = styled.a`
-  color: var(--color-secondary);
-  
+  color: var(--color-primary);
+  font-weight: 600;
+
   &:hover {
-    color: var(--color-primary);
     text-decoration: underline;
   }
 `;
 
 const MapSection = styled.section`
-  background-color: var(--color-secondary);
-  border-radius: var(--border-radius-lg);
+  background: linear-gradient(135deg, rgba(15, 118, 110, 0.95), rgba(33, 182, 141, 0.95));
+  border-radius: var(--border-radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
 `;
 
-const MapTitle = styled.h2`
-  font-size: 1.5rem;
+const MapTitle = styled.h3`
+  font-size: 1.3rem;
   font-weight: 700;
-  margin-bottom: var(--spacing-6);
+  margin-bottom: 0.75rem;
   text-align: center;
+  color: var(--color-white);
 `;
 
 const MapContainer = styled.div`
   width: 100%;
   height: 400px;
   overflow: hidden;
-  
+
   iframe {
     width: 100%;
     height: 100%;
     border: 0;
-    padding: 20px;
+    padding: 1rem;
   }
-`;
-
-const ContactCardsGrid = styled.div`
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--spacing-6);
-  margin-bottom: var(--spacing-12);
-  
-  @media (min-width: 640px) {
-    grid-template-columns: repeat(3, 1fr);
-  }
-`;
-
-const ContactCard = styled.div`
-  background-color: var(--color-white);
-  border: 1px solid var(--color-gray-200);
-  border-radius: var(--border-radius-lg);
-  padding: var(--spacing-8);
-  text-align: center;
-  transition: var(--transition-default);
-  
-  &.primary {
-    border: 2px solid var(--color-primary);
-    background-color: rgba(var(--color-primary-rgb), 0.05);
-  }
-  
-  &:hover {
-    box-shadow: var(--shadow-md);
-  }
-`;
-
-const ContactCardEmoji = styled.div`
-  font-size: 3rem;
-  margin-bottom: var(--spacing-4);
-`;
-
-const ContactCardTitle = styled.h3`
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--color-foreground);
-  margin-bottom: var(--spacing-2);
-`;
-
-const ContactCardDescription = styled.p`
-  font-size: 0.9rem;
-  color: var(--color-gray-600);
-  margin-bottom: var(--spacing-4);
-`;
-
-const ContactCardLink = styled.a`
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--color-primary);
-  font-weight: 600;
-  text-decoration: none;
-  
-  &:hover {
-    text-decoration: underline;
-  }
-`;
-
-const ContactSectionTitle = styled.h2`
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: var(--spacing-4);
-  
-  @media (min-width: 768px) {
-    font-size: 2.5rem;
-  }
-`;
-
-const ContactSectionDescription = styled.p`
-  font-size: 1.125rem;
-  color: var(--color-gray-600);
-  max-width: 48rem;
-  margin: 0 auto var(--spacing-12);
 `;
 
 const Contact: React.FC = () => {
@@ -251,6 +258,7 @@ const Contact: React.FC = () => {
 
       <ContentContainer>
         <PageHeader>
+          <Eyebrow>Pronto para começar?</Eyebrow>
           <ContactSectionTitle>Agende sua avaliação agora</ContactSectionTitle>
           <Divider />
           <ContactSectionDescription>
@@ -259,39 +267,31 @@ const Contact: React.FC = () => {
         </PageHeader>
 
         <ContactCardsGrid>
-          <ContactCard className="primary">
+          <ContactCard href="https://api.whatsapp.com/send?phone=556134794514&text=Quero%20agendar%20uma%20consulta!" {...whatsappLinkProps} onClick={handleWhatsAppClick}>
             <ContactCardEmoji>💬</ContactCardEmoji>
             <ContactCardTitle>WhatsApp</ContactCardTitle>
-            <ContactCardDescription>Resposta rápida e agendamento direto</ContactCardDescription>
-            <ContactCardLink
-              href="https://api.whatsapp.com/send?phone=556134794514&text=Quero%20agendar%20uma%20consulta!"
-              {...whatsappLinkProps}
-              aria-label="Agende sua consulta via WhatsApp"
-              onClick={handleWhatsAppClick}
-            >
-              (61) 3479-4514
+            <ContactCardDescription>Resposta rápida para dúvidas e agendamentos.</ContactCardDescription>
+            <ContactCardLink href="https://api.whatsapp.com/send?phone=556134794514&text=Quero%20agendar%20uma%20consulta!" aria-label="Agende sua consulta via WhatsApp">
+              Falar agora
             </ContactCardLink>
           </ContactCard>
-
-          <ContactCard>
-            <ContactCardEmoji>☎️</ContactCardEmoji>
+          <ContactCard href="tel:+556134794514" onClick={handleContactClick}>
+            <ContactCardEmoji>📞</ContactCardEmoji>
             <ContactCardTitle>Telefone</ContactCardTitle>
-            <ContactCardDescription>Ligue para agendar sua consulta</ContactCardDescription>
+            <ContactCardDescription>Atendimento direto com nossa equipe.</ContactCardDescription>
             <ContactCardLink href="tel:+556134794514" aria-label="Ligue para nós">
-              (61) 3479-4514
+              Ligar agora
             </ContactCardLink>
           </ContactCard>
-
-          <ContactCard>
-            <ContactCardEmoji>🕐</ContactCardEmoji>
-            <ContactCardTitle>Horário</ContactCardTitle>
-            <ContactCardDescription>Seg-Sex: 8h-18h | Sábado: 8h-12h</ContactCardDescription>
+          <ContactCard href="https://ul.waze.com/ul?place=ChIJEzm_h9WwW5MRW5rGlInENXQ&ll=-15.66357120%2C-48.19969900&navigate=yes&utm_campaign=default&utm_source=waze_website&utm_medium=lm_share_location" target="_blank" rel="noopener noreferrer">
+            <ContactCardEmoji>📍</ContactCardEmoji>
+            <ContactCardTitle>Localização</ContactCardTitle>
+            <ContactCardDescription>Veja a rota até a nossa clínica com facilidade.</ContactCardDescription>
+            <ContactCardLink href="https://ul.waze.com/ul?place=ChIJEzm_h9WwW5MRW5rGlInENXQ&ll=-15.66357120%2C-48.19969900&navigate=yes&utm_campaign=default&utm_source=waze_website&utm_medium=lm_share_location" target="_blank" rel="noopener noreferrer">
+              Ver no mapa
+            </ContactCardLink>
           </ContactCard>
         </ContactCardsGrid>
-
-        <PageHeader style={{ marginTop: 'var(--spacing-12)' }}>
-          <PageTitle style={{ fontSize: '1.5rem' }}>Detalhes de Contato</PageTitle>
-        </PageHeader>
 
         <ContactGrid>
           <ContactInfo>

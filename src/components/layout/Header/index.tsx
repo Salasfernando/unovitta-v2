@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom'; 
-import imgLogo from '../../../assets/logo.png'; 
+import { Link, useLocation } from 'react-router-dom';
+import imgLogo from '../../../assets/logo.png';
 import { getWhatsAppLinkProps } from '../../../utils/whatsapp';
 
 declare global {
@@ -11,18 +11,33 @@ declare global {
   }
 }
 
+const navItems = [
+  { label: 'Início', to: '/' },
+  { label: 'Tratamentos', to: '/servicos' },
+  { label: 'Sobre', to: '/sobre' },
+  { label: 'Blog', to: '/blog' },
+  { label: 'Contato', to: '/contato' },
+];
+
 const HeaderContainer = styled.header`
-  background-color: var(--color-secondary);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  backdrop-filter: blur(18px);
+  background: rgba(255, 255, 255, 0.86);
+  border-bottom: 1px solid rgba(15, 118, 110, 0.12);
+  box-shadow: 0 10px 40px rgba(20, 51, 61, 0.06);
 `;
 
 const HeaderContent = styled.div`
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: var(--spacing-4);
+  padding: 1rem var(--spacing-4);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 `;
 
 const LogoContainer = styled.div`
@@ -30,62 +45,58 @@ const LogoContainer = styled.div`
   align-items: center;
 
   img {
-    width: 90px;
-    height: 90px;
-    border-radius: 20%;
-    background-color: var(--color-white);
+    width: 82px;
+    height: 82px;
+    border-radius: 22px;
+    background: linear-gradient(135deg, var(--color-white), #eaf7f5);
+    box-shadow: 0 12px 28px rgba(15, 118, 110, 0.24);
+    border: 2px solid rgba(255, 255, 255, 0.8);
   }
 `;
 
 const DesktopNav = styled.nav`
   display: none;
-  
+
   @media (min-width: 768px) {
     display: flex;
-    gap: var(--spacing-8);
+    align-items: center;
+    gap: 0.35rem;
   }
 `;
 
-const NavLink = styled(Link)`
-  color: var(--color-gray-900);
-  transition: var(--transition-default);
-  text-decoration: none; 
-  
-  &:hover {
-    color: var(--color-primary);
-  }
-`;
-
-const WhatsAppNavLink = styled.a`
-  color: var(--color-gray-900);
+const NavLink = styled(Link)<{ $active?: boolean }>`
+  color: ${props => (props.$active ? 'var(--color-primary)' : 'var(--color-gray-700)')};
+  font-weight: ${props => (props.$active ? 700 : 600)};
+  padding: 0.6rem 0.85rem;
+  border-radius: var(--border-radius-full);
   transition: var(--transition-default);
   text-decoration: none;
 
   &:hover {
-    text-decoration:  underline;
+    color: var(--color-primary);
+    background: rgba(15, 118, 110, 0.08);
   }
 `;
 
 const CTAButton = styled.a`
   display: none;
-  
+
   @media (min-width: 768px) {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: var(--spacing-3) var(--spacing-6);
-    background-color: var(--color-accent);
+    padding: 0.8rem 1.2rem;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
     color: var(--color-white);
-    font-weight: 500;
-    border-radius: var(--border-radius);
-    transition: var(--transition-default);
-    text-decoration: none; 
-    cursor: pointer; 
-    
+    font-weight: 700;
+    border-radius: var(--border-radius-full);
+    box-shadow: 0 12px 25px rgba(15, 118, 110, 0.24);
+    text-decoration: none;
+
     &:hover {
-      background-color: var(--color-accent);
-      opacity: 0.9;
+      transform: translateY(-2px);
       color: var(--color-white);
+      box-shadow: 0 16px 30px rgba(15, 118, 110, 0.3);
     }
   }
 `;
@@ -98,7 +109,7 @@ const MobileMenuButton = styled.button`
   border: none;
   color: var(--color-dark);
   cursor: pointer;
-  
+
   @media (min-width: 768px) {
     display: none;
   }
@@ -107,26 +118,31 @@ const MobileMenuButton = styled.button`
 const MobileMenu = styled.div`
   display: flex;
   flex-direction: column;
-  padding-bottom: var(--spacing-4);
-  margin-top: var(--spacing-4);
-  
+  gap: 0.5rem;
+  padding: 0.75rem var(--spacing-4) var(--spacing-4);
+  background: rgba(255, 255, 255, 0.95);
+  border-top: 1px solid rgba(15, 118, 110, 0.12);
+
   @media (min-width: 768px) {
     display: none;
   }
 `;
 
-const MobileNavLink = styled(Link)`
+const MobileNavLink = styled(Link)<{ $active?: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-dark);
-  padding: var(--spacing-2) 0;
+  color: ${props => (props.$active ? 'var(--color-primary)' : 'var(--color-dark)')};
+  font-weight: ${props => (props.$active ? 700 : 600)};
+  padding: 0.75rem 0.9rem;
+  border-radius: var(--border-radius);
+  background: ${props => (props.$active ? 'rgba(15, 118, 110, 0.08)' : 'transparent')};
   transition: var(--transition-default);
-  text-decoration: none; 
-  
+  text-decoration: none;
+
   &:hover {
-    background-color: var(--color-primary);
-    color: var(--color-white);
+    background: rgba(15, 118, 110, 0.08);
+    color: var(--color-primary);
   }
 `;
 
@@ -135,30 +151,24 @@ const MobileCTAButton = styled.a`
   align-items: center;
   justify-content: center;
   width: 100%;
-  text-align: center;
-  padding: var(--spacing-3) var(--spacing-6);
-  margin-top: var(--spacing-4);
-  background-color: var(--color-accent);
+  padding: 0.8rem 1rem;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
   color: var(--color-white);
-  font-weight: 500;
-  border-radius: var(--border-radius);
-  transition: var(--transition-default);
-  text-decoration: none; 
-  cursor: pointer; 
-  
-  &:hover {
-    background-color: rgb(35, 151, 62); // Consider using a variable like --color-accent-dark
-    color: var(--color-white);
-  }
+  font-weight: 700;
+  border-radius: var(--border-radius-full);
+  text-decoration: none;
 `;
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const location = useLocation();
   const whatsappLinkProps = getWhatsAppLinkProps();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+  const isActive = (path: string) => location.pathname === path || (path !== '/' && location.pathname.startsWith(path));
 
   const handleWhatsAppClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     const url = event.currentTarget.href;
@@ -170,8 +180,8 @@ const Header: React.FC = () => {
   };
 
   const handleMobileWhatsAppClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
-    handleWhatsAppClick(event); 
-    setIsMenuOpen(false); 
+    handleWhatsAppClick(event);
+    setIsMenuOpen(false);
   };
 
   return (
@@ -184,30 +194,23 @@ const Header: React.FC = () => {
         </LogoContainer>
 
         <DesktopNav>
-          <NavLink to="/servicos" style={{ fontWeight: 600 }}>Tratamentos</NavLink>
-          <NavLink to="/sobre">Sobre Nós</NavLink>
-          <WhatsAppNavLink
-            href="https://api.whatsapp.com/send/?phone=556134794514&text=Ol%C3%A1%2C+gostaria+de+agendar+uma+consulta+na+UnoVitta&type=phone_number&app_absent=0"
-            {...whatsappLinkProps}
-            onClick={handleWhatsAppClick}
-          >
-            💬 WhatsApp
-          </WhatsAppNavLink>
+          {navItems.map(item => (
+            <NavLink key={item.to} to={item.to} $active={isActive(item.to)}>
+              {item.label}
+            </NavLink>
+          ))}
         </DesktopNav>
 
-        <CTAButton 
+        <CTAButton
           href="https://api.whatsapp.com/send/?phone=556134794514&text=Ol%C3%A1%2C+gostaria+de+agendar+uma+consulta+na+UnoVitta&type=phone_number&app_absent=0"
           {...whatsappLinkProps}
           aria-label="Agende sua avaliação via WhatsApp"
-          onClick={handleWhatsAppClick} 
+          onClick={handleWhatsAppClick}
         >
           Agende sua avaliação
         </CTAButton>
 
-        <MobileMenuButton
-          onClick={toggleMenu}
-          aria-label="Menu"
-        >
+        <MobileMenuButton onClick={toggleMenu} aria-label="Menu">
           <svg
             width="24"
             height="24"
@@ -229,17 +232,16 @@ const Header: React.FC = () => {
 
       {isMenuOpen && (
         <MobileMenu>
-          <MobileNavLink to="/servicos" onClick={() => setIsMenuOpen(false)}>
-            Tratamentos
-          </MobileNavLink>
-          <MobileNavLink to="/sobre" onClick={() => setIsMenuOpen(false)}>
-            Sobre Nós
-          </MobileNavLink>
+          {navItems.map(item => (
+            <MobileNavLink key={item.to} to={item.to} $active={isActive(item.to)} onClick={() => setIsMenuOpen(false)}>
+              {item.label}
+            </MobileNavLink>
+          ))}
           <MobileCTAButton
             href="https://api.whatsapp.com/send/?phone=556134794514&text=Ol%C3%A1%2C+gostaria+de+agendar+uma+consulta+na+UnoVitta&type=phone_number&app_absent=0"
             {...whatsappLinkProps}
             aria-label="Agende sua consulta via WhatsApp"
-            onClick={handleMobileWhatsAppClick} 
+            onClick={handleMobileWhatsAppClick}
           >
             Agende sua avaliação
           </MobileCTAButton>

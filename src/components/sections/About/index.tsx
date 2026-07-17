@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const AboutContainer = styled.section`
   padding: var(--spacing-20) 0;
-  background-color: var(--color-white);
+  background: linear-gradient(180deg, #ffffff 0%, #f8fdfc 100%);
 `;
 
 const ContentContainer = styled.div`
@@ -43,13 +43,14 @@ const SectionDescription = styled.p`
 `;
 
 const TrustCard = styled.div`
-  background-color: var(--color-white);
-  border: 1px solid var(--color-gray-200);
-  border-radius: var(--border-radius-lg);
+  background: rgba(255,255,255,0.92);
+  border: 1px solid rgba(15, 118, 110, 0.12);
+  border-radius: var(--border-radius-xl);
   padding: var(--spacing-8);
   text-align: center;
   transition: var(--transition-default);
-  
+  box-shadow: var(--shadow);
+
   &:hover {
     box-shadow: var(--shadow-md);
     transform: translateY(-4px);
@@ -65,7 +66,7 @@ const CardNumber = styled.div`
 
 const CardTitle = styled.h3`
   font-size: 1.125rem;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--color-foreground);
   margin-bottom: var(--spacing-2);
 `;

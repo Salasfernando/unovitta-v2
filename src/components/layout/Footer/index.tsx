@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaFacebook, FaInstagram, FaPhoneSquareAlt, FaWhatsapp } from 'react-icons/fa';
+import { FaFacebook, FaInstagram, FaPhoneAlt, FaWhatsapp } from 'react-icons/fa';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import imgLogo from '../../../assets/images/logowhite.png'; 
@@ -252,13 +252,13 @@ const Footer: React.FC = () => {
               {...whatsappLinkProps}
               onClick={handleWhatsAppClick} 
             >
-              📱 Agendar via WhatsApp
+              <FaWhatsapp /> Agendar via WhatsApp
             </FooterCTAButton>
             <FooterCTAButton 
               href="tel:+556134794514"
               className="secondary"
             >
-              ☎️ Ligar agora
+              <FaPhoneAlt /> Ligar agora
             </FooterCTAButton>
           </FooterCTAButtons>
         </FooterCTAContainer>
@@ -330,7 +330,7 @@ const Footer: React.FC = () => {
               </ContactText>
             </ContactItem>
             <ContactItem>
-              <ContactIconWrapper><FaPhoneSquareAlt /></ContactIconWrapper>
+              <ContactIconWrapper><FaPhoneAlt /></ContactIconWrapper>
               <ContactText>
                 <a href="tel:+556134794514" aria-label="Ligue para nós">
                   (61) 3479-4514

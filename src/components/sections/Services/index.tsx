@@ -6,7 +6,7 @@ import { FaHospital, FaSmile, FaTooth } from 'react-icons/fa';
 
 const ServicesContainer = styled.section`
   padding: var(--spacing-20) 0;
-  background-color: var(--color-gray-100);
+  background: linear-gradient(180deg, #f8fdfc 0%, #f4fbfa 100%);
 `;
 
 const ContentContainer = styled.div`
@@ -23,9 +23,9 @@ const SectionHeader = styled.div`
 
 const SectionTitle = styled.h2`
   font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: var(--spacing-4);
-  
+  font-weight: 800;
+  margin-bottom: 0.85rem;
+
   @media (min-width: 768px) {
     font-size: 2.5rem;
   }
@@ -34,8 +34,8 @@ const SectionTitle = styled.h2`
 const Divider = styled.div`
   width: 5rem;
   height: 0.25rem;
-  background-color: var(--color-accent);
-  margin: 0 auto var(--spacing-6) auto;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+  margin: 0 auto 1.1rem auto;
 `;
 
 const SectionDescription = styled.p`
@@ -60,12 +60,13 @@ const ServicesGrid = styled.div`
 `;
 
 const ServiceCard = styled.div`
-  background-color: var(--color-white);
-  border-radius: var(--border-radius-lg);
+  background: rgba(255,255,255,0.96);
+  border: 1px solid rgba(15, 118, 110, 0.12);
+  border-radius: var(--border-radius-xl);
   overflow: hidden;
   box-shadow: var(--shadow);
   transition: var(--transition-default);
-  
+
   &:hover {
     transform: translateY(-0.25rem);
     box-shadow: var(--shadow-md);
@@ -73,16 +74,21 @@ const ServiceCard = styled.div`
 `;
 
 const ServiceIcon = styled.div`
-  background-color: var(--color-primary);
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
   color: var(--color-white);
   padding: var(--spacing-6);
   display: flex;
   align-items: center;
   justify-content: center;
-  
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
   svg {
     width: 3rem;
     height: 3rem;
+  }
+
+  ${ServiceCard}:hover & {
+    transform: translateY(-2px);
   }
 `;
 

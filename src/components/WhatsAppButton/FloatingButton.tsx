@@ -1,7 +1,18 @@
 import React from 'react';
 import { FaWhatsapp } from 'react-icons/fa';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { getWhatsAppLinkProps } from '../../utils/whatsapp';
+
+const pulse = keyframes`
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+  50% {
+    transform: scale(1.06);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  }
+`;
 
 const FloatingWhatsAppButton = styled.a`
   position: fixed;
@@ -18,13 +29,14 @@ const FloatingWhatsAppButton = styled.a`
   font-size: 1.75rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   transition: var(--transition-default);
+  animation: ${pulse} 2.5s ease-in-out infinite;
   text-decoration: none;
   z-index: 999;
   cursor: pointer;
 
   &:hover {
-    transform: scale(1.1);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    transform: scale(1.12);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
     background-color: var(--color-accent);
   }
 
