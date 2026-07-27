@@ -226,7 +226,7 @@ const HeroSection: React.FC = () => {
       <ContentContainer>
         <Grid>
           <HeroContent>
-            <Eyebrow>✨ Clínica premium em Brasília</Eyebrow>
+            <Eyebrow>✨ Clínica premium em Brazlândia</Eyebrow>
             <HeroTitle>Seu sorriso merece conforto, tecnologia e um plano de cuidado pensado para você.</HeroTitle>
             <HeroText>
               Na UnoVitta, cada detalhe é pensado para oferecer acolhimento, precisão e resultados naturais com segurança, estética e confiança.
