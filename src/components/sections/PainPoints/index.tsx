@@ -1,0 +1,177 @@
+import React from 'react';
+import styled from 'styled-components';
+import { getWhatsAppLinkProps } from '../../../utils/whatsapp';
+
+const PainPointsContainer = styled.section`
+  padding: var(--spacing-20) 0;
+  background: linear-gradient(180deg, #f7fcfb 0%, #ffffff 100%);
+`;
+
+const ContentContainer = styled.div`
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-4);
+`;
+
+const SectionHeader = styled.div`
+  text-align: center;
+  margin-bottom: var(--spacing-12);
+`;
+
+const SectionTitle = styled.h2`
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 0.75rem;
+
+  @media (min-width: 768px) {
+    font-size: 2.5rem;
+  }
+`;
+
+const Divider = styled.div`
+  width: 5rem;
+  height: 0.25rem;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+  margin: 0 auto var(--spacing-6) auto;
+`;
+
+const SectionDescription = styled.p`
+  font-size: 1.05rem;
+  color: var(--color-gray-600);
+  max-width: 42rem;
+  margin: 0 auto;
+`;
+
+const CardsGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: var(--spacing-6);
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+`;
+
+const Card = styled.a`
+  display: block;
+  padding: 1.75rem 2rem;
+  background: var(--color-white);
+  border: 1px solid rgba(15, 118, 110, 0.1);
+  border-radius: var(--border-radius-xl);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  text-decoration: none;
+  color: inherit;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+    border-color: rgba(15, 118, 110, 0.2);
+  }
+`;
+
+const CardBadge = styled.span`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  color: var(--color-white);
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+`;
+
+const CardTitle = styled.h3`
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+`;
+
+const CardText = styled.p`
+  color: var(--color-gray-600);
+  margin-bottom: 1rem;
+  line-height: 1.7;
+`;
+
+const CardAction = styled.span`
+  font-size: 0.95rem;
+  color: var(--color-primary);
+  font-weight: 700;
+`;
+
+const painPoints = [
+  {
+    id: 1,
+    title: 'Perdi dentes e quero recuperar o sorriso',
+    description: 'Implantes odontológicos para devolver função e estética ao seu sorriso.',
+    whatsappText: 'Quero%20avaliar%20meu%20implante%20dent%C3%A1rio%20e%20agendar%20uma%20avalia%C3%A7%C3%A3o%20em%20Brazl%C3%A2ndia.'
+  },
+  {
+    id: 2,
+    title: 'Tenho vergonha de sorrir',
+    description: 'Soluções estéticas para devolver confiança e um sorriso natural.',
+    whatsappText: 'Quero%20avaliar%20op%C3%A7%C3%B5es%20est%C3%A9ticas%20para%20meu%20sorriso%20e%20agendar%20uma%20avalia%C3%A7%C3%A3o.'
+  },
+  {
+    id: 3,
+    title: 'Dentes desalinhados me incomodam',
+    description: 'Tratamentos modernos para alinhar dentes com conforto e discrição.',
+    whatsappText: 'Quero%20saber%20se%20posso%20usar%20alinhadores%20invis%C3%ADveis%20e%20agendar%20uma%20avalia%C3%A7%C3%A3o.'
+  },
+  {
+    id: 4,
+    title: 'Quero clarear meus dentes',
+    description: 'Clareamento seguro e eficiente com diagnóstico profissional.',
+    whatsappText: 'Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20para%20clareamento%20dental.'
+  },
+  {
+    id: 5,
+    title: 'Preciso retomar um tratamento interrompido',
+    description: 'Revisão completa do plano para continuar o tratamento com segurança.',
+    whatsappText: 'Preciso%20retomar%20meu%20tratamento%20odontol%C3%B3gico%20e%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o.'
+  },
+  {
+    id: 6,
+    title: 'Ainda não sei qual tratamento preciso',
+    description: 'Avaliação completa para entender o melhor caminho para o seu caso.',
+    whatsappText: 'Ainda%20n%C3%A3o%20sei%20qual%20tratamento%20preciso%20e%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o.'
+  }
+];
+
+const PainPointsSection: React.FC = () => {
+  const whatsappLinkProps = getWhatsAppLinkProps();
+
+  return (
+    <PainPointsContainer>
+      <ContentContainer>
+        <SectionHeader>
+          <SectionTitle>Qual é a sua maior preocupação?</SectionTitle>
+          <Divider />
+          <SectionDescription>
+            Clique na opção que mais combina com você e fale diretamente conosco pelo WhatsApp com mensagem pronta.
+          </SectionDescription>
+        </SectionHeader>
+
+        <CardsGrid>
+          {painPoints.map((point) => (
+            <Card
+              key={point.id}
+              href={`https://api.whatsapp.com/send?phone=556134794514&text=${point.whatsappText}`}
+              {...whatsappLinkProps}
+            >
+              <CardBadge>{point.id}</CardBadge>
+              <CardTitle>{point.title}</CardTitle>
+              <CardText>{point.description}</CardText>
+              <CardAction>Quero avaliar meu caso</CardAction>
+            </Card>
+          ))}
+        </CardsGrid>
+      </ContentContainer>
+    </PainPointsContainer>
+  );
+};
+
+export default PainPointsSection;

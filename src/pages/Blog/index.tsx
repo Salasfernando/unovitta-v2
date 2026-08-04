@@ -275,8 +275,8 @@ const Blog: React.FC = () => {
         title="Blog e Artigos"
         description="Artigos e dicas de saúde bucal da UnoVitta. Compartilhamos conhecimento e informações relevantes sobre odontologia, procedimentos dentários e cuidados preventivos."
         keywords="blog odontológico, artigos de saúde bucal, dicas de higiene dental, odontologia preventiva, tratamentos dentários"
-        canonical="https://unovitta.com.br/blog"
-        type="article"
+        canonical="/blog"
+        type="website"
       />
 
       <ContentContainer>

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import SEO from '../../components/SEO';
 import { openWhatsAppLink } from '../../utils/whatsapp';
 
@@ -56,6 +57,55 @@ const PageDescription = styled.p`
   color: var(--color-gray-600);
   max-width: 48rem;
   margin: 0 auto;
+`;
+
+const PageActions = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 2rem;
+
+  @media (min-width: 640px) {
+    flex-direction: row;
+    justify-content: center;
+  }
+`;
+
+const PrimaryLink = styled.a`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.95rem 1.25rem;
+  border-radius: var(--border-radius-full);
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  color: var(--color-white);
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 14px 28px rgba(15, 118, 110, 0.17);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 32px rgba(15, 118, 110, 0.2);
+  }
+`;
+
+const SecondaryLink = styled(Link)`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.95rem 1.25rem;
+  border-radius: var(--border-radius-full);
+  background: rgba(15, 118, 110, 0.08);
+  border: 1px solid rgba(15, 118, 110, 0.18);
+  color: var(--color-primary);
+  font-weight: 700;
+  text-decoration: none;
+
+  &:hover {
+    background: rgba(15, 118, 110, 0.14);
+    transform: translateY(-2px);
+  }
 `;
 
 const ServicesGrid = styled.div`
@@ -257,7 +307,7 @@ const Services: React.FC = () => {
     }
 
     const whatsappNumber = '556134794514';
-    const message = `Olá, gostaria de agendar uma consulta para: ${serviceTitle}`;
+    const message = `Olá, gostaria de agendar uma avaliação odontológica para: ${serviceTitle}`;
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
     openWhatsAppLink(whatsappUrl);
   };
@@ -268,7 +318,7 @@ const Services: React.FC = () => {
         title="Nossos Serviços"
         description="Conheça os serviços odontológicos oferecidos pela UnoVitta, com foco em qualidade, conforto e resultados duradouros."
         keywords="odontologia preventiva, odontologia estética, ortodontia, implantes dentários, endodontia, odontopediatria"
-        canonical="https://unovitta.com.br/servicos"
+        canonical="/servicos"
       />
       
       <ContentContainer>
@@ -280,6 +330,20 @@ const Services: React.FC = () => {
             Oferecemos uma ampla gama de serviços odontológicos com foco em qualidade, conforto e resultados duradouros. Conheça nossas especialidades:
           </PageDescription>
         </PageHeader>
+
+        <PageActions>
+          <PrimaryLink
+            href="https://api.whatsapp.com/send/?phone=556134794514&text=Olá%2C+gostaria+de+agendar+uma+avaliação+odontológica+gratuita"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Agende sua avaliação gratuita pelo WhatsApp"
+          >
+            Agende sua avaliação gratuita
+          </PrimaryLink>
+          <SecondaryLink to="/contato" aria-label="Converse com um especialista da UnoVitta">
+            Converse com um especialista
+          </SecondaryLink>
+        </PageActions>
         
         <ServicesGrid>
           {services.map(service => (
@@ -288,7 +352,10 @@ const Services: React.FC = () => {
                 <img 
                   src={service.image} 
                   alt={service.title}
-                  
+                  loading="lazy"
+                  decoding="async"
+                  width={800}
+                  height={600}
                 />
               </ServiceImage>
               <ServiceContent>
@@ -304,8 +371,8 @@ const Services: React.FC = () => {
                     </ServiceFeatureItem>
                   ))}
                 </ServiceFeatures>
-                <ServiceCTA onClick={() => handleSchedule(service.id, service.title)}>
-                  Agendar Consulta
+                <ServiceCTA onClick={() => handleSchedule(service.id, service.title)} aria-label={`Agendar avaliação para ${service.title}`}>
+                  Agendar Avaliação Gratuita
                 </ServiceCTA>
               </ServiceContent>
             </ServiceCard>

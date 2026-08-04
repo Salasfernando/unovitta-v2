@@ -153,7 +153,7 @@ const CTAIntermediate: React.FC<CTAIntermediateProps> = ({
         </CTADescription>
         <CTAButtons>
           <CTAButton
-            href="https://api.whatsapp.com/send?phone=556134794514&text=Quero%20entender%20qual%20%C3%A9%20o%20melhor%20tratamento%20para%20meu%20caso!"
+            href="https://api.whatsapp.com/send?phone=556134794514&text=Quero%20agendar%20minha%20avalia%C3%A7%C3%A3o%20odontol%C3%B3gica%20e%20entender%20o%20melhor%20tratamento%20para%20meu%20caso."
             {...whatsappLinkProps}
             onClick={handleWhatsAppClick}
           >

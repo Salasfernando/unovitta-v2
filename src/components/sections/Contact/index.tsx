@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import SEO from '../../SEO';
-import { getWhatsAppLinkProps } from '../../../utils/whatsapp';
+import { getWhatsAppLinkProps, openWhatsAppLink } from '../../../utils/whatsapp';
 
 declare global {
   interface Window {
@@ -113,7 +113,7 @@ const ContactCardDescription = styled.p`
   margin-bottom: 0.7rem;
 `;
 
-const ContactCardLink = styled.a`
+const ContactCardLink = styled.span`
   color: var(--color-primary);
   font-weight: 700;
   text-decoration: none;
@@ -179,6 +179,69 @@ const ContactIcon = styled.div`
 
 const ContactDetails = styled.div``;
 
+const ContactForm = styled.form`
+  display: grid;
+  gap: 1rem;
+  max-width: 520px;
+  width: 100%;
+  margin: 0 auto;
+`;
+
+const FormLabel = styled.label`
+  font-size: 0.95rem;
+  color: var(--color-dark);
+  font-weight: 700;
+`;
+
+const FormField = styled.input`
+  width: 100%;
+  padding: 0.85rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(15, 118, 110, 0.15);
+  background: var(--color-white);
+  color: var(--color-dark);
+  font-size: 1rem;
+
+  &:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.1);
+  }
+`;
+
+const FormSelect = styled.select`
+  width: 100%;
+  padding: 0.85rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(15, 118, 110, 0.15);
+  background: var(--color-white);
+  color: var(--color-dark);
+  font-size: 1rem;
+
+  &:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.1);
+  }
+`;
+
+const FormButton = styled.button`
+  width: 100%;
+  padding: 0.95rem;
+  border-radius: 1rem;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  color: white;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+`;
+
 const ContactLabel = styled.h4`
   font-size: 1rem;
   font-weight: 700;
@@ -201,6 +264,7 @@ const ContactLink = styled.a`
 `;
 
 const MapSection = styled.section`
+  grid-column: 1 / -1;
   background: linear-gradient(135deg, rgba(15, 118, 110, 0.95), rgba(33, 182, 141, 0.95));
   border-radius: var(--border-radius-xl);
   overflow: hidden;
@@ -217,19 +281,62 @@ const MapTitle = styled.h3`
 
 const MapContainer = styled.div`
   width: 100%;
-  height: 400px;
+  height: 500px;
   overflow: hidden;
 
   iframe {
     width: 100%;
     height: 100%;
     border: 0;
-    padding: 1rem;
   }
 `;
 
+const contactSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Dentist',
+  name: 'UnoVitta Clínicas',
+  url: 'https://unovitta.com.br',
+  telephone: '+556134794514',
+  image: ['https://unovitta.com.br/logo.png'],
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Quadra 37, Conjunto A, lote 2 - loja 3, Vila São José',
+    addressLocality: 'Brazlândia',
+    addressRegion: 'DF',
+    postalCode: '72700-000',
+    addressCountry: 'BR'
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: -15.663365,
+    longitude: -48.201212
+  },
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '08:00',
+      closes: '18:00'
+    },
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: 'Saturday',
+      opens: '08:00',
+      closes: '12:00'
+    }
+  ],
+  sameAs: [
+    'https://www.instagram.com/unovittaclinicas',
+    'https://pt-br.facebook.com/unovitta/'
+  ]
+};
+
 const Contact: React.FC = () => {
   const whatsappLinkProps = getWhatsAppLinkProps();
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [treatment, setTreatment] = useState('');
+  const [bestTime, setBestTime] = useState('');
 
   const handleWhatsAppClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     const url = event.currentTarget.href;
@@ -247,13 +354,23 @@ const Contact: React.FC = () => {
     }
   };
 
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const message = `Olá, gostaria de agendar uma avaliação odontológica.\n\nNome: ${name}\nTelefone: ${phone}\nTratamento de interesse: ${treatment || 'Não informado'}\nMelhor horário para contato: ${bestTime || 'Não informado'}`;
+    const url = `https://api.whatsapp.com/send?phone=556134794514&text=${encodeURIComponent(message)}`;
+
+    openWhatsAppLink(url);
+  };
+
   return (
     <ContactContainer>
       <SEO
         title="Contato"
-        description="Entre em contato com a Clínica Odontológica UnoVitta. Estamos prontos para atender você e responder todas as suas dúvidas sobre nossos tratamentos odontológicos."
-        keywords="contato, agendar consulta, localização, telefone, email, WhatsApp, clínica odontológica, UnoVitta"
+        description="Fale com a UnoVitta e agende sua avaliação odontológica por WhatsApp ou telefone. Atendimento rápido para Brazlândia e região com foco em cuidado, conforto e resultados reais."
+        keywords="contato, agendar avaliação, WhatsApp odontológico, clínica odontológica Brazlândia, telefone UnoVitta, avaliação odontológica"
         canonical="/contato"
+        schema={contactSchema}
       />
 
       <ContentContainer>
@@ -267,33 +384,82 @@ const Contact: React.FC = () => {
         </PageHeader>
 
         <ContactCardsGrid>
-          <ContactCard href="https://api.whatsapp.com/send?phone=556134794514&text=Quero%20agendar%20uma%20consulta!" {...whatsappLinkProps} onClick={handleWhatsAppClick}>
+          <ContactCard href="https://api.whatsapp.com/send?phone=556134794514&text=Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20odontol%C3%B3gica!" {...whatsappLinkProps} onClick={handleWhatsAppClick} aria-label="Abrir conversa no WhatsApp">
             <ContactCardEmoji>💬</ContactCardEmoji>
             <ContactCardTitle>WhatsApp</ContactCardTitle>
             <ContactCardDescription>Resposta rápida para dúvidas e agendamentos.</ContactCardDescription>
-            <ContactCardLink href="https://api.whatsapp.com/send?phone=556134794514&text=Quero%20agendar%20uma%20consulta!" aria-label="Agende sua consulta via WhatsApp">
-              Falar agora
-            </ContactCardLink>
+            <ContactCardLink>Falar agora</ContactCardLink>
           </ContactCard>
-          <ContactCard href="tel:+556134794514" onClick={handleContactClick}>
+          <ContactCard href="tel:+556134794514" onClick={handleContactClick} aria-label="Ligar para a clínica">
             <ContactCardEmoji>📞</ContactCardEmoji>
             <ContactCardTitle>Telefone</ContactCardTitle>
             <ContactCardDescription>Atendimento direto com nossa equipe.</ContactCardDescription>
-            <ContactCardLink href="tel:+556134794514" aria-label="Ligue para nós">
-              Ligar agora
-            </ContactCardLink>
+            <ContactCardLink>Ligar agora</ContactCardLink>
           </ContactCard>
-          <ContactCard href="https://ul.waze.com/ul?place=ChIJEzm_h9WwW5MRW5rGlInENXQ&ll=-15.66357120%2C-48.19969900&navigate=yes&utm_campaign=default&utm_source=waze_website&utm_medium=lm_share_location" target="_blank" rel="noopener noreferrer">
+          <ContactCard href="https://ul.waze.com/ul?place=ChIJEzm_h9WwW5MRW5rGlInENXQ&ll=-15.66357120%2C-48.19969900&navigate=yes&utm_campaign=default&utm_source=waze_website&utm_medium=lm_share_location" target="_blank" rel="noopener noreferrer" aria-label="Ver localização no mapa">
             <ContactCardEmoji>📍</ContactCardEmoji>
             <ContactCardTitle>Localização</ContactCardTitle>
             <ContactCardDescription>Veja a rota até a nossa clínica com facilidade.</ContactCardDescription>
-            <ContactCardLink href="https://ul.waze.com/ul?place=ChIJEzm_h9WwW5MRW5rGlInENXQ&ll=-15.66357120%2C-48.19969900&navigate=yes&utm_campaign=default&utm_source=waze_website&utm_medium=lm_share_location" target="_blank" rel="noopener noreferrer">
-              Ver no mapa
-            </ContactCardLink>
+            <ContactCardLink>Ver no mapa</ContactCardLink>
           </ContactCard>
         </ContactCardsGrid>
 
         <ContactGrid>
+          <ContactInfo>
+            <ContactInfoTitle>Deixe seus dados</ContactInfoTitle>
+            <ContactInfoList>
+              <ContactItem>
+                <ContactLabel>Formulário rápido</ContactLabel>
+              </ContactItem>
+              <ContactItem>
+                <ContactForm onSubmit={handleSubmit} aria-label="Formulário de contato">
+                  <FormLabel htmlFor="contact-name">Nome completo</FormLabel>
+                  <FormField
+                    id="contact-name"
+                    type="text"
+                    name="name"
+                    value={name}
+                    onChange={(event) => setName(event.target.value)}
+                    placeholder="Nome completo"
+                    required
+                  />
+                  <FormLabel htmlFor="contact-phone">Telefone</FormLabel>
+                  <FormField
+                    id="contact-phone"
+                    type="tel"
+                    name="phone"
+                    value={phone}
+                    onChange={(event) => setPhone(event.target.value)}
+                    placeholder="Telefone"
+                    required
+                  />
+                  <FormLabel htmlFor="contact-treatment">Tratamento de interesse</FormLabel>
+                  <FormField
+                    id="contact-treatment"
+                    type="text"
+                    name="treatment"
+                    value={treatment}
+                    onChange={(event) => setTreatment(event.target.value)}
+                    placeholder="Tratamento de interesse"
+                  />
+                  <FormLabel htmlFor="contact-best-time">Melhor horário para contato</FormLabel>
+                  <FormSelect
+                    id="contact-best-time"
+                    name="best_time"
+                    value={bestTime}
+                    onChange={(event) => setBestTime(event.target.value)}
+                  >
+                    <option value="">Melhor horário para contato</option>
+                    <option value="manha">Manhã</option>
+                    <option value="tarde">Tarde</option>
+                    <option value="noite">Noite</option>
+                  </FormSelect>
+                  <FormButton type="submit" aria-label="Enviar formulário de contato para o WhatsApp">Enviar meus dados</FormButton>
+                </ContactForm>
+              </ContactItem>
+            </ContactInfoList>
+          </ContactInfo>
+
           <ContactInfo>
             <ContactInfoTitle>Informações de Contato</ContactInfoTitle>
             <ContactInfoList>
@@ -367,11 +533,16 @@ const Contact: React.FC = () => {
             </ContactInfoList>
           </ContactInfo>
 
-          <MapSection>
+          <MapSection role="region" aria-label="Mapa de localização da clínica">
             <MapTitle>Nossa Localização</MapTitle>
             <MapContainer>
-              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2716.4600899439033!2d-48.20121179276872!3d-15.663365436865906!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935bb0d587bf3913%3A0x7435c48994c69a5b!2sUnovitta%20Cl%C3%ADnicas!5e0!3m2!1spt-BR!2sbr!4v1748311575288!5m2!1spt-BR!2sbr" width="600" height="450" style={{ border: 0, borderRadius: 'var(--border-radius-lg)' }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade">
-              </iframe>
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2716.4600899439033!2d-48.20121179276872!3d-15.663365436865906!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935bb0d587bf3913%3A0x7435c48994c69a5b!2sUnovitta%20Cl%C3%ADnicas!5e0!3m2!1spt-BR!2sbr!4v1748311575288!5m2!1spt-BR!2sbr"
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Mapa da localização da UnoVitta"
+              />
             </MapContainer>
           </MapSection>
         </ContactGrid>

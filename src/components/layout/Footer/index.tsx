@@ -248,17 +248,11 @@ const Footer: React.FC = () => {
           </FooterCTADescription>
           <FooterCTAButtons>
             <FooterCTAButton 
-              href="https://api.whatsapp.com/send?phone=556134794514&text=Quero%20agendar%20uma%20consulta!"
+              href="https://api.whatsapp.com/send?phone=556134794514&text=Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20odontol%C3%B3gica!"
               {...whatsappLinkProps}
               onClick={handleWhatsAppClick} 
             >
-              <FaWhatsapp /> Agendar via WhatsApp
-            </FooterCTAButton>
-            <FooterCTAButton 
-              href="tel:+556134794514"
-              className="secondary"
-            >
-              <FaPhoneAlt /> Ligar agora
+              <FaWhatsapp /> Agendar avaliação
             </FooterCTAButton>
           </FooterCTAButtons>
         </FooterCTAContainer>
@@ -280,7 +274,7 @@ const Footer: React.FC = () => {
                 <FaInstagram />
               </SocialLink>
               <SocialLink
-                href="https://api.whatsapp.com/send?phone=556134794514&text=Quero%20agendar%20uma%20consulta!"
+                href="https://api.whatsapp.com/send?phone=556134794514&text=Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20odontol%C3%B3gica!"
                 {...whatsappLinkProps}
                 aria-label="WhatsApp"
                 onClick={handleWhatsAppClick} 
@@ -341,10 +335,10 @@ const Footer: React.FC = () => {
               <ContactIconWrapper><FaWhatsapp /></ContactIconWrapper>
               <ContactText>
                 <a
-                  href="https://api.whatsapp.com/send?phone=556134794514&text=Quero%20agendar%20uma%20consulta!"
+                  href="https://api.whatsapp.com/send?phone=556134794514&text=Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20odontol%C3%B3gica!"
                   {...whatsappLinkProps}
-                  aria-label="Agende sua consulta via WhatsApp"
-                  onClick={handleWhatsAppClick} 
+                  aria-label="Agende sua avaliação via WhatsApp"
+                  onClick={handleWhatsAppClick}
                 >
                   (61) 3479-4514
                 </a>

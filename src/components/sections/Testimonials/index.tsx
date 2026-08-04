@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 const TestimonialsContainer = styled.section`
   padding: var(--spacing-20) 0;
@@ -58,17 +59,80 @@ const SectionDescription = styled.p`
   margin: 0 auto;
 `;
 
-const TestimonialsGrid = styled.div`
-  display: grid;
-  grid-template-columns: 1fr;
+const CarouselWrapper = styled.div`
+  position: relative;
+  margin-bottom: var(--spacing-10);
+`;
+
+const CarouselControls = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: var(--spacing-6);
+`;
+
+const CarouselButton = styled.button`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 50%;
+  border: 1px solid rgba(15, 118, 110, 0.18);
+  background: var(--color-white);
+  color: var(--color-primary);
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+
+  &:hover:not(:disabled) {
+    background: rgba(15, 118, 110, 0.08);
+    transform: translateY(-1px);
+  }
+
+  &:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+`;
+
+const CarouselDots = styled.div`
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  flex: 1;
+`;
+
+const CarouselDot = styled.button<{ active: boolean }>`
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  border: none;
+  background: ${({ active }) => (active ? 'var(--color-primary)' : 'rgba(15, 118, 110, 0.2)')};
+  cursor: pointer;
+  transition: background 0.2s ease;
+`;
+
+const CarouselOverflow = styled.div`
+  overflow: hidden;
+`;
+
+const CarouselTrack = styled.div<{ translate: number }>`
+  display: flex;
   gap: 1.25rem;
+  transition: transform 0.45s ease;
+  transform: translateX(${({ translate }) => translate}%);
+`;
+
+const Slide = styled.div`
+  flex: 0 0 100%;
 
   @media (min-width: 768px) {
-    grid-template-columns: repeat(2, 1fr);
+    flex: 0 0 50%;
   }
 
   @media (min-width: 1024px) {
-    grid-template-columns: repeat(3, 1fr);
+    flex: 0 0 33.3333%;
   }
 `;
 
@@ -244,6 +308,46 @@ const TestimonialsSection: React.FC = () => {
     }
   ];
 
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [slidesPerPage, setSlidesPerPage] = useState(1);
+  const [touchStartX, setTouchStartX] = useState<number | null>(null);
+
+  useEffect(() => {
+    const updateSlidesPerPage = () => {
+      if (typeof window === 'undefined') return;
+
+      if (window.innerWidth >= 1024) {
+        setSlidesPerPage(3);
+      } else if (window.innerWidth >= 768) {
+        setSlidesPerPage(2);
+      } else {
+        setSlidesPerPage(1);
+      }
+    };
+
+    updateSlidesPerPage();
+    window.addEventListener('resize', updateSlidesPerPage);
+    return () => window.removeEventListener('resize', updateSlidesPerPage);
+  }, []);
+
+  const maxIndex = Math.max(0, testimonials.length - slidesPerPage);
+
+  useEffect(() => {
+    if (activeIndex > maxIndex) {
+      setActiveIndex(maxIndex);
+    }
+  }, [activeIndex, maxIndex]);
+
+  useEffect(() => {
+    const autoplay = setInterval(() => {
+      setActiveIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
+    }, 6000);
+
+    return () => clearInterval(autoplay);
+  }, [maxIndex]);
+
+  const translateValue = -(activeIndex * (100 / slidesPerPage));
+
   return (
     <TestimonialsContainer id="depoimentos">
       <ContentContainer>
@@ -256,34 +360,88 @@ const TestimonialsSection: React.FC = () => {
           </SectionDescription>
         </SectionHeader>
 
-        <TestimonialsGrid>
-          {testimonials.map(testimonial => (
-            <TestimonialCard key={testimonial.id}>
-              <StarsContainer>
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                  </Star>
-                ))}
-              </StarsContainer>
-              <QuoteIcon>
-                <svg fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-                </svg>
-              </QuoteIcon>
-              <TestimonialText>{testimonial.text}</TestimonialText>
-              <TestimonialAuthor>
-                <AuthorAvatar>
-                  <img src={testimonial.avatar} alt={testimonial.author} />
-                </AuthorAvatar>
-                <AuthorInfo>
-                  <AuthorName>{testimonial.author}</AuthorName>
-                  <AuthorRole>{testimonial.role}</AuthorRole>
-                </AuthorInfo>
-              </TestimonialAuthor>
-            </TestimonialCard>
-          ))}
-        </TestimonialsGrid>
+        <CarouselWrapper>
+          <CarouselControls>
+            <CarouselButton
+              type="button"
+              onClick={() => setActiveIndex((prev) => Math.max(0, prev - 1))}
+              disabled={activeIndex === 0}
+              aria-label="Slide anterior"
+            >
+              <FaChevronLeft />
+            </CarouselButton>
+
+            <CarouselDots>
+              {Array.from({ length: maxIndex + 1 }, (_, index) => (
+                <CarouselDot
+                  key={index}
+                  type="button"
+                  active={index === activeIndex}
+                  onClick={() => setActiveIndex(index)}
+                  aria-label={`Ir para slide ${index + 1}`}
+                />
+              ))}
+            </CarouselDots>
+
+            <CarouselButton
+              type="button"
+              onClick={() => setActiveIndex((prev) => Math.min(maxIndex, prev + 1))}
+              disabled={activeIndex === maxIndex}
+              aria-label="Próximo slide"
+            >
+              <FaChevronRight />
+            </CarouselButton>
+          </CarouselControls>
+
+          <CarouselOverflow>
+            <CarouselTrack translate={translateValue}
+              onTouchStart={(e) => setTouchStartX(e.touches[0].clientX)}
+              onTouchEnd={(e) => {
+                if (touchStartX === null) return;
+                const touchEndX = e.changedTouches[0].clientX;
+                const deltaX = touchEndX - touchStartX;
+                const swipeThreshold = 50;
+
+                if (deltaX > swipeThreshold && activeIndex > 0) {
+                  setActiveIndex((prev) => prev - 1);
+                }
+                if (deltaX < -swipeThreshold && activeIndex < maxIndex) {
+                  setActiveIndex((prev) => prev + 1);
+                }
+                setTouchStartX(null);
+              }}
+            >
+              {testimonials.map((testimonial) => (
+                <Slide key={testimonial.id}>
+                  <TestimonialCard>
+                    <StarsContainer>
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                        </Star>
+                      ))}
+                    </StarsContainer>
+                    <QuoteIcon>
+                      <svg fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                      </svg>
+                    </QuoteIcon>
+                    <TestimonialText>{testimonial.text}</TestimonialText>
+                    <TestimonialAuthor>
+                      <AuthorAvatar>
+                        <img src={testimonial.avatar} alt={testimonial.author} />
+                      </AuthorAvatar>
+                      <AuthorInfo>
+                        <AuthorName>{testimonial.author}</AuthorName>
+                        <AuthorRole>{testimonial.role}</AuthorRole>
+                      </AuthorInfo>
+                    </TestimonialAuthor>
+                  </TestimonialCard>
+                </Slide>
+              ))}
+            </CarouselTrack>
+          </CarouselOverflow>
+        </CarouselWrapper>
 
         <TrustIndicatorsSection>
           <IndicatorsGrid>

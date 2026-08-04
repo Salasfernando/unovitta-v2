@@ -16,6 +16,10 @@ dist-ssr
 !.vscode/extensions.json
 .idea
 .DS_Store
+.venv/
+Avaliacao comercial site unovitta.pdf
+pdf_text_output.txt
+extract_pdf.py
 *.suo
 *.ntvs*
 *.njsproj

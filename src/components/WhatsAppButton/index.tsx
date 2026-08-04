@@ -52,7 +52,7 @@ const WhatsAppButton: React.FC = () => {
 
   return (
     <WhatsAppButtonContainer
-      href="https://wa.me/556134794514?text=Olá,%20gostaria%20de%20agendar%20uma%20consulta%20na%20UnoVitta"
+      href="https://wa.me/556134794514?text=Ol%C3%A1,%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o%20odontol%C3%B3gica%20na%20UnoVitta"
       {...whatsappLinkProps}
       aria-label="Contato via WhatsApp"
       onClick={handleWhatsAppClick} 

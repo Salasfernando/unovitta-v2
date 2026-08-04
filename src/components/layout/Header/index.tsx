@@ -202,7 +202,7 @@ const Header: React.FC = () => {
         </DesktopNav>
 
         <CTAButton
-          href="https://api.whatsapp.com/send/?phone=556134794514&text=Ol%C3%A1%2C+gostaria+de+agendar+uma+consulta+na+UnoVitta&type=phone_number&app_absent=0"
+          href="https://api.whatsapp.com/send/?phone=556134794514&text=Ol%C3%A1%2C+gostaria+de+agendar+uma+avalia%C3%A7%C3%A3o+odontol%C3%B3gica+na+UnoVitta&type=phone_number&app_absent=0"
           {...whatsappLinkProps}
           aria-label="Agende sua avaliação via WhatsApp"
           onClick={handleWhatsAppClick}
@@ -238,9 +238,9 @@ const Header: React.FC = () => {
             </MobileNavLink>
           ))}
           <MobileCTAButton
-            href="https://api.whatsapp.com/send/?phone=556134794514&text=Ol%C3%A1%2C+gostaria+de+agendar+uma+consulta+na+UnoVitta&type=phone_number&app_absent=0"
+            href="https://api.whatsapp.com/send/?phone=556134794514&text=Ol%C3%A1%2C+gostaria+de+agendar+uma+avalia%C3%A7%C3%A3o+odontol%C3%B3gica+na+UnoVitta&type=phone_number&app_absent=0"
             {...whatsappLinkProps}
-            aria-label="Agende sua consulta via WhatsApp"
+            aria-label="Agende sua avaliação via WhatsApp"
             onClick={handleMobileWhatsAppClick}
           >
             Agende sua avaliação

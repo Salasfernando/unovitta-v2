@@ -700,7 +700,7 @@ const BlogPost = () => {
         keywords={postData.seo.keywords}
         image={postData.seo.image}
         author={postData.seo.author}
-        canonical={`https://unovitta.com.br/blog/${slug}`}
+        canonical={`/blog/${slug}`}
         type="article"
 
       />

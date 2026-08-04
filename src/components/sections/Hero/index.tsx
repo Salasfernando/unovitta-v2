@@ -63,21 +63,6 @@ const HeroContent = styled.div`
   animation: ${fadeUp} 0.9s ease-out both;
 `;
 
-const Eyebrow = styled.span`
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.45rem 0.75rem;
-  border-radius: var(--border-radius-full);
-  background: rgba(255, 255, 255, 0.16);
-  color: #e8fffb;
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  margin-bottom: 1rem;
-`;
-
 const HeroTitle = styled.h1`
   font-size: 2.35rem;
   font-weight: 800;
@@ -226,32 +211,34 @@ const HeroSection: React.FC = () => {
       <ContentContainer>
         <Grid>
           <HeroContent>
-            <Eyebrow>✨ Clínica premium em Brazlândia</Eyebrow>
-            <HeroTitle>Seu sorriso merece conforto, tecnologia e um plano de cuidado pensado para você.</HeroTitle>
+            <HeroTitle>Agende sua avaliação odontológica em Brazlândia com agilidade e atenção personalizada.</HeroTitle>
             <HeroText>
-              Na UnoVitta, cada detalhe é pensado para oferecer acolhimento, precisão e resultados naturais com segurança, estética e confiança.
+              Tenha um atendimento humanizado, diagnóstico preciso e um plano de tratamento claro para recuperar a saúde e a beleza do seu sorriso.
             </HeroText>
             <ButtonGroup>
               <PrimaryButton
-                href="https://api.whatsapp.com/send/?phone=556134794514&text=Ol%C3%A1%2C+gostaria+de+agendar+uma+consulta+na+UnoVitta&type=phone_number&app_absent=0"
+                href="https://api.whatsapp.com/send/?phone=556134794514&text=Ol%C3%A1%2C+gostaria+de+agendar+uma+avalia%C3%A7%C3%A3o+odontol%C3%B3gica+em+Brazl%C3%A2ndia&type=phone_number&app_absent=0"
                 {...whatsappLinkProps}
-                aria-label="Agende sua consulta via WhatsApp"
+                aria-label="Agendar minha avaliação pelo WhatsApp"
                 onClick={handleWhatsAppClick}
               >
-                Agende sua consulta
+                Agendar minha avaliação pelo WhatsApp
               </PrimaryButton>
               <SecondaryButton to="/servicos">Conheça nossos tratamentos</SecondaryButton>
             </ButtonGroup>
             <StatsRow>
-              <StatItem>✓ Atendimento humanizado</StatItem>
-              <StatItem>✓ Tecnologia de ponta</StatItem>
-              <StatItem>✓ Resultados naturais</StatItem>
+              <StatItem>Atendimento humanizado</StatItem>
+              <StatItem>Avaliação odontológica rápida</StatItem>
             </StatsRow>
           </HeroContent>
           <ImageCard>
             <HeroImage
               src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=80"
               alt="Equipe odontológica UnoVitta"
+              width={900}
+              height={600}
+              decoding="async"
+              fetchPriority="high"
             />
           </ImageCard>
         </Grid>
