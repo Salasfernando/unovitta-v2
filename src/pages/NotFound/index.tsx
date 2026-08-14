@@ -7,8 +7,9 @@ const NotFoundContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 60vh;
-  padding: var(--spacing-20) 0;
+  min-height: 68vh;
+  padding: 7rem 0;
+  background: var(--color-gray-100);
   text-align: center;
 `;
 
@@ -20,8 +21,9 @@ const ContentContainer = styled.div`
 `;
 
 const ErrorCode = styled.h1`
-  font-size: 8rem;
-  font-weight: 700;
+  font-family: var(--font-family-display);
+  font-size: clamp(6rem, 16vw, 10rem);
+  font-weight: 800;
   color: var(--color-primary);
   margin-bottom: var(--spacing-4);
   line-height: 1;
@@ -47,7 +49,7 @@ const HomeButton = styled.a`
   background-color: var(--color-primary);
   color: var(--color-white);
   font-weight: 500;
-  border-radius: var(--border-radius);
+  border-radius: 0.75rem;
   transition: var(--transition-default);
   
   &:hover {

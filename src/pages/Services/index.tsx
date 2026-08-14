@@ -20,13 +20,21 @@ const PageHeader = styled.header`
   margin-bottom: var(--spacing-12);
 `;
 
+const DecisionNote = styled.p`
+  max-width: 42rem;
+  margin: 0 auto 2.25rem;
+  color: var(--color-gray-600);
+  font-size: 0.92rem;
+  text-align: center;
+`;
+
 const Eyebrow = styled.span`
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   padding: 0.4rem 0.8rem;
-  border-radius: var(--border-radius-full);
-  background: rgba(15, 118, 110, 0.1);
+  border-radius: 0.75rem;
+  background: var(--color-sage);
   color: var(--color-primary);
   font-size: 0.82rem;
   font-weight: 700;
@@ -48,7 +56,7 @@ const PageTitle = styled.h1`
 const Divider = styled.div`
   width: 5rem;
   height: 0.25rem;
-  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+  background: var(--color-secondary);
   margin: 0 auto 1.2rem auto;
 `;
 
@@ -77,8 +85,8 @@ const PrimaryLink = styled.a`
   align-items: center;
   justify-content: center;
   padding: 0.95rem 1.25rem;
-  border-radius: var(--border-radius-full);
-  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  border-radius: 0.75rem;
+  background: var(--color-primary);
   color: var(--color-white);
   font-weight: 700;
   text-decoration: none;
@@ -95,9 +103,9 @@ const SecondaryLink = styled(Link)`
   align-items: center;
   justify-content: center;
   padding: 0.95rem 1.25rem;
-  border-radius: var(--border-radius-full);
-  background: rgba(15, 118, 110, 0.08);
-  border: 1px solid rgba(15, 118, 110, 0.18);
+  border-radius: 0.75rem;
+  background: var(--color-sage);
+  border: 1px solid var(--color-gray-300);
   color: var(--color-primary);
   font-weight: 700;
   text-decoration: none;
@@ -118,12 +126,12 @@ const ServicesGrid = styled.div`
   }
 `;
 
-const ServiceCard = styled.div`
-  background: rgba(255, 255, 255, 0.86);
-  border: 1px solid rgba(15, 118, 110, 0.12);
+const ServiceCard = styled.article`
+  background: var(--color-white);
+  border: 1px solid var(--color-gray-300);
   border-radius: var(--border-radius-xl);
   overflow: hidden;
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow-sm);
   transition: var(--transition-default);
 
   &:hover {
@@ -191,10 +199,10 @@ const ServiceCTA = styled.button`
   align-items: center;
   justify-content: center;
   padding: 0.8rem 1.05rem;
-  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  background: var(--color-primary);
   color: var(--color-white);
   font-weight: 700;
-  border-radius: var(--border-radius-full);
+  border-radius: 0.75rem;
   border: none;
   cursor: pointer;
 
@@ -203,6 +211,24 @@ const ServiceCTA = styled.button`
     box-shadow: 0 12px 24px rgba(15, 118, 110, 0.2);
   }
 `;
+
+const servicesSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Tratamentos odontológicos UnoVitta',
+  itemListElement: [
+    'Odontologia Preventiva',
+    'Odontologia Estética',
+    'Ortodontia',
+    'Implantes Dentários',
+    'Endodontia',
+    'Odontopediatria'
+  ].map((name, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name
+  }))
+};
 
 const Services: React.FC = () => {
   const services = [
@@ -313,37 +339,41 @@ const Services: React.FC = () => {
   };
 
   return (
-    <ServicesContainer>
+      <ServicesContainer aria-labelledby="services-page-title">
       <SEO 
-        title="Nossos Serviços"
-        description="Conheça os serviços odontológicos oferecidos pela UnoVitta, com foco em qualidade, conforto e resultados duradouros."
+        title="Tratamentos odontológicos em Brazlândia"
+        description="Conheça os tratamentos odontológicos da UnoVitta em Brazlândia e encontre o melhor caminho para cuidar do seu sorriso com segurança."
         keywords="odontologia preventiva, odontologia estética, ortodontia, implantes dentários, endodontia, odontopediatria"
         canonical="/servicos"
+        schema={servicesSchema}
       />
       
       <ContentContainer>
         <PageHeader>
-          <Eyebrow>Especialidades premium</Eyebrow>
-          <PageTitle>Nossos Serviços</PageTitle>
+          <Eyebrow>Escolha o melhor caminho para você</Eyebrow>
+          <PageTitle id="services-page-title">Encontre o tratamento que faz sentido para você</PageTitle>
           <Divider />
           <PageDescription>
-            Oferecemos uma ampla gama de serviços odontológicos com foco em qualidade, conforto e resultados duradouros. Conheça nossas especialidades:
+            Conheça as principais especialidades da UnoVitta e entenda como cada uma pode ajudar. Se você ainda não souber qual tratamento precisa, comece pela avaliação.
           </PageDescription>
         </PageHeader>
 
         <PageActions>
           <PrimaryLink
-            href="https://api.whatsapp.com/send/?phone=556134794514&text=Olá%2C+gostaria+de+agendar+uma+avaliação+odontológica+gratuita"
+            href="https://api.whatsapp.com/send/?phone=556134794514&text=Ol%C3%A1%2C+gostaria+de+agendar+uma+avalia%C3%A7%C3%A3o+odontol%C3%B3gica+na+UnoVitta."
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Agende sua avaliação gratuita pelo WhatsApp"
+            aria-label="Agendar avaliação odontológica pelo WhatsApp"
           >
-            Agende sua avaliação gratuita
+            Agendar avaliação pelo WhatsApp
           </PrimaryLink>
           <SecondaryLink to="/contato" aria-label="Converse com um especialista da UnoVitta">
             Converse com um especialista
           </SecondaryLink>
         </PageActions>
+        <DecisionNote>
+          Não precisa escolher sozinho: nossa equipe pode entender seu objetivo e orientar o próximo passo pelo WhatsApp.
+        </DecisionNote>
         
         <ServicesGrid>
           {services.map(service => (
@@ -364,7 +394,7 @@ const Services: React.FC = () => {
                 <ServiceFeatures>
                   {service.features.map((feature, index) => (
                     <ServiceFeatureItem key={index}>
-                      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
                       {feature}
@@ -372,7 +402,7 @@ const Services: React.FC = () => {
                   ))}
                 </ServiceFeatures>
                 <ServiceCTA onClick={() => handleSchedule(service.id, service.title)} aria-label={`Agendar avaliação para ${service.title}`}>
-                  Agendar Avaliação Gratuita
+                  Agendar avaliação
                 </ServiceCTA>
               </ServiceContent>
             </ServiceCard>

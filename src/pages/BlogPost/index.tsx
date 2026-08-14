@@ -4,8 +4,8 @@ import SEO from '../../components/SEO';
 import { getWhatsAppLinkProps } from '../../utils/whatsapp';
 
 const BlogPostContainer = styled.div`
-  padding: var(--spacing-20) 0;
-  background-color: var(--color-white);
+  padding: 6.5rem 0;
+  background-color: var(--color-gray-100);
 `;
 
 const ContentContainer = styled.div`
@@ -194,7 +194,7 @@ const RelatedCard = styled.article`
   background-color: var(--color-white);
   border-radius: var(--border-radius-lg);
   overflow: hidden;
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow-sm);
   transition: var(--transition-default);
   
   &:hover {
@@ -291,6 +291,40 @@ type RelatedPostPreview = {
   title: string;
   image: string;
   slug: string;
+};
+
+const portugueseMonths: Record<string, string> = {
+  janeiro: '01',
+  fevereiro: '02',
+  março: '03',
+  abril: '04',
+  maio: '05',
+  junho: '06',
+  julho: '07',
+  agosto: '08',
+  setembro: '09',
+  outubro: '10',
+  novembro: '11',
+  dezembro: '12'
+};
+
+const toIsoDate = (dateLabel: string): string | undefined => {
+  const match = dateLabel.toLowerCase().match(/(\d{2}) de ([a-zç]+) de (\d{4})/);
+  if (!match) return undefined;
+
+  const [, day, monthName, year] = match;
+  const month = portugueseMonths[monthName];
+  return month ? `${year}-${month}-${day}` : undefined;
+};
+
+const toAuthorSchema = (authorLabel: string) => {
+  const match = authorLabel.match(/^(Dra?\.)\s+(.+)$/i);
+  return {
+    '@type': 'Person',
+    name: match ? match[2] : authorLabel,
+    ...(match ? { honorificPrefix: match[1] } : {}),
+    url: 'https://unovitta.com.br/sobre'
+  };
 };
 
 // Mock data - CONTEÚDO MELHORADO
@@ -692,6 +726,31 @@ const BlogPost = () => {
     whatsapp: `https://api.whatsapp.com/send?text=${encodeURIComponent(postData.title + ' ' + currentUrl)}`
   };
 
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: postData.title,
+    description: postData.seo.description,
+    image: [postData.seo.image || postData.image],
+    datePublished: toIsoDate(postData.date),
+    author: toAuthorSchema(postData.author),
+    publisher: {
+      '@type': 'Organization',
+      name: 'UnoVitta Clínicas',
+      url: 'https://unovitta.com.br/',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://unovitta.com.br/logo.png'
+      }
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': currentUrl || `https://unovitta.com.br/blog/${slug}`
+    },
+    articleSection: postData.category,
+    inLanguage: 'pt-BR'
+  };
+
   return (
     <>
       <SEO
@@ -702,7 +761,7 @@ const BlogPost = () => {
         author={postData.seo.author}
         canonical={`/blog/${slug}`}
         type="article"
-
+        schema={articleSchema}
       />
       <BlogPostContainer>
         <ContentContainer>
@@ -743,7 +802,14 @@ const BlogPost = () => {
 
           {postData.image && (
             <FeaturedImage>
-              <img src={postData.image} alt={postData.title} />
+              <img
+                src={postData.image}
+                alt={postData.title}
+                width={1200}
+                height={675}
+                fetchPriority="high"
+                decoding="async"
+              />
             </FeaturedImage>
           )}
 
@@ -779,7 +845,14 @@ const BlogPost = () => {
                 {relatedPostsData.map(relatedPost => (
                   <RelatedCard key={relatedPost.id}>
                     <RelatedImageContainer>
-                      <RelatedImage src={relatedPost.image} alt={relatedPost.title} />
+                      <RelatedImage
+                        src={relatedPost.image}
+                        alt={relatedPost.title}
+                        loading="lazy"
+                        decoding="async"
+                        width={800}
+                        height={500}
+                      />
                     </RelatedImageContainer>
                     <RelatedContent>
                       <RelatedPostTitle>{relatedPost.title}</RelatedPostTitle>

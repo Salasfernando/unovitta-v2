@@ -1,0 +1,174 @@
+--- PAGE 1 ---
+1. Diagnóstico executivo 
+O site possui uma base visual adequada e já apresenta serviços, diferenciais, depoimentos e canais de contato. Entretanto, para tráfego pago, ainda opera como 
+uma home institucional com muitos caminhos, e não como uma landing page desenhada para transformar o clique do Google Ads em agendamento. 
+PROBLEMA CENTRAL 
+Muitas informações e rotas de navegação 
+competindo com o agendamento. 
+EFEITO COMERCIAL 
+O visitante entende a clínica, mas não recebe 
+condução suficiente para agir agora. 
+DIREÇÃO CORRETA 
+Uma página por intenção de busca, com 
+mensagem específica e CTA único. 
+Caminho atual: anúncio → página com vários tratamentos → conteúdos → contatos. 
+Caminho ideal: anúncio específico → dor específica → solução → autoridade → avaliação → agendamento. 
+2. Como está hoje x o que precisa mudar 
+ELEMENTO COMO ESTÁ HOJE PROBLEMA COMERCIAL COMO DEVE FICAR 
+Objetivo da página A home apresenta clínica, diferenciais, tratamentos, 
+depoimentos, artigos, contatos e localização. 
+Existem vários objetivos ao mesmo tempo. O visitante 
+pode navegar e consumir conteúdo sem tomar a 
+decisão principal. 
+Transformar a página de tráfego em uma landing page 
+com um único objetivo: agendar avaliação pelo 
+WhatsApp ou formulário. 
+Primeira dobra Abertura com mensagem sobre avaliação 
+odontológica, segurança, clareza e plano para o 
+sorriso. 
+A mensagem é correta, porém genérica e pouco 
+específica para localização, dor e intenção de busca. 
+Usar título direto: “Precisa cuidar do seu sorriso? Agende 
+uma avaliação odontológica em Brazlândia.” 
+Subtítulo Explica o atendimento de forma ampla. Ainda não mostra rapidamente o que o paciente 
+ganhará ao realizar a avaliação. 
+Explicar o benefício: entender o tratamento indicado, 
+receber orientação e visualizar os próximos passos. 
+Botão principal O site utiliza chamada como “Agende sua consulta”. A página fala em avaliação, mas o botão fala em 
+consulta. A variação reduz consistência. 
+Padronizar todos os botões: “Agendar minha avaliação” 
+ou “Agendar avaliação pelo WhatsApp”. 
+Segundo botão da abertura Existe convite para conhecer os tratamentos. Divide a atenção logo no momento mais importante da 
+página. 
+Manter um único CTA dominante. O acesso aos 
+tratamentos pode ser secundário e discreto. 
+Localização O endereço aparece mais abaixo na página. Quem vem de anúncio local precisa confirmar 
+rapidamente se a clínica atende sua região. 
+Inserir logo na abertura: “Clínica odontológica em 
+Brazlândia/DF”. 
+Provas rápidas O site apresenta tempo de mercado, pacientes Há risco de divergência de números e indicadores sem Validar e padronizar: anos de atuação, quantidade real 
+--- PAGE 2 ---
+ELEMENTO COMO ESTÁ HOJE PROBLEMA COMERCIAL COMO DEVE FICAR 
+satisfeitos e nota de avaliação em diferentes pontos. explicação clara. de pacientes e nota do Google com número de 
+avaliações. 
+Tratamentos A home reúne implantes, lentes, alinhadores, 
+clareamento, ortodontia e reabilitação. 
+O usuário que pesquisou um procedimento específico 
+recebe diversas opções e perde continuidade com o 
+anúncio. 
+Criar landing pages exclusivas por tratamento e manter a 
+página geral apenas para busca ampla por clínica 
+odontológica. 
+Promessas de tratamento Alguns textos utilizam expressões muito definitivas 
+ou prazos rígidos. 
+Resultados e prazos dependem do caso clínico; 
+mensagens absolutas podem reduzir confiança. 
+Usar redação segura: alternativas, benefícios possíveis e 
+necessidade de avaliação individual. 
+CTA nos tratamentos Os cards utilizam chamada genérica como “Saber 
+mais”. 
+O CTA não comunica intenção nem conduz ao 
+próximo passo. 
+Usar CTA por procedimento: “Quero avaliar meu 
+implante”, “Quero saber se posso usar alinhadores”, 
+etc. 
+Oferta de entrada Existe convite para avaliação, mas o processo da 
+avaliação não está plenamente explicado. 
+O visitante não sabe o que acontece, o que será 
+analisado e o que receberá. 
+Criar seção “O que acontece na sua avaliação” com 
+etapas simples e objetivas. 
+Depoimentos O site possui relatos de pacientes sobre tratamentos 
+e atendimento. 
+A prova social aparece depois de muitas informações 
+e sem padronização clara da origem. 
+Subir três depoimentos fortes e identificar a fonte 
+quando confirmado, como “Avaliação publicada no 
+Google”. 
+Prova por tratamento Os depoimentos ficam concentrados em uma seção 
+geral. 
+A prova pode não conversar diretamente com a 
+intenção de quem veio do anúncio. 
+Exibir depoimentos relacionados ao tratamento em cada 
+landing page específica. 
+Blog A home apresenta artigos antes da área final de 
+conversão. 
+Os artigos criam rotas de saída e distraem quem veio 
+do tráfego pago. 
+Retirar o blog das landing pages. Na home institucional, 
+limitar os artigos e posicioná-los perto do rodapé. 
+Contato WhatsApp, telefone, horário, endereço e botões 
+aparecem em mais de uma área. 
+A repetição ocupa espaço, mas não necessariamente 
+aumenta persuasão. 
+Concentrar em uma seção final forte com CTA, contato, 
+endereço e formulário curto. 
+Formulário Não foi possível confirmar publicamente um 
+formulário curto e destacado logo no início. 
+Depender apenas do WhatsApp pode gerar perda de 
+usuários que preferem deixar os dados. 
+Inserir formulário com nome, telefone, tratamento de 
+interesse e melhor período para contato. 
+WhatsApp O site oferece acesso ao WhatsApp. Uma mensagem genérica não identifica campanha, 
+tratamento ou origem do lead. 
+Usar mensagens pré-preenchidas diferentes por anúncio 
+e página. 
+CTA durante a rolagem Existem botões em alguns pontos da página. No celular, o usuário pode percorrer a página sem ter 
+o CTA sempre disponível. 
+Implantar botão flutuante ou barra fixa: “Agendar 
+avaliação pelo WhatsApp”. 
+SEO e título da página Foram observadas variações de título na abertura 
+direta e na indexação. 
+Pode existir inconsistência de metadata, rota ou 
+configuração de indexação. 
+Revisar title, meta description, canonical, Open Graph, 
+sitemap e título específico por página. 
+Rastreamento Não foi possível confirmar publicamente a Sem medição, não há clareza sobre qual palavra, Configurar GTM, GA4, conversão do Google Ads, clique 
+--- PAGE 3 ---
+ELEMENTO COMO ESTÁ HOJE PROBLEMA COMERCIAL COMO DEVE FICAR 
+configuração dos eventos de conversão. anúncio ou página gera agendamentos. no WhatsApp, telefone, formulário e página de 
+confirmação. 
+ 
+3. Estrutura recomendada para a nova página 
+1. Cabeçalho enxuto 
+• Logo da Unovitta. 
+• Telefone ou WhatsApp. 
+• Botão destacado “Agendar avaliação”. 
+• Sem menu extenso nas landing pages de tráfego. 
+2. Primeira dobra 
+• Título: “Precisa cuidar do seu sorriso? Agende uma avaliação odontológica em Brazlândia.”  COR BRANCA 
+• Subtítulo: “Entenda qual é o tratamento indicado para o seu caso, com atendimento humanizado, segurança e um planejamento cla ro dos próximos passos.” 
+• Botão principal: “Agendar minha avaliação pelo WhatsApp”.  
+• Provas rápidas: tempo de mercado, nota do Google e localização, após validação dos dados.  
+3. Identificação da dor 
+• Criar cards objetivos: perdi dentes; tenho vergonha de sorrir; dentes desalinhados; quero clarear; preciso retomar um tratame nto; ainda não sei qual tratamento preciso. 
+• Cada opção deve abrir uma mensagem de WhatsApp específica.  
+4. Como funciona a avaliação 
+• O paciente explica o que está incomodando. 
+• A equipe avalia a saúde bucal e o contexto do caso. 
+• O profissional apresenta possibilidades e orientações. 
+• O paciente recebe um direcionamento claro para os próximos passos.  
+5. Diferenciais concretos 
+• Tempo comprovado de atuação. 
+• Atendimento humanizado. 
+--- PAGE 4 ---
+• Planejamento individual. 
+• Equipe multidisciplinar. 
+• Acompanhamento durante o tratamento. 
+• Localização em Brazlândia. 
+6. Prova social 
+• Três depoimentos fortes e próximos do topo. 
+• Nome, tratamento, nota e origem da avaliação, quando autorizados e confirmados.  
+• Depoimentos específicos em páginas de tratamentos.  
+7. Equipe e autoridade 
+• Nome, especialidade, registro profissional, experiência e tratamentos realizados.  
+• Evitar biografias longas; priorizar confiança e capacidade técnica.  
+8. Perguntas frequentes 
+• Preciso saber qual tratamento quero? 
+• A avaliação é necessária antes do orçamento? 
+• Quais tratamentos a clínica realiza? 
+• Há possibilidades de pagamento? 
+• Onde fica a clínica e como agendar? 
+9. CTA final 
+• Título: “O primeiro passo para cuidar do seu sorriso é entender o que você realmente precisa.”  
+• Botão: “Quero agendar minha avaliação”. 

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Link, useLocation } from 'react-router-dom';
 import imgLogo from '../../../assets/logo.png';
 import { getWhatsAppLinkProps } from '../../../utils/whatsapp';
+import { trackWhatsAppStart } from '../../../utils/analytics';
 
 declare global {
   interface Window {
@@ -23,10 +24,9 @@ const HeaderContainer = styled.header`
   position: sticky;
   top: 0;
   z-index: 1000;
-  backdrop-filter: blur(18px);
-  background: rgba(255, 255, 255, 0.86);
-  border-bottom: 1px solid rgba(15, 118, 110, 0.12);
-  box-shadow: 0 10px 40px rgba(20, 51, 61, 0.06);
+  background: var(--color-gray-100);
+  border-bottom: 1px solid var(--color-gray-300);
+  box-shadow: 0 8px 24px rgba(23, 52, 58, 0.05);
 `;
 
 const HeaderContent = styled.div`
@@ -47,10 +47,10 @@ const LogoContainer = styled.div`
   img {
     width: 82px;
     height: 82px;
-    border-radius: 22px;
-    background: linear-gradient(135deg, var(--color-white), #eaf7f5);
-    box-shadow: 0 12px 28px rgba(15, 118, 110, 0.24);
-    border: 2px solid rgba(255, 255, 255, 0.8);
+    border-radius: 18px;
+    background: var(--color-white);
+    box-shadow: 0 10px 22px rgba(23, 52, 58, 0.1);
+    border: 1px solid var(--color-gray-300);
   }
 `;
 
@@ -67,14 +67,14 @@ const DesktopNav = styled.nav`
 const NavLink = styled(Link)<{ $active?: boolean }>`
   color: ${props => (props.$active ? 'var(--color-primary)' : 'var(--color-gray-700)')};
   font-weight: ${props => (props.$active ? 700 : 600)};
-  padding: 0.6rem 0.85rem;
-  border-radius: var(--border-radius-full);
+  padding: 0.55rem 0.8rem;
+  border-radius: 0.65rem;
   transition: var(--transition-default);
   text-decoration: none;
 
   &:hover {
     color: var(--color-primary);
-    background: rgba(15, 118, 110, 0.08);
+    background: var(--color-gray-200);
   }
 `;
 
@@ -86,17 +86,17 @@ const CTAButton = styled.a`
     align-items: center;
     justify-content: center;
     padding: 0.8rem 1.2rem;
-    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    background: var(--color-primary);
     color: var(--color-white);
     font-weight: 700;
-    border-radius: var(--border-radius-full);
-    box-shadow: 0 12px 25px rgba(15, 118, 110, 0.24);
+    border-radius: 0.85rem;
+    box-shadow: 0 12px 25px rgba(5, 55, 52, 0.16);
     text-decoration: none;
 
     &:hover {
       transform: translateY(-2px);
       color: var(--color-white);
-      box-shadow: 0 16px 30px rgba(15, 118, 110, 0.3);
+      box-shadow: 0 16px 30px rgba(5, 55, 52, 0.24);
     }
   }
 `;
@@ -120,8 +120,8 @@ const MobileMenu = styled.div`
   flex-direction: column;
   gap: 0.5rem;
   padding: 0.75rem var(--spacing-4) var(--spacing-4);
-  background: rgba(255, 255, 255, 0.95);
-  border-top: 1px solid rgba(15, 118, 110, 0.12);
+  background: var(--color-gray-100);
+  border-top: 1px solid var(--color-gray-300);
 
   @media (min-width: 768px) {
     display: none;
@@ -136,12 +136,12 @@ const MobileNavLink = styled(Link)<{ $active?: boolean }>`
   font-weight: ${props => (props.$active ? 700 : 600)};
   padding: 0.75rem 0.9rem;
   border-radius: var(--border-radius);
-  background: ${props => (props.$active ? 'rgba(15, 118, 110, 0.08)' : 'transparent')};
+  background: ${props => (props.$active ? 'var(--color-gray-200)' : 'transparent')};
   transition: var(--transition-default);
   text-decoration: none;
 
   &:hover {
-    background: rgba(15, 118, 110, 0.08);
+    background: var(--color-gray-200);
     color: var(--color-primary);
   }
 `;
@@ -152,10 +152,10 @@ const MobileCTAButton = styled.a`
   justify-content: center;
   width: 100%;
   padding: 0.8rem 1rem;
-  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  background: var(--color-primary);
   color: var(--color-white);
   font-weight: 700;
-  border-radius: var(--border-radius-full);
+  border-radius: 0.85rem;
   text-decoration: none;
 `;
 
@@ -177,6 +177,7 @@ const Header: React.FC = () => {
     } else {
       console.warn('gtag_report_conversion_whatsapp function not found.');
     }
+    trackWhatsAppStart({ location: 'header' });
   };
 
   const handleMobileWhatsAppClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
@@ -189,13 +190,25 @@ const Header: React.FC = () => {
       <HeaderContent>
         <LogoContainer>
           <Link to="/" style={{ display: 'flex', alignItems: 'center' }}>
-            <img src={imgLogo} alt="Logo da Unovitta Clínicas" />
+            <img
+              src={imgLogo}
+              alt="Logo da Unovitta Clínicas"
+              width={82}
+              height={82}
+              fetchPriority="high"
+              decoding="async"
+            />
           </Link>
         </LogoContainer>
 
         <DesktopNav>
           {navItems.map(item => (
-            <NavLink key={item.to} to={item.to} $active={isActive(item.to)}>
+            <NavLink
+              key={item.to}
+              to={item.to}
+              $active={isActive(item.to)}
+              aria-current={isActive(item.to) ? 'page' : undefined}
+            >
               {item.label}
             </NavLink>
           ))}
@@ -210,7 +223,12 @@ const Header: React.FC = () => {
           Agende sua avaliação
         </CTAButton>
 
-        <MobileMenuButton onClick={toggleMenu} aria-label="Menu">
+        <MobileMenuButton
+          onClick={toggleMenu}
+          aria-label={isMenuOpen ? 'Fechar menu' : 'Abrir menu'}
+          aria-expanded={isMenuOpen}
+          aria-controls="mobile-navigation"
+        >
           <svg
             width="24"
             height="24"
@@ -231,9 +249,15 @@ const Header: React.FC = () => {
       </HeaderContent>
 
       {isMenuOpen && (
-        <MobileMenu>
+        <MobileMenu id="mobile-navigation" aria-label="Navegação principal">
           {navItems.map(item => (
-            <MobileNavLink key={item.to} to={item.to} $active={isActive(item.to)} onClick={() => setIsMenuOpen(false)}>
+            <MobileNavLink
+              key={item.to}
+              to={item.to}
+              $active={isActive(item.to)}
+              aria-current={isActive(item.to) ? 'page' : undefined}
+              onClick={() => setIsMenuOpen(false)}
+            >
               {item.label}
             </MobileNavLink>
           ))}

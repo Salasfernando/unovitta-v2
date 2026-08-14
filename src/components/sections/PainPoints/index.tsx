@@ -4,7 +4,7 @@ import { getWhatsAppLinkProps } from '../../../utils/whatsapp';
 
 const PainPointsContainer = styled.section`
   padding: var(--spacing-20) 0;
-  background: linear-gradient(180deg, #f7fcfb 0%, #ffffff 100%);
+  background: var(--color-gray-100);
 `;
 
 const ContentContainer = styled.div`
@@ -32,7 +32,7 @@ const SectionTitle = styled.h2`
 const Divider = styled.div`
   width: 5rem;
   height: 0.25rem;
-  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+  background: var(--color-secondary);
   margin: 0 auto var(--spacing-6) auto;
 `;
 
@@ -57,7 +57,7 @@ const Card = styled.a`
   display: block;
   padding: 1.75rem 2rem;
   background: var(--color-white);
-  border: 1px solid rgba(15, 118, 110, 0.1);
+  border: 1px solid var(--color-gray-300);
   border-radius: var(--border-radius-xl);
   box-shadow: var(--shadow-sm);
   transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
@@ -67,7 +67,7 @@ const Card = styled.a`
   &:hover {
     transform: translateY(-3px);
     box-shadow: var(--shadow-md);
-    border-color: rgba(15, 118, 110, 0.2);
+    border-color: rgba(15, 118, 110, 0.35);
   }
 `;
 
@@ -78,7 +78,7 @@ const CardBadge = styled.span`
   width: 2.8rem;
   height: 2.8rem;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  background: var(--color-primary);
   color: var(--color-white);
   font-weight: 700;
   margin-bottom: 1.25rem;

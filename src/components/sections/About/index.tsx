@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 const AboutContainer = styled.section`
-  padding: var(--spacing-20) 0;
-  background: linear-gradient(180deg, #ffffff 0%, #f8fdfc 100%);
+  padding: 6.5rem 0;
+  background: var(--color-white);
 `;
 
 const ContentContainer = styled.div`
@@ -19,8 +19,8 @@ const SectionHeader = styled.div`
 `;
 
 const SectionTitle = styled.h2`
-  font-size: 2rem;
-  font-weight: 700;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 800;
   margin-bottom: var(--spacing-4);
   
   @media (min-width: 768px) {
@@ -29,9 +29,9 @@ const SectionTitle = styled.h2`
 `;
 
 const Divider = styled.div`
-  width: 5rem;
-  height: 0.25rem;
-  background-color: var(--color-accent);
+  width: 2.75rem;
+  height: 0.18rem;
+  background-color: var(--color-secondary);
   margin: 0 auto var(--spacing-6) auto;
 `;
 
@@ -42,14 +42,14 @@ const SectionDescription = styled.p`
   margin: 0 auto;
 `;
 
-const TrustCard = styled.div`
-  background: rgba(255,255,255,0.92);
-  border: 1px solid rgba(15, 118, 110, 0.12);
-  border-radius: var(--border-radius-xl);
-  padding: var(--spacing-8);
+const TrustCard = styled.article`
+  background: var(--color-gray-100);
+  border: 1px solid var(--color-gray-300);
+  border-radius: var(--border-radius-lg);
+  padding: 2rem 1.5rem;
   text-align: center;
   transition: var(--transition-default);
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow-sm);
 
   &:hover {
     box-shadow: var(--shadow-md);
@@ -58,8 +58,9 @@ const TrustCard = styled.div`
 `;
 
 const CardNumber = styled.div`
-  font-size: 2.5rem;
-  font-weight: 700;
+  font-family: var(--font-family-display);
+  font-size: 2.7rem;
+  font-weight: 800;
   color: var(--color-primary);
   margin-bottom: var(--spacing-2);
 `;
@@ -94,8 +95,9 @@ const AboutSection: React.FC = () => {
   return (
     <AboutContainer id="sobre">
       <ContentContainer>
-        <SectionHeader>
-          <SectionTitle>Por que escolher a UnoVitta?</SectionTitle>
+          <SectionHeader>
+          <p className="eyebrow">O cuidado aparece nos detalhes</p>
+          <SectionTitle>Uma clínica feita para você se sentir seguro.</SectionTitle>
           <Divider />
           <SectionDescription>
             Confiança, segurança e excelência em cada atendimento. Conheça nossos diferenciais.
@@ -110,7 +112,7 @@ const AboutSection: React.FC = () => {
           </TrustCard>
 
           <TrustCard>
-            <CardNumber>🤝</CardNumber>
+            <CardNumber>01</CardNumber>
             <CardTitle>Atendimento Humanizado</CardTitle>
             <CardDescription>Estrutura moderna e orientação profissional para sua confiança</CardDescription>
           </TrustCard>

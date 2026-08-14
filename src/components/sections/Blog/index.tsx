@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 const BlogContainer = styled.section`
-  padding: var(--spacing-20) 0;
+  padding: 6.5rem 0;
   background-color: var(--color-white);
 `;
 
@@ -20,8 +20,8 @@ const SectionHeader = styled.div`
 `;
 
 const SectionTitle = styled.h2`
-  font-size: 2rem;
-  font-weight: 700;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 800;
   margin-bottom: var(--spacing-4);
   
   @media (min-width: 768px) {
@@ -30,9 +30,9 @@ const SectionTitle = styled.h2`
 `;
 
 const Divider = styled.div`
-  width: 5rem;
-  height: 0.25rem;
-  background-color: var(--color-accent);
+  width: 2.75rem;
+  height: 0.18rem;
+  background-color: var(--color-secondary);
   margin: 0 auto var(--spacing-6) auto;
 `;
 
@@ -58,10 +58,11 @@ const BlogGrid = styled.div`
 `;
 
 const BlogCard = styled.article`
-  background-color: var(--color-white);
+  background-color: var(--color-gray-100);
+  border: 1px solid var(--color-gray-300);
   border-radius: var(--border-radius-lg);
   overflow: hidden;
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow-sm);
   transition: var(--transition-default);
   
   &:hover {
@@ -141,8 +142,8 @@ const ViewAllButton = styled(Link)`
   background-color: transparent;
   color: var(--color-primary);
   font-weight: 500;
-  border: 2px solid var(--color-primary);
-  border-radius: var(--border-radius);
+  border: 1px solid var(--color-primary);
+  border-radius: 0.75rem;
   transition: var(--transition-default);
   width: fit-content;
   margin-left: auto;

@@ -13,7 +13,7 @@ declare global {
 }
 
 const FooterContainer = styled.footer`
-  background-color: var(--color-primary);
+  background-color: var(--color-primary-dark);
   color: var(--color-white);
   padding-top: var(--spacing-12);
   padding-bottom: var(--spacing-6);
@@ -32,8 +32,8 @@ const FooterContent = styled.div`
 const FooterGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--spacing-8); // Adjusted gap
-  width: 100%; // Ensure grid takes full width
+  gap: var(--spacing-8);
+  width: 100%;
   
   @media (min-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
@@ -152,7 +152,7 @@ const Copyright = styled.div`
 `;
 
 const FooterCTASection = styled.section`
-  background: var(--color-accent);
+  background: var(--color-secondary);
   padding: var(--spacing-16) 0;
   text-align: center;
   width: 100%;
@@ -167,8 +167,8 @@ const FooterCTAContainer = styled.div`
 
 const FooterCTATitle = styled.h2`
   font-size: 1.75rem;
-  font-weight: 700;
-  color: var(--color-gray-900);
+  font-weight: 800;
+  color: var(--color-dark);
   margin-bottom: var(--spacing-4);
   
   @media (min-width: 768px) {
@@ -178,7 +178,7 @@ const FooterCTATitle = styled.h2`
 
 const FooterCTADescription = styled.p`
   font-size: 1rem;
-  color: var(--color-white);
+  color: var(--color-dark);
   margin-bottom: var(--spacing-8);
   max-width: 600px;
   margin-left: auto;
@@ -201,16 +201,16 @@ const FooterCTAButton = styled.a`
   align-items: center;
   justify-content: center;
   padding: var(--spacing-4) var(--spacing-8);
-  background-color: var(--color-white);
-  color: var(--color-primary);
-  font-weight: 600;
-  border-radius: var(--border-radius);
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  font-weight: 800;
+  border-radius: 0.75rem;
   transition: var(--transition-default);
   text-decoration: none;
   cursor: pointer;
   
   &:hover {
-    background-color: var(--color-gray-100);
+    background-color: var(--color-primary-dark);
     transform: translateY(-2px);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
   }
@@ -262,7 +262,14 @@ const Footer: React.FC = () => {
         <FooterContent>
           <FooterGrid>
           <FooterColumn>
-            <img src={imgLogo} alt="Logo da Unovitta Clínicas" />
+            <img
+              src={imgLogo}
+              alt="Logo da Unovitta Clínicas"
+              width={82}
+              height={82}
+              loading="lazy"
+              decoding="async"
+            />
             <FooterText>
               Juntos, para cuidar melhor de você. Um ambiente acolhedor, de fácil acesso, com estacionamento, consultórios amplos, modernos e bem iluminados, para promover saúde e bem estar no seu tratamento odontológico.
             </FooterText>
@@ -299,11 +306,11 @@ const Footer: React.FC = () => {
           <FooterColumn>
             <FooterTitle>Nossos Serviços</FooterTitle>
             <FooterLinksList>
-              <FooterLinkItem><FooterLink to="/servicos/lentes-de-contato">Lentes de Contato Dental</FooterLink></FooterLinkItem>
+              <FooterLinkItem><FooterLink to="/servicos/estetica">Lentes de Contato Dental</FooterLink></FooterLinkItem>
               <FooterLinkItem><FooterLink to="/servicos/implantes">Implantes Dentários</FooterLink></FooterLinkItem>
               <FooterLinkItem><FooterLink to="/servicos/alinhadores">Alinhadores Transparentes</FooterLink></FooterLinkItem>
               <FooterLinkItem><FooterLink to="/servicos/clareamento">Clareamento Dental</FooterLink></FooterLinkItem>
-              <FooterLinkItem><FooterLink to="/servicos/ortodontia">Ortodontia</FooterLink></FooterLinkItem>
+              <FooterLinkItem><FooterLink to="/servicos/alinhadores">Ortodontia e alinhadores</FooterLink></FooterLinkItem>
             </FooterLinksList>
           </FooterColumn>
 

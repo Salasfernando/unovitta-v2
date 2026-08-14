@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { FaMapMarkerAlt, FaPhoneAlt, FaWhatsapp } from 'react-icons/fa';
+import { ContactCard as SharedContactCard } from '../../ui';
+import { trackFormSubmit, trackPhoneClick, trackWhatsAppStart } from '../../../utils/analytics';
 import SEO from '../../SEO';
 import { getWhatsAppLinkProps, openWhatsAppLink } from '../../../utils/whatsapp';
 
@@ -12,7 +15,8 @@ declare global {
 }
 
 const ContactContainer = styled.section`
-  padding: var(--spacing-20) 0;
+  padding: 6.5rem 0;
+  background: var(--color-gray-100);
 `;
 
 const ContentContainer = styled.div`
@@ -31,9 +35,9 @@ const Eyebrow = styled.span`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.4rem 0.8rem;
-  border-radius: var(--border-radius-full);
-  background: rgba(15, 118, 110, 0.1);
+  padding: 0.35rem 0.7rem;
+  border-radius: 0.55rem;
+  background: var(--color-sage);
   color: var(--color-primary);
   font-size: 0.8rem;
   font-weight: 700;
@@ -53,9 +57,9 @@ const ContactSectionTitle = styled.h2`
 `;
 
 const Divider = styled.div`
-  width: 5rem;
-  height: 0.25rem;
-  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+  width: 2.75rem;
+  height: 0.18rem;
+  background: var(--color-secondary);
   margin: 0 auto 1.1rem auto;
 `;
 
@@ -77,51 +81,7 @@ const ContactCardsGrid = styled.div`
   }
 `;
 
-const ContactCard = styled.a`
-  display: block;
-  background: rgba(255, 255, 255, 0.95);
-  border: 1px solid rgba(15, 118, 110, 0.12);
-  border-radius: var(--border-radius-xl);
-  padding: 1.2rem;
-  text-align: center;
-  box-shadow: var(--shadow);
-  text-decoration: none;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
 
-  &:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-md);
-    background: rgba(255, 255, 255, 1);
-  }
-`;
-
-const ContactCardEmoji = styled.div`
-  font-size: 2.4rem;
-  margin-bottom: 0.8rem;
-`;
-
-const ContactCardTitle = styled.h3`
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--color-dark);
-  margin-bottom: 0.4rem;
-`;
-
-const ContactCardDescription = styled.p`
-  font-size: 0.95rem;
-  color: var(--color-gray-600);
-  margin-bottom: 0.7rem;
-`;
-
-const ContactCardLink = styled.span`
-  color: var(--color-primary);
-  font-weight: 700;
-  text-decoration: none;
-
-  &:hover {
-    text-decoration: underline;
-  }
-`;
 
 const ContactGrid = styled.div`
   display: grid;
@@ -134,9 +94,9 @@ const ContactGrid = styled.div`
 `;
 
 const ContactInfo = styled.div`
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(15, 118, 110, 0.12);
-  border-radius: var(--border-radius-xl);
+  background: var(--color-white);
+  border: 1px solid var(--color-gray-300);
+  border-radius: var(--border-radius-lg);
   padding: 1.4rem;
   box-shadow: var(--shadow);
 `;
@@ -162,9 +122,9 @@ const ContactItem = styled.div`
 const ContactIcon = styled.div`
   width: 3rem;
   height: 3rem;
-  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  background: var(--color-primary);
   color: var(--color-white);
-  border-radius: var(--border-radius-full);
+  border-radius: 0.8rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -195,41 +155,41 @@ const FormLabel = styled.label`
 
 const FormField = styled.input`
   width: 100%;
-  padding: 0.85rem;
-  border-radius: 1rem;
-  border: 1px solid rgba(15, 118, 110, 0.15);
+  padding: 0.9rem 1rem;
+  border-radius: 0.7rem;
+  border: 1px solid var(--color-gray-300);
   background: var(--color-white);
   color: var(--color-dark);
   font-size: 1rem;
 
   &:focus {
     outline: none;
-    border-color: var(--color-primary);
-    box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.1);
+    border-color: var(--color-secondary);
+    box-shadow: 0 0 0 3px rgba(217, 164, 65, 0.18);
   }
 `;
 
 const FormSelect = styled.select`
   width: 100%;
-  padding: 0.85rem;
-  border-radius: 1rem;
-  border: 1px solid rgba(15, 118, 110, 0.15);
+  padding: 0.9rem 1rem;
+  border-radius: 0.7rem;
+  border: 1px solid var(--color-gray-300);
   background: var(--color-white);
   color: var(--color-dark);
   font-size: 1rem;
 
   &:focus {
     outline: none;
-    border-color: var(--color-primary);
-    box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.1);
+    border-color: var(--color-secondary);
+    box-shadow: 0 0 0 3px rgba(217, 164, 65, 0.18);
   }
 `;
 
 const FormButton = styled.button`
   width: 100%;
-  padding: 0.95rem;
-  border-radius: 1rem;
-  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  padding: 1rem;
+  border-radius: 0.75rem;
+  background: var(--color-primary);
   color: white;
   font-weight: 700;
   border: none;
@@ -265,7 +225,7 @@ const ContactLink = styled.a`
 
 const MapSection = styled.section`
   grid-column: 1 / -1;
-  background: linear-gradient(135deg, rgba(15, 118, 110, 0.95), rgba(33, 182, 141, 0.95));
+  background: var(--color-primary-dark);
   border-radius: var(--border-radius-xl);
   overflow: hidden;
   box-shadow: var(--shadow-md);
@@ -338,15 +298,6 @@ const Contact: React.FC = () => {
   const [treatment, setTreatment] = useState('');
   const [bestTime, setBestTime] = useState('');
 
-  const handleWhatsAppClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
-    const url = event.currentTarget.href;
-    if (typeof window !== 'undefined' && typeof window.gtag_report_conversion_whatsapp === 'function') {
-      window.gtag_report_conversion_whatsapp(url);
-    } else {
-      console.warn('gtag_report_conversion_whatsapp function not found.');
-    }
-  };
-
   const handleContactClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     const url = event.currentTarget.href;
     if (typeof window !== 'undefined' && typeof window.gtag_report_conversion_contact === 'function') {
@@ -360,6 +311,7 @@ const Contact: React.FC = () => {
     const message = `Olá, gostaria de agendar uma avaliação odontológica.\n\nNome: ${name}\nTelefone: ${phone}\nTratamento de interesse: ${treatment || 'Não informado'}\nMelhor horário para contato: ${bestTime || 'Não informado'}`;
     const url = `https://api.whatsapp.com/send?phone=556134794514&text=${encodeURIComponent(message)}`;
 
+    trackFormSubmit('contact_form');
     openWhatsAppLink(url);
   };
 
@@ -384,24 +336,32 @@ const Contact: React.FC = () => {
         </PageHeader>
 
         <ContactCardsGrid>
-          <ContactCard href="https://api.whatsapp.com/send?phone=556134794514&text=Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20odontol%C3%B3gica!" {...whatsappLinkProps} onClick={handleWhatsAppClick} aria-label="Abrir conversa no WhatsApp">
-            <ContactCardEmoji>💬</ContactCardEmoji>
-            <ContactCardTitle>WhatsApp</ContactCardTitle>
-            <ContactCardDescription>Resposta rápida para dúvidas e agendamentos.</ContactCardDescription>
-            <ContactCardLink>Falar agora</ContactCardLink>
-          </ContactCard>
-          <ContactCard href="tel:+556134794514" onClick={handleContactClick} aria-label="Ligar para a clínica">
-            <ContactCardEmoji>📞</ContactCardEmoji>
-            <ContactCardTitle>Telefone</ContactCardTitle>
-            <ContactCardDescription>Atendimento direto com nossa equipe.</ContactCardDescription>
-            <ContactCardLink>Ligar agora</ContactCardLink>
-          </ContactCard>
-          <ContactCard href="https://ul.waze.com/ul?place=ChIJEzm_h9WwW5MRW5rGlInENXQ&ll=-15.66357120%2C-48.19969900&navigate=yes&utm_campaign=default&utm_source=waze_website&utm_medium=lm_share_location" target="_blank" rel="noopener noreferrer" aria-label="Ver localização no mapa">
-            <ContactCardEmoji>📍</ContactCardEmoji>
-            <ContactCardTitle>Localização</ContactCardTitle>
-            <ContactCardDescription>Veja a rota até a nossa clínica com facilidade.</ContactCardDescription>
-            <ContactCardLink>Ver no mapa</ContactCardLink>
-          </ContactCard>
+          <SharedContactCard
+            href="https://api.whatsapp.com/send?phone=556134794514&text=Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20odontol%C3%B3gica!"
+            {...whatsappLinkProps}
+            onClick={() => trackWhatsAppStart({ location: 'contact_whatsapp' })}
+            icon={<FaWhatsapp />}
+            title="WhatsApp"
+            description="Resposta rápida para dúvidas e agendamentos."
+            ariaLabel="Abrir conversa no WhatsApp"
+          />
+          <SharedContactCard
+            href="tel:+556134794514"
+            onClick={() => trackPhoneClick('contact_phone')}
+            icon={<FaPhoneAlt />}
+            title="Telefone"
+            description="Atendimento direto com nossa equipe."
+            ariaLabel="Ligar para a clínica"
+          />
+          <SharedContactCard
+            href="https://ul.waze.com/ul?place=ChIJEzm_h9WwW5MRW5rGlInENXQ&ll=-15.66357120%2C-48.19969900&navigate=yes&utm_campaign=default&utm_source=waze_website&utm_medium=lm_share_location"
+            target="_blank"
+            rel="noopener noreferrer"
+            icon={<FaMapMarkerAlt />}
+            title="Localização"
+            description="Veja a rota até a nossa clínica com facilidade."
+            ariaLabel="Ver localização no mapa"
+          />
         </ContactCardsGrid>
 
         <ContactGrid>

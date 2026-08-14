@@ -2,6 +2,7 @@ import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import { Link } from 'react-router-dom';
 import { getWhatsAppLinkProps } from '../../../utils/whatsapp';
+import { trackWhatsAppStart } from '../../../utils/analytics';
 
 declare global {
   interface Window {
@@ -13,92 +14,117 @@ declare global {
 const HeroContainer = styled.section`
   position: relative;
   overflow: hidden;
-  background:
-    radial-gradient(circle at top left, rgba(255,255,255,0.16), transparent 24%),
-    linear-gradient(135deg, #0f766e 0%, #115e59 45%, #0b3f45 100%);
+  padding: 4.25rem 0 5rem;
   color: var(--color-white);
-  padding: 5.5rem 0 4.5rem;
-`;
+  background: var(--color-primary);
 
-const BackgroundGlow = styled.div`
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at top right, rgba(216, 166, 74, 0.32), transparent 30%);
-  pointer-events: none;
+  @media (min-width: 768px) {
+    padding: 6rem 0 6.5rem;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: 34rem;
+    height: 34rem;
+    right: -16rem;
+    top: -17rem;
+    border: 1px solid rgba(217, 164, 65, 0.26);
+    border-radius: 50%;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 18rem;
+    height: 18rem;
+    left: -11rem;
+    bottom: -12rem;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 50%;
+  }
 `;
 
 const ContentContainer = styled.div`
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 var(--spacing-4);
   position: relative;
   z-index: 1;
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-4);
 `;
 
 const Grid = styled.div`
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2.5rem;
+  gap: 3rem;
   align-items: center;
 
-  @media (min-width: 768px) {
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 3rem;
+  @media (min-width: 860px) {
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    gap: 4.5rem;
   }
 `;
 
 const fadeUp = keyframes`
-  from {
-    opacity: 0;
-    transform: translateY(22px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
 `;
 
 const HeroContent = styled.div`
-  animation: ${fadeUp} 0.9s ease-out both;
+  max-width: 39rem;
+  animation: ${fadeUp} 700ms cubic-bezier(0.23, 1, 0.32, 1) both;
+`;
+
+const Eyebrow = styled.p`
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 1.25rem;
+  color: var(--color-secondary);
+  font-size: 0.73rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+
+  &::before {
+    content: '';
+    width: 2.25rem;
+    height: 2px;
+    background: var(--color-secondary);
+  }
 `;
 
 const HeroTitle = styled.h1`
-  font-size: 2.35rem;
+  margin-bottom: 1.4rem;
+  color: var(--color-white);
+  font-family: var(--font-family-display);
+  font-size: clamp(2.7rem, 6vw, 5.3rem);
   font-weight: 800;
-  margin-bottom: 1rem;
-  line-height: 1.05;
-  letter-spacing: -0.02em;
-  transition: var(--transition-default);
-
-  @media (min-width: 768px) {
-    font-size: 3rem;
-  }
-
-  @media (min-width: 1024px) {
-    font-size: 3.7rem;
-  }
+  line-height: 0.98;
+  letter-spacing: -0.065em;
 `;
 
 const HeroText = styled.p`
-  font-size: 1.05rem;
-  margin-bottom: 1.6rem;
-  color: rgba(255, 255, 255, 0.86);
-  max-width: 42rem;
-  transition: var(--transition-default);
+  max-width: 34rem;
+  margin-bottom: 1.8rem;
+  color: rgba(250, 247, 241, 0.78);
+  font-size: 1.08rem;
+  line-height: 1.75;
 
   @media (min-width: 768px) {
-    font-size: 1.15rem;
+    font-size: 1.18rem;
   }
 `;
 
 const ButtonGroup = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0.85rem;
+  gap: 0.75rem;
 
-  @media (min-width: 640px) {
+  @media (min-width: 520px) {
     flex-direction: row;
+    flex-wrap: wrap;
   }
 `;
 
@@ -106,19 +132,21 @@ const PrimaryButton = styled.a`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.95rem 1.3rem;
-  background: linear-gradient(135deg, var(--color-secondary), #f1bb5a);
+  min-height: 3.35rem;
+  padding: 0.9rem 1.25rem;
+  border: 1px solid var(--color-secondary);
+  border-radius: 0.8rem;
+  background: var(--color-secondary);
   color: var(--color-dark);
-  font-weight: 700;
-  border-radius: var(--border-radius-full);
+  font-weight: 800;
   text-decoration: none;
-  box-shadow: 0 16px 32px rgba(216, 166, 74, 0.24);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 16px 32px rgba(11, 42, 38, 0.2);
 
   &:hover {
-    transform: translateY(-3px);
+    background: #e5b554;
     color: var(--color-dark);
-    box-shadow: 0 18px 36px rgba(216, 166, 74, 0.28);
+    transform: translateY(-2px);
+    box-shadow: 0 20px 38px rgba(11, 42, 38, 0.28);
   }
 `;
 
@@ -126,71 +154,90 @@ const SecondaryButton = styled(Link)`
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  min-height: 3.35rem;
   padding: 0.9rem 1.25rem;
-  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(250, 247, 241, 0.3);
+  border-radius: 0.8rem;
+  background: transparent;
   color: var(--color-white);
-  font-weight: 600;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: var(--border-radius-full);
+  font-weight: 700;
   text-decoration: none;
-  transition: transform 0.3s ease, background 0.3s ease;
 
   &:hover {
-    background: rgba(255, 255, 255, 0.22);
+    border-color: rgba(250, 247, 241, 0.65);
+    background: rgba(250, 247, 241, 0.1);
     color: var(--color-white);
     transform: translateY(-2px);
   }
 `;
 
-const StatsRow = styled.div`
+const TrustLine = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem;
-  margin-top: 1.5rem;
-`;
+  gap: 0.65rem 1.25rem;
+  margin-top: 1.6rem;
+  color: rgba(250, 247, 241, 0.72);
+  font-size: 0.88rem;
 
-const StatItem = styled.div`
-  padding: 0.7rem 0.95rem;
-  border-radius: var(--border-radius-full);
-  background: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  font-size: 0.95rem;
-  font-weight: 600;
-  transition: background 0.3s ease, transform 0.3s ease;
+  span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+  }
 
-  &:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: translateY(-1px);
+  span::before {
+    content: '•';
+    color: var(--color-secondary);
+    font-size: 1.2rem;
+    line-height: 0;
   }
 `;
 
-const ImageCard = styled.div`
-  background: rgba(255, 255, 255, 0.14);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(14px);
-  border-radius: 1.5rem;
-  padding: 1rem;
-  box-shadow: 0 25px 60px rgba(5, 22, 28, 0.26);
-  overflow: hidden;
-  transition: transform 0.5s ease, box-shadow 0.5s ease;
+const ImageFrame = styled.div`
+  position: relative;
+  padding: 0.6rem;
+  border: 1px solid rgba(217, 164, 65, 0.9);
+  border-radius: 1.8rem;
+  background: var(--color-secondary);
+  box-shadow: 0 30px 70px rgba(8, 36, 32, 0.28);
+  transform: rotate(1.1deg);
+  animation: ${fadeUp} 850ms 100ms cubic-bezier(0.23, 1, 0.32, 1) both;
+
+  @media (min-width: 860px) {
+    transform: rotate(2deg);
+  }
 
   &:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 28px 70px rgba(5, 22, 28, 0.3);
+    transform: rotate(0deg) translateY(-4px);
   }
 `;
 
 const HeroImage = styled.img`
+  display: block;
   width: 100%;
-  height: 100%;
-  min-height: 360px;
+  aspect-ratio: 4 / 3;
+  min-height: 310px;
+  border-radius: 1.35rem;
   object-fit: cover;
-  border-radius: 1.1rem;
-  transition: transform 0.9s ease;
 
-  ${ImageCard}:hover & {
-    transform: scale(1.03) rotate(0.15deg);
+  @media (min-width: 860px) {
+    min-height: 500px;
   }
+`;
+
+const Caption = styled.div`
+  position: absolute;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  max-width: 14rem;
+  padding: 0.8rem 0.9rem;
+  border: 1px solid rgba(250, 247, 241, 0.35);
+  border-radius: 0.75rem;
+  background: rgba(22, 75, 69, 0.88);
+  color: var(--color-white);
+  font-size: 0.78rem;
+  line-height: 1.45;
+  backdrop-filter: blur(8px);
 `;
 
 const HeroSection: React.FC = () => {
@@ -200,20 +247,19 @@ const HeroSection: React.FC = () => {
     const url = event.currentTarget.href;
     if (typeof window !== 'undefined' && typeof window.gtag_report_conversion_whatsapp === 'function') {
       window.gtag_report_conversion_whatsapp(url);
-    } else {
-      console.warn('gtag_report_conversion_whatsapp function not found.');
     }
+    trackWhatsAppStart({ location: 'home_hero' });
   };
 
   return (
     <HeroContainer>
-      <BackgroundGlow />
       <ContentContainer>
         <Grid>
           <HeroContent>
-            <HeroTitle>Agende sua avaliação odontológica em Brazlândia com agilidade e atenção personalizada.</HeroTitle>
+            <Eyebrow>Odontologia com calma, clareza e cuidado</Eyebrow>
+            <HeroTitle>Seu sorriso merece um plano feito para você.</HeroTitle>
             <HeroText>
-              Tenha um atendimento humanizado, diagnóstico preciso e um plano de tratamento claro para recuperar a saúde e a beleza do seu sorriso.
+              Avaliação odontológica humanizada em Brazlândia, com diagnóstico claro, atendimento próximo e caminhos seguros para cuidar do seu sorriso.
             </HeroText>
             <ButtonGroup>
               <PrimaryButton
@@ -222,25 +268,27 @@ const HeroSection: React.FC = () => {
                 aria-label="Agendar minha avaliação pelo WhatsApp"
                 onClick={handleWhatsAppClick}
               >
-                Agendar minha avaliação pelo WhatsApp
+                Agendar minha avaliação
               </PrimaryButton>
-              <SecondaryButton to="/servicos">Conheça nossos tratamentos</SecondaryButton>
+              <SecondaryButton to="/servicos">Conhecer tratamentos</SecondaryButton>
             </ButtonGroup>
-            <StatsRow>
-              <StatItem>Atendimento humanizado</StatItem>
-              <StatItem>Avaliação odontológica rápida</StatItem>
-            </StatsRow>
+            <TrustLine>
+              <span>Atendimento humanizado</span>
+              <span>Plano claro para o seu caso</span>
+              <span>Equipe em Brazlândia</span>
+            </TrustLine>
           </HeroContent>
-          <ImageCard>
+          <ImageFrame>
             <HeroImage
-              src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=80"
-              alt="Equipe odontológica UnoVitta"
-              width={900}
-              height={600}
+              src="/images/hero-equipe-paciente.jpg"
+              alt="Dentista conversando com paciente em uma sala da UnoVitta"
+              width={1200}
+              height={900}
               decoding="async"
               fetchPriority="high"
             />
-          </ImageCard>
+            <Caption>Uma conversa clara é o primeiro passo para um tratamento tranquilo.</Caption>
+          </ImageFrame>
         </Grid>
       </ContentContainer>
     </HeroContainer>
@@ -248,5 +296,3 @@ const HeroSection: React.FC = () => {
 };
 
 export default HeroSection;
-
-

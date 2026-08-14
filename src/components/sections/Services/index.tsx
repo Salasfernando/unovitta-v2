@@ -1,12 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
-import { FaHospital, FaSmile, FaTooth } from 'react-icons/fa';
+import { FaHospital, FaSmile, FaTooth, FaShieldAlt } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+import { trackWhatsAppStart } from '../../../utils/analytics';
 import { getWhatsAppLinkProps } from '../../../utils/whatsapp';
 
 
 const ServicesContainer = styled.section`
-  padding: var(--spacing-20) 0;
-  background: linear-gradient(180deg, #f8fdfc 0%, #f4fbfa 100%);
+  padding: 6.5rem 0;
+  background: var(--color-gray-100);
 `;
 
 const ContentContainer = styled.div`
@@ -21,6 +23,15 @@ const SectionHeader = styled.div`
   margin-bottom: var(--spacing-12);
 `;
 
+const SectionEyebrow = styled.p`
+  margin: 0 0 0.75rem;
+  color: var(--color-primary);
+  letter-spacing: 0.14em;
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+`;
+
 const SectionTitle = styled.h2`
   font-size: 2rem;
   font-weight: 800;
@@ -32,9 +43,9 @@ const SectionTitle = styled.h2`
 `;
 
 const Divider = styled.div`
-  width: 5rem;
-  height: 0.25rem;
-  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+  width: 2.75rem;
+  height: 0.18rem;
+  background: var(--color-secondary);
   margin: 0 auto 1.1rem auto;
 `;
 
@@ -59,24 +70,25 @@ const ServicesGrid = styled.div`
   }
 `;
 
-const ServiceCard = styled.div`
-  background: rgba(255,255,255,0.96);
-  border: 1px solid rgba(15, 118, 110, 0.12);
-  border-radius: var(--border-radius-xl);
+const ServiceCard = styled.article`
+  background: var(--color-white);
+  border: 1px solid var(--color-gray-300);
+  border-radius: var(--border-radius-lg);
   overflow: hidden;
-  box-shadow: var(--shadow);
-  transition: var(--transition-default);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 
   &:hover {
-    transform: translateY(-0.25rem);
+    transform: translateY(-0.35rem);
+    border-color: rgba(15, 118, 110, 0.35);
     box-shadow: var(--shadow-md);
   }
 `;
 
 const ServiceIcon = styled.div`
-  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
-  color: var(--color-white);
-  padding: var(--spacing-6);
+  background: var(--color-primary);
+  color: var(--color-secondary);
+  padding: 1.35rem var(--spacing-6);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -93,11 +105,11 @@ const ServiceIcon = styled.div`
 `;
 
 const ServiceContent = styled.div`
-  padding: var(--spacing-6);
+  padding: 1.5rem;
 `;
 
 const ProblemText = styled.p`
-  color: var(--color-primary);
+  color: var(--color-primary-dark);
   font-weight: 600;
   font-size: 0.9rem;
   margin-bottom: var(--spacing-2);
@@ -117,6 +129,7 @@ const ServiceDescription = styled.p`
 const ServiceLink = styled.a`
   display: inline-flex;
   align-items: center;
+  gap: 0.35rem;
   color: var(--color-primary);
   font-weight: 700;
   text-decoration: none;
@@ -135,25 +148,38 @@ const ServiceLink = styled.a`
   }
 `;
 
+const ServiceDetailLink = styled(Link)`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.75rem;
+  color: var(--color-gray-600);
+  font-size: 0.9rem;
+  font-weight: 700;
+
+  &:hover {
+    color: var(--color-primary);
+  }
+`;
+
 const ServicesSection: React.FC = () => {
   const whatsappLinkProps = getWhatsAppLinkProps();
 
   const services = [
     {
       id: 1,
+      slug: 'implantes',
       title: 'Implantes Dentários',
       description: 'Recupere função, estética e segurança para sorrir. Solução definitiva e durável.',
       problem: 'Dentes faltando?',
       message: 'Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20para%20implantes%20dent%C3%A1rios%20e%20saber%20o%20melhor%20plano%20para%20meu%20caso.',
-      icon: (
-        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-        </svg>
-      ),
+      icon: <FaShieldAlt />,
+
     },
 
     {
       id: 2,
+      slug: 'estetica',
       title: 'Lentes de Contato Dental',
       description: 'Transforme seu sorriso com estética perfeita. Aparência natural e brilhante em 2 consultas.',
       problem: 'Quer um sorriso perfeito?',
@@ -163,6 +189,7 @@ const ServicesSection: React.FC = () => {
 
     {
       id: 3,
+      slug: 'alinhadores',
       title: 'Alinhadores Invisíveis',
       description: 'Dentes alinhados sem aparelho. Tratamento discreto e confortável no seu ritmo.',
       problem: 'Dentes desalinhados?',
@@ -172,6 +199,7 @@ const ServicesSection: React.FC = () => {
 
     {
       id: 4,
+      slug: 'clareamento',
       title: 'Clareamento Dentário',
       description: 'Dentes mais brancos em poucas semanas. Seguro, rápido e com resultado duradouro.',
       problem: 'Dentes amarelados?',
@@ -181,6 +209,7 @@ const ServicesSection: React.FC = () => {
 
     {
       id: 5,
+      slug: 'ortodontia',
       title: 'Ortodontia Fixa',
       description: 'Melhor e mais moderno alinhamento dentário. Técnicas atualizadas para resultados impecáveis.',
       problem: 'Precisa alinhar os dentes?',
@@ -190,33 +219,32 @@ const ServicesSection: React.FC = () => {
 
     {
       id: 6,
+      slug: 'reabilitacao',
       title: 'Reabilitação Oral',
       description: 'Recupere a função mastigatória completa. Soluções personalizadas para seu caso.',
       problem: 'Múltiplos problemas dentários?',
       message: 'Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20para%20reabilita%C3%A7%C3%A3o%20oral.',
-      icon: (
-        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-        </svg>
-      ),
+      icon: <FaSmile />,
+
     },
   ];
 
   return (
-    <ServicesContainer id="servicos">
+    <ServicesContainer id="servicos" aria-labelledby="services-title">
       <ContentContainer>
         <SectionHeader>
-          <SectionTitle>Nossos Serviços</SectionTitle>
+          <SectionEyebrow>Encontre o melhor caminho para você</SectionEyebrow>
+          <SectionTitle id="services-title">Tratamentos para cuidar do seu sorriso</SectionTitle>
           <Divider />
           <SectionDescription>
-            Oferecemos uma variedade de serviços odontológicos com foco em qualidade, conforto e resultados duradouros. Conheça nossas especialidades:
+            Escolha o que mais se aproxima do que você deseja melhorar. Se ainda não souber qual tratamento precisa, nossa equipe ajuda você a começar pela avaliação.
           </SectionDescription>
         </SectionHeader>
 
         <ServicesGrid>
           {services.map((service) => (
             <ServiceCard key={service.id}>
-              <ServiceIcon>
+              <ServiceIcon aria-hidden="true">
                 {service.icon}
               </ServiceIcon>
               <ServiceContent>
@@ -228,13 +256,19 @@ const ServicesSection: React.FC = () => {
                 <ServiceLink
                   href={`https://api.whatsapp.com/send?phone=556134794514&text=${service.message}`}
                   {...whatsappLinkProps}
-                  aria-label={`Quero avaliar meu caso de ${service.title}`}
+                  onClick={() => trackWhatsAppStart({ location: `home_service_${service.slug}`, treatment: service.title })}
+                  aria-label={`Agendar avaliação para ${service.title}`}
                 >
-                  Quero avaliar meu caso
+                  Agendar avaliação
                   <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                   </svg>
                 </ServiceLink>
+                {['implantes', 'estetica', 'alinhadores', 'clareamento'].includes(service.slug) && (
+                  <ServiceDetailLink to={`/servicos/${service.slug}`}>
+                    Ver detalhes <span aria-hidden="true">→</span>
+                  </ServiceDetailLink>
+                )}
               </ServiceContent>
             </ServiceCard>
           ))}

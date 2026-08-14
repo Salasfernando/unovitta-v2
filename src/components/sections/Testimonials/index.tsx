@@ -4,7 +4,7 @@ import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 const TestimonialsContainer = styled.section`
   padding: var(--spacing-20) 0;
-  background: linear-gradient(180deg, rgba(15, 118, 110, 0.04), rgba(255, 255, 255, 0.95));
+  background: var(--color-white);
   position: relative;
 `;
 
@@ -25,8 +25,8 @@ const Eyebrow = styled.span`
   align-items: center;
   justify-content: center;
   padding: 0.4rem 0.8rem;
-  border-radius: var(--border-radius-full);
-  background: rgba(15, 118, 110, 0.1);
+  border-radius: 0.7rem;
+  background: var(--color-sage);
   color: var(--color-primary);
   font-size: 0.8rem;
   font-weight: 700;
@@ -48,7 +48,7 @@ const SectionTitle = styled.h2`
 const Divider = styled.div`
   width: 5rem;
   height: 0.25rem;
-  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+  background: var(--color-secondary);
   margin: 0 auto 1.1rem auto;
 `;
 
@@ -79,14 +79,14 @@ const CarouselButton = styled.button`
   width: 2.8rem;
   height: 2.8rem;
   border-radius: 50%;
-  border: 1px solid rgba(15, 118, 110, 0.18);
+  border: 1px solid var(--color-gray-300);
   background: var(--color-white);
   color: var(--color-primary);
   cursor: pointer;
   transition: background 0.2s ease, transform 0.2s ease;
 
   &:hover:not(:disabled) {
-    background: rgba(15, 118, 110, 0.08);
+    background: var(--color-sage);
     transform: translateY(-1px);
   }
 
@@ -108,7 +108,7 @@ const CarouselDot = styled.button<{ active: boolean }>`
   height: 0.75rem;
   border-radius: 50%;
   border: none;
-  background: ${({ active }) => (active ? 'var(--color-primary)' : 'rgba(15, 118, 110, 0.2)')};
+  background: ${({ active }) => (active ? 'var(--color-primary)' : 'var(--color-gray-300)')};
   cursor: pointer;
   transition: background 0.2s ease;
 `;
@@ -154,7 +154,7 @@ const AuthorAvatar = styled.div`
   background-color: var(--color-gray-300);
   margin-right: 0.85rem;
   overflow: hidden;
-  border: 2px solid rgba(15, 118, 110, 0.16);
+  border: 2px solid var(--color-gray-300);
   transition: transform 0.3s ease;
 
   img {
@@ -166,7 +166,7 @@ const AuthorAvatar = styled.div`
 
 const TestimonialCard = styled.article`
   background: rgba(255, 255, 255, 0.95);
-  border: 1px solid rgba(15, 118, 110, 0.12);
+  border: 1px solid var(--color-gray-300);
   border-radius: var(--border-radius-xl);
   padding: 1.35rem;
   box-shadow: var(--shadow);
@@ -225,7 +225,7 @@ const Star = styled.svg`
 const TrustIndicatorsSection = styled.div`
   margin-top: var(--spacing-12);
   padding-top: var(--spacing-12);
-  border-top: 1px solid rgba(15, 118, 110, 0.12);
+  border-top: 1px solid var(--color-gray-300);
 `;
 
 const IndicatorsGrid = styled.div`
@@ -247,7 +247,7 @@ const IndicatorCard = styled.div`
   padding: 1rem;
   border-radius: var(--border-radius-lg);
   background: rgba(255, 255, 255, 0.7);
-  border: 1px solid rgba(15, 118, 110, 0.1);
+  border: 1px solid var(--color-gray-300);
 `;
 
 const IndicatorNumber = styled.div`
@@ -429,7 +429,14 @@ const TestimonialsSection: React.FC = () => {
                     <TestimonialText>{testimonial.text}</TestimonialText>
                     <TestimonialAuthor>
                       <AuthorAvatar>
-                        <img src={testimonial.avatar} alt={testimonial.author} />
+                        <img
+                          src={testimonial.avatar}
+                          alt={testimonial.author}
+                          loading="lazy"
+                          decoding="async"
+                          width={64}
+                          height={64}
+                        />
                       </AuthorAvatar>
                       <AuthorInfo>
                         <AuthorName>{testimonial.author}</AuthorName>

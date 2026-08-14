@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import SEO from '../../components/SEO';
 
 const AboutContainer = styled.div`
-  padding: var(--spacing-20) 0;
+  padding: 6.5rem 0;
+  background: var(--color-gray-100);
 `;
 
 const ContentContainer = styled.div`
@@ -23,8 +24,8 @@ const Eyebrow = styled.span`
   align-items: center;
   gap: 0.5rem;
   padding: 0.4rem 0.8rem;
-  border-radius: var(--border-radius-full);
-  background: rgba(15, 118, 110, 0.1);
+  border-radius: 0.65rem;
+  background-color: var(--color-sage);
   color: var(--color-primary);
   font-size: 0.82rem;
   font-weight: 700;
@@ -46,7 +47,7 @@ const PageTitle = styled.h1`
 const Divider = styled.div`
   width: 5rem;
   height: 0.25rem;
-  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+  background: var(--color-secondary);
   margin: 0 auto 1.2rem auto;
 `;
 
@@ -71,7 +72,7 @@ const AboutContent = styled.div`
 const AboutImage = styled.div`
   border-radius: var(--border-radius-xl);
   overflow: hidden;
-  box-shadow: var(--shadow-lg);
+  box-shadow: var(--shadow-md);
 
   img {
     width: 100%;
@@ -108,9 +109,9 @@ const HighlightsGrid = styled.div`
 const HighlightCard = styled.div`
   padding: 1rem 1.1rem;
   border-radius: var(--border-radius-lg);
-  background: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(15, 118, 110, 0.12);
-  box-shadow: var(--shadow);
+  background: var(--color-white);
+  border: 1px solid var(--color-gray-300);
+  box-shadow: var(--shadow-sm);
 
   strong {
     color: var(--color-dark);
@@ -142,6 +143,10 @@ const About: React.FC = () => {
             <img
               src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=80"
               alt="Equipe UnoVitta Odontologia"
+              loading="lazy"
+              decoding="async"
+              width={900}
+              height={600}
             />
           </AboutImage>
 

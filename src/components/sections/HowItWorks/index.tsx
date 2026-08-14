@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const HowItWorksContainer = styled.section`
   padding: var(--spacing-20) 0;
-  background: linear-gradient(180deg, #ffffff 0%, #f4fbfa 100%);
+  background: var(--color-white);
 `;
 
 const ContentContainer = styled.div`
@@ -31,7 +31,7 @@ const SectionTitle = styled.h2`
 const Divider = styled.div`
   width: 5rem;
   height: 0.25rem;
-  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+  background: var(--color-secondary);
   margin: 0 auto var(--spacing-6) auto;
 `;
 
@@ -58,7 +58,7 @@ const StepsGrid = styled.div`
 
 const StepCard = styled.article`
   background: var(--color-white);
-  border: 1px solid rgba(15, 118, 110, 0.10);
+  border: 1px solid var(--color-gray-300);
   border-radius: var(--border-radius-xl);
   padding: var(--spacing-8);
   box-shadow: var(--shadow-sm);
@@ -76,7 +76,7 @@ const StepNumber = styled.div`
   display: grid;
   place-items: center;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  background: var(--color-primary);
   color: var(--color-white);
   font-weight: 700;
   margin-bottom: 1rem;

@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom'; // Importar Link
 import SEO from '../../components/SEO';
 
 const BlogContainer = styled.div`
-  padding: var(--spacing-20) 0;
+  padding: 6.5rem 0;
+  background: var(--color-gray-100);
 `;
 
 const ContentContainer = styled.div`
@@ -32,7 +33,7 @@ const PageTitle = styled.h1`
 const Divider = styled.div`
   width: 5rem;
   height: 0.25rem;
-  background-color: var(--color-accent);
+  background-color: var(--color-secondary);
   margin: 0 auto var(--spacing-6) auto;
 `;
 
@@ -59,9 +60,10 @@ const BlogGrid = styled.div`
 
 const BlogCard = styled.article`
   background-color: var(--color-white);
+  border: 1px solid var(--color-gray-300);
   border-radius: var(--border-radius-lg);
   overflow: hidden;
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow-sm);
   transition: var(--transition-default);
   
   &:hover {
@@ -151,7 +153,7 @@ const PaginationButton = styled.button<{ active?: boolean }>`
   justify-content: center;
   width: 2.5rem;
   height: 2.5rem;
-  border-radius: var(--border-radius);
+  border-radius: 0.7rem;
   background-color: ${props => props.active ? 'var(--color-primary)' : 'var(--color-white)'};
   color: ${props => props.active ? 'var(--color-white)' : 'var(--color-gray-700)'};
   border: 1px solid ${props => props.active ? 'var(--color-primary)' : 'var(--color-gray-300)'};
@@ -292,10 +294,14 @@ const Blog: React.FC = () => {
           {currentPosts.map(post => (
             <BlogCard key={post.id}>
               <BlogImageContainer>
-                <BlogImage
-                  src={post.image}
-                  alt={post.title}
-                />
+                  <BlogImage
+                    src={post.image}
+                    alt={post.title}
+                    loading="lazy"
+                    decoding="async"
+                    width={800}
+                    height={500}
+                  />
               </BlogImageContainer>
               <BlogContent>
                 <BlogMeta>

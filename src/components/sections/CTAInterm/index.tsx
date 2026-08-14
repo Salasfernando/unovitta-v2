@@ -2,18 +2,19 @@ import React from 'react';
 import styled from 'styled-components';
 import { FaWhatsapp, FaPhoneAlt } from 'react-icons/fa';
 import { getWhatsAppLinkProps } from '../../../utils/whatsapp';
+import { trackPhoneClick, trackWhatsAppStart } from '../../../utils/analytics';
 
 const CTAContainer = styled.section`
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 45%, var(--color-accent) 100%);
-  padding: var(--spacing-12) 0;
+  background: var(--color-primary-dark);
+  padding: 5rem 0;
 `;
 
 const Glow = styled.div`
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at top left, rgba(255,255,255,0.2), transparent 35%);
+  background: linear-gradient(120deg, rgba(217, 164, 65, 0.2), transparent 42%);
   pointer-events: none;
 `;
 
@@ -32,8 +33,8 @@ const Eyebrow = styled.span`
   align-items: center;
   justify-content: center;
   padding: 0.4rem 0.8rem;
-  border-radius: var(--border-radius-full);
-  background: rgba(255, 255, 255, 0.18);
+  border-radius: 0.55rem;
+  background: rgba(250, 247, 241, 0.1);
   color: var(--color-white);
   font-size: 0.8rem;
   font-weight: 700;
@@ -80,7 +81,7 @@ const CTAButton = styled.a`
   background-color: var(--color-white);
   color: var(--color-primary);
   font-weight: 700;
-  border-radius: var(--border-radius-full);
+  border-radius: 0.75rem;
   transition: var(--transition-default);
   text-decoration: none;
   cursor: pointer;
@@ -104,11 +105,11 @@ const SecondaryCTAButton = styled.a`
   justify-content: center;
   gap: 0.65rem;
   padding: 0.95rem 1.2rem;
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(250, 247, 241, 0.1);
   color: var(--color-white);
   font-weight: 700;
-  border: 1px solid rgba(255, 255, 255, 0.24);
-  border-radius: var(--border-radius-full);
+  border: 1px solid rgba(250, 247, 241, 0.28);
+  border-radius: 0.75rem;
   transition: var(--transition-default);
   text-decoration: none;
 
@@ -140,6 +141,7 @@ const CTAIntermediate: React.FC<CTAIntermediateProps> = ({
     if (typeof window !== 'undefined' && typeof window.gtag_report_conversion_whatsapp === 'function') {
       window.gtag_report_conversion_whatsapp(url);
     }
+    trackWhatsAppStart({ location: 'cta_intermediate' });
   };
 
   return (
@@ -160,7 +162,7 @@ const CTAIntermediate: React.FC<CTAIntermediateProps> = ({
             <FaWhatsapp />
             {buttonText}
           </CTAButton>
-          <SecondaryCTAButton href="tel:+556134794514">
+          <SecondaryCTAButton href="tel:+556134794514" onClick={() => trackPhoneClick('cta_intermediate_phone')}>
             <FaPhoneAlt />
             Ligar agora
           </SecondaryCTAButton>

@@ -19,6 +19,30 @@
     <priority>0.80</priority>
   </url>
   <url>
+    <loc>https://unovitta.com.br/servicos/implantes</loc>
+    <lastmod>2026-08-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://unovitta.com.br/servicos/alinhadores</loc>
+    <lastmod>2026-08-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://unovitta.com.br/servicos/estetica</loc>
+    <lastmod>2026-08-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://unovitta.com.br/servicos/clareamento</loc>
+    <lastmod>2026-08-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
     <loc>https://unovitta.com.br/blog</loc>
     <lastmod>2026-07-17</lastmod>
     <changefreq>weekly</changefreq>

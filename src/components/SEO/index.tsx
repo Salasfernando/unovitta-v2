@@ -1,5 +1,9 @@
 import React, { useEffect } from 'react';
 
+const SITE_URL = 'https://unovitta.com.br';
+const SITE_NAME = 'UnoVitta Clínicas';
+const DEFAULT_IMAGE = '/logo.png';
+
 interface SEOProps {
   title: string;
   description: string;
@@ -15,13 +19,13 @@ const SEO: React.FC<SEOProps> = ({
   title,
   description,
   canonical,
-  image = '/logo.png',
+  image = DEFAULT_IMAGE,
   type = 'website',
   keywords,
   author = 'UnoVitta Clínicas',
   schema
 }) => {
-  const siteUrl = 'https://unovitta.com.br';
+  const siteUrl = SITE_URL;
   const fullUrl = canonical
     ? canonical.startsWith('http://') || canonical.startsWith('https://')
       ? canonical
@@ -29,7 +33,7 @@ const SEO: React.FC<SEOProps> = ({
     : siteUrl;
   const imageUrl = image.startsWith('http://') || image.startsWith('https://') ? image : `${siteUrl}${image}`;
   const fullTitle = title.toLowerCase().includes('unovitta') ? title : `${title} | UnoVitta`;
-  const siteName = 'UnoVitta';
+  const siteName = SITE_NAME;
   const locale = 'pt_BR';
 
   useEffect(() => {
@@ -46,11 +50,13 @@ const SEO: React.FC<SEOProps> = ({
       { property: 'og:image', content: imageUrl },
       { property: 'og:site_name', content: siteName },
       { property: 'og:locale', content: locale },
+      { property: 'og:image:alt', content: `${fullTitle} — ${siteName}` },
       { name: 'twitter:card', content: 'summary_large_image' },
       { name: 'twitter:url', content: fullUrl },
       { name: 'twitter:title', content: fullTitle },
       { name: 'twitter:description', content: description },
-      { name: 'twitter:image', content: imageUrl }
+      { name: 'twitter:image', content: imageUrl },
+      { name: 'twitter:image:alt', content: `${fullTitle} — ${siteName}` }
     ];
 
     if (keywords) {
@@ -79,7 +85,7 @@ const SEO: React.FC<SEOProps> = ({
     return () => {
       document.querySelectorAll('meta[data-seo="true"]').forEach(el => el.remove());
     };
-  }, [fullTitle, description, author, type, fullUrl, image, keywords, siteUrl]);
+  }, [fullTitle, description, author, type, fullUrl, imageUrl, keywords, siteName]);
 
   return (
     <>
