@@ -1,238 +1,211 @@
-# UnoVitta — Website Institucional
+# UnoVitta Clínicas
 
-Website institucional da **UnoVitta Clínicas**, clínica odontológica localizada em Brazlândia, Brasília/DF. O projeto apresenta a clínica, seus tratamentos, conteúdos educativos, canais de contato e fluxos de agendamento pelo WhatsApp.
+<p align="center">
+  <img src="public/assets/logo.svg" alt="UnoVitta Clínicas" width="240" />
+</p>
 
-A interface utiliza uma identidade visual editorial e acolhedora, com verde-floresta, marfim, verde-sálvia e âmbar. O objetivo é combinar confiança clínica, leitura confortável e chamadas de conversão claras.
+<p align="center">
+  <strong>Odontologia com calma, clareza e cuidado.</strong><br />
+  Website institucional da UnoVitta Clínicas · Brazlândia, Brasília, DF
+</p>
 
-## Visão geral
+<p align="center">
+  <a href="https://www.unovitta.com.br" target="_blank" rel="noopener noreferrer">
+    <img src="https://img.shields.io/badge/🌐_Acessar_Site-unovitta.com.br-164B45?style=for-the-badge" alt="Acessar Site Online" />
+  </a>
+</p>
 
-O site é uma aplicação frontend estática construída com React, TypeScript, Vite e Styled Components. A navegação ocorre como uma SPA, com rotas internas gerenciadas pelo React Router. O projeto não possui backend próprio: os formulários e CTAs de contato direcionam o visitante para WhatsApp, telefone, e-mail ou mapa.
+<p align="center">
+  <a href="#visão-geral">Visão Geral</a> ·
+  <a href="#link-de-acesso">Link de Acesso</a> ·
+  <a href="#funcionalidades">Funcionalidades</a> ·
+  <a href="#tecnologias">Tecnologias</a> ·
+  <a href="#desenvolvimento-local">Desenvolvimento</a>
+</p>
 
-| Área | Objetivo |
-|---|---|
-| Home | Apresentar a clínica, orientar o visitante e gerar agendamentos |
-| Tratamentos | Mostrar especialidades e ajudar o visitante a escolher um caminho |
-| Páginas individuais | Trabalhar SEO e conversão para tratamentos estratégicos |
-| Sobre | Apresentar a filosofia, experiência e diferenciais da UnoVitta |
-| Blog | Publicar conteúdos de educação e prevenção odontológica |
-| Contato | Facilitar WhatsApp, telefone, localização e envio de dados |
+---
 
-## Tecnologias
+## Print da página inicial
 
-| Tecnologia | Uso |
-|---|---|
-| React 19 | Componentização da interface |
-| TypeScript | Tipagem e segurança no desenvolvimento |
-| Vite | Servidor local e build de produção |
-| React Router DOM | Rotas e navegação SPA |
-| Styled Components | Estilos encapsulados e tokens visuais |
-| React Icons | Biblioteca única de ícones vetoriais |
-| ESLint | Validação de qualidade do código |
-| Schema.org / JSON-LD | Dados estruturados para SEO |
+<p align="center">
+  <img src="docs/hero-preview.webp" alt="Preview da página inicial da UnoVitta Clínicas" width="100%" />
+</p>
 
-## Requisitos
+---
 
-Recomenda-se utilizar **Node.js 20 ou superior** e npm. Para conferir as versões instaladas:
+## 🩺 Visão Geral
 
-```bash
-node --version
-npm --version
+Este repositório contém o código-fonte do website institucional da **UnoVitta Clínicas**, clínica odontológica localizada em Brazlândia, Brasília/DF. 
+
+A aplicação apresenta a filosofia da clínica, os tratamentos oferecidos, conteúdos educativos de prevenção e saúde bucal, além de atalhos e canais diretos para agendamento de consultas via WhatsApp.
+
+A interface utiliza uma identidade visual acolhedora e editorial — combinando tons de verde-floresta, marfim, verde-sálvia e âmbar — projetada para transmitir confiança clínica, excelente legibilidade e chamadas de ação (CTAs) objetivas.
+
+---
+
+## 🔗 Link de Acesso
+
+O site está publicado e disponível para navegação em:
+
+👉 **[https://www.unovitta.com.br](https://www.unovitta.com.br)**
+
+---
+
+## 🦷 Tratamentos & Especialidades
+
+- **Implantes Dentários:** Reabilitação oral com técnicas seguras e planejamento guiado.
+- **Alinhadores Transparentes:** Ortodontia moderna, discreta e confortável.
+- **Odontologia Estética & Lentes:** Facetas, lentes de contato dental e harmonização do sorriso.
+- **Clareamento Dental:** Procedimentos de clareamento a laser e caseiro supervisionado.
+- **Clínica Geral & Prevenção:** Limpeza, restaurações, tratamento de canal e manutenção preventiva.
+
+---
+
+## ✨ Funcionalidades
+
+- **Página Inicial Editorial:** Apresentação humanizada, diferenciais do atendimento, etapas de diagnóstico, depoimentos e localização.
+- **Páginas Estratégicas por Tratamento:** Páginas individuais com conteúdos focados em conversão, FAQ específica e SEO dinâmico.
+- **Blog Educativo:** Artigos informativos focados em saúde bucal, cuidados e prevenção.
+- **Canais Diretos de Contato:** Formulário responsivo, botão flutuante animado do WhatsApp, e-mail e ligação direta.
+- **Design Responsivo & Acessibilidade:** Experiência fluida em mobile, tablet e desktop, com HTML semântico e navegação via teclado.
+- **SEO & Dados Estruturados:** Metatags completas, Open Graph, Twitter Cards, Schema.org (`LocalBusiness`, `FAQPage`, `MedicalWebPage`, `BlogPosting`), sitemap.xml e robots.txt.
+- **Rastreamento de Conversões:** Disparo otimizado de eventos (`cta_click`, `whatsapp_start`, `phone_click`) via Google Tag Manager / Analytics.
+
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+| Tecnologia | Função |
+| --- | --- |
+| **React 19** | Componentização modular da interface |
+| **TypeScript 5** | Tipagem estática e segurança na compilação |
+| **Vite** | Servidor de desenvolvimento rápido e bundler otimizado |
+| **React Router DOM 7** | Gerenciamento de rotas e navegação SPA |
+| **Styled Components** | Estilização escopada com tokens de design |
+| **React Icons** | Biblioteca de ícones vetoriais |
+| **Schema.org / JSON-LD** | Marcação de dados estruturados para SEO |
+
+---
+
+## 🎨 Identidade Visual (Tokens)
+
+| Token | Cor | Aplicação |
+| --- | --- | --- |
+| `--color-primary` | `#164B45` | Hero, cabeçalho, botões e elementos institucionais |
+| `--color-primary-dark` | `#103A35` | Rodapé e seções de maior destaque |
+| `--color-secondary` | `#D9A441` | Destaques em âmbar, botões de ação e divisores |
+| `--color-accent` | `#8DAF9F` | Acentos sutis e fundos suaves em verde-sálvia |
+| `--color-gray-100` | `#FAF7F1` | Fundo principal marfim institucional |
+| `--color-dark` | `#1A302D` | Tipografia de alto contraste para leitura |
+
+---
+
+## 📁 Estrutura do Projeto
+
+```text
+unovitta-v2/
+├── src/
+│   ├── App.tsx                        # Rotas e layout global
+│   ├── components/
+│   │   ├── SEO/                       # Gerenciamento de Metatags e JSON-LD
+│   │   ├── layout/
+│   │   │   ├── Header/                # Navegação superior e CTA principal
+│   │   │   └── Footer/                # Rodapé institucional e contatos
+│   │   ├── sections/                  # Seções reutilizáveis da Home
+│   │   ├── ui/                        # Componentes genéricos da interface
+│   │   └── WhatsAppButton/            # Botão flutuante do WhatsApp
+│   ├── pages/
+│   │   ├── Home/                      # Página inicial
+│   │   ├── Treatment/                 # Template dinâmico de tratamento por slug
+│   │   ├── Services/                  # Índice de serviços
+│   │   ├── About/                     # Sobre a clínica e equipe
+│   │   ├── Blog/                      # Lista de artigos
+│   │   ├── BlogPost/                  # Leitura de artigo individual
+│   │   └── Contact/                   # Formulário e informações
+│   ├── styles/
+│   │   └── GlobalStyles.ts            # Tokens de cor, tipografia e reset
+│   └── utils/
+│       ├── analytics.ts               # Eventos de conversão
+│       └── whatsapp.ts                # Formatador de mensagens e links
+├── public/
+│   ├── docs/                          # Prints e documentos
+│   ├── images/                        # Ativos visuais e fotos
+│   ├── robots.txt
+│   └── sitemap.xml
+├── package.json
+└── README.md
 ```
 
-## Instalação local
+---
 
-Clone o repositório e entre na pasta do projeto:
+## 💻 Desenvolvimento Local
+
+### Pré-requisitos
+
+- Node.js 20 ou superior
+- npm 10 ou superior
+
+### Passo a passo
 
 ```bash
-git clone URL_DO_REPOSITORIO
-cd unovitta-v2
-```
+# 1. Clonar o repositório
+git clone https://github.com/Salasfernando/unovitta.git
+cd unovitta
 
-Instale as dependências:
-
-```bash
+# 2. Instalar dependências
 npm install
-```
 
-Inicie o ambiente de desenvolvimento:
-
-```bash
+# 3. Iniciar o servidor local
 npm run dev
 ```
 
-O Vite exibirá no terminal o endereço local, normalmente:
+A aplicação ficará disponível em `http://localhost:5173`.
 
-```text
-http://localhost:5173
-```
-
-## Scripts disponíveis
-
-| Comando | Finalidade |
-|---|---|
-| `npm run dev` | Inicia o servidor de desenvolvimento |
-| `npm run build` | Executa TypeScript e gera o build de produção |
-| `npm run lint` | Verifica problemas de lint no projeto |
-| `npm run preview` | Serve localmente o build de produção |
-
-Fluxo recomendado antes de criar um pull request:
+### Scripts de Qualidade e Build
 
 ```bash
+# Executar validação do ESLint
 npm run lint
+
+# Gerar compilação otimizada para produção
 npm run build
+
+# Testar o build localmente
+npm run preview
 ```
 
-## Rotas públicas
+---
+
+## 🗺️ Rotas Principais
 
 | Rota | Conteúdo |
-|---|---|
-| `/` | Página inicial |
+| --- | --- |
+| `/` | Página Inicial |
 | `/servicos` | Visão geral dos tratamentos |
-| `/servicos/implantes` | Página de implantes dentários |
-| `/servicos/alinhadores` | Página de alinhadores transparentes |
-| `/servicos/estetica` | Página de odontologia estética e lentes |
-| `/servicos/clareamento` | Página de clareamento dental |
-| `/sobre` | Sobre a UnoVitta |
-| `/blog` | Lista de artigos |
-| `/blog/:slug` | Artigo individual |
-| `/contato` | Formulário e informações de contato |
+| `/servicos/implantes` | Página de Implantes Dentários |
+| `/servicos/alinhadores` | Página de Alinhadores Transparentes |
+| `/servicos/estetica` | Página de Odontologia Estética & Lentes |
+| `/servicos/clareamento` | Página de Clareamento Dental |
+| `/sobre` | Sobre a UnoVitta e Filosofia |
+| `/blog` | Índice de conteúdos e artigos |
+| `/blog/:slug` | Artigo do Blog |
+| `/contato` | Canais de atendimento e formulário |
 
-As quatro páginas estratégicas de tratamento utilizam um componente compartilhado, mas recebem conteúdo, title, description, keywords, canonical, imagem, FAQ e dados estruturados próprios.
+---
 
-## Estrutura principal
+## 📞 Contato
 
-```text
-src/
-├── App.tsx                         # Rotas e layout global
-├── components/
-│   ├── SEO/                        # Metatags, canonical e JSON-LD
-│   ├── layout/
-│   │   ├── Header/                 # Navegação global e CTA do cabeçalho
-│   │   └── Footer/                 # CTA final, links e contatos
-│   ├── sections/                   # Seções reutilizadas da home
-│   │   ├── Hero/
-│   │   ├── PainPoints/
-│   │   ├── HowItWorks/
-│   │   ├── About/
-│   │   ├── Services/
-│   │   ├── Testimonials/
-│   │   ├── Contact/
-│   │   └── HomeEnhancements/       # Confiança, equipe e FAQ
-│   ├── ui/                         # Biblioteca visual compartilhada
-│   │   └── index.tsx               # Button, SectionHeader, TreatmentCard,
-│   │                               # TrustMetric, ContactCard e FAQItem
-│   └── WhatsAppButton/             # Botão flutuante de WhatsApp
-├── pages/
-│   ├── Home/
-│   ├── Treatment/                  # Páginas estratégicas por slug
-│   ├── Services/
-│   ├── About/
-│   ├── Blog/
-│   ├── BlogPost/
-│   ├── Contact/
-│   └── NotFound/
-├── styles/
-│   └── GlobalStyles.ts             # Tokens de cor, tipografia e acessibilidade
-└── utils/
-    ├── analytics.ts                # Eventos de conversão e microconversões
-    └── whatsapp.ts                 # Links e comportamento responsivo do WhatsApp
+**UnoVitta Clínicas**  
+📍 Brazlândia · Brasília, DF  
+📞 Telefone/WhatsApp: [(61) 99626-3616](tel:+5561996263616)  
+🌐 Site: [https://www.unovitta.com.br](https://www.unovitta.com.br)  
 
-public/
-├── robots.txt
-├── sitemap.xml
-└── images/                         # Ativos locais já utilizados pelo projeto
-```
+[Conversar pelo WhatsApp](https://wa.me/5561996263616)
 
-## Identidade visual
+---
 
-Os principais tokens estão em `src/styles/GlobalStyles.ts`.
+## 📜 Licença e Direitos
 
-| Token | Valor | Aplicação |
-|---|---|---|
-| `--color-primary` | `#164B45` | Hero, navegação, botões e ícones |
-| `--color-primary-dark` | `#103A35` | CTA intermediário e rodapé |
-| `--color-secondary` | `#D9A441` | CTA principal, divisores e detalhes |
-| `--color-accent` | `#8DAF9F` | Acentos e estados suaves |
-| `--color-gray-100` | `#FAF7F1` | Fundo marfim |
-| `--color-gray-300` | `#DED7CA` | Bordas e separadores |
-| `--color-dark` | `#1A302D` | Títulos e textos de maior contraste |
+© 2026 UnoVitta Clínicas. Todos os direitos reservados.
 
-A tipografia usa **Manrope** para títulos e **DM Sans** para textos, navegação, formulários e botões. As fontes são carregadas no `index.html`.
-
-## Imagens temporárias
-
-A clínica ainda não possui um banco próprio de fotografias. Por isso, algumas seções usam imagens temporárias hospedadas no Unsplash. Os pontos principais de substituição são:
-
-| Conteúdo | Arquivo |
-|---|---|
-| Hero da home | `src/components/sections/Hero/index.tsx` |
-| Imagens dos tratamentos | `src/pages/Treatment/index.tsx` |
-| Retratos temporários da equipe | `src/components/sections/HomeEnhancements/index.tsx` |
-| Imagens dos cards e artigos | Componentes e páginas correspondentes |
-
-Ao receber fotos próprias, substitua apenas os URLs, preserve os textos `alt` e mantenha os atributos `width`, `height`, `loading` e `decoding`. Recomenda-se converter os arquivos finais para WebP ou AVIF antes da publicação.
-
-## SEO
-
-O componente `src/components/SEO/index.tsx` controla title, description, canonical, Open Graph, Twitter Cards e JSON-LD por rota.
-
-A implementação atual inclui:
-
-- Dados estruturados de negócio local e clínica odontológica.
-- Schema `FAQPage` na home.
-- Schema `MedicalWebPage` nas páginas individuais de tratamento.
-- Schema `BlogPosting` nos artigos do blog.
-- `robots.txt` público.
-- `sitemap.xml` com as páginas principais, artigos e tratamentos estratégicos.
-- Keywords e descriptions específicas para Brazlândia e região.
-
-Antes da publicação, revise as informações clínicas, endereço, telefone, horários, perfis sociais e números de prova social para garantir que estejam confirmados pela clínica.
-
-## Rastreamento de conversões
-
-O arquivo `src/utils/analytics.ts` centraliza os eventos:
-
-| Evento | Uso |
-|---|---|
-| `cta_click` | Clique em uma chamada de ação |
-| `whatsapp_start` | Início de conversa pelo WhatsApp |
-| `phone_click` | Clique para ligar para a clínica |
-| `contact_form_submit` | Envio do formulário de contato |
-
-Os eventos são enviados por `gtag` quando a tag do Google está disponível. A navegação continua funcionando mesmo se o rastreamento não estiver configurado.
-
-Para configurar o Google Ads, mantenha a Google tag no `index.html`, confirme o ID da conta e defina quais eventos serão conversões primárias. Recomenda-se usar o início de conversa ou o envio do formulário como conversão principal e manter cliques genéricos como microconversões.
-
-Não inclua chaves privadas, senhas ou credenciais de contas no repositório. Identificadores públicos de tags devem ser revisados antes da publicação.
-
-## Publicação
-
-O projeto gera uma aplicação frontend estática com Vite. Em uma hospedagem como Vercel, Netlify, Cloudflare Pages ou serviço equivalente, configure:
-
-| Configuração | Valor |
-|---|---|
-| Build command | `npm run build` |
-| Output directory | `dist` |
-| Install command | `npm install` |
-| Node.js | 20 ou superior recomendado |
-
-Como o projeto usa React Router, a hospedagem precisa redirecionar rotas desconhecidas para `index.html`. Sem esse fallback, acessos diretos a `/servicos/implantes` ou `/blog/slug` podem retornar 404 no servidor apesar de funcionarem durante a navegação interna.
-
-## Checklist antes do deploy
-
-- Confirmar endereço, telefone, horários e links oficiais da clínica.
-- Substituir as imagens temporárias por fotos autorizadas ou ativos licenciados.
-- Revisar títulos, descriptions e textos dos tratamentos.
-- Confirmar o ID real do Google Ads e validar eventos no modo de teste.
-- Executar `npm run lint`.
-- Executar `npm run build`.
-- Testar home, tratamentos, quatro páginas individuais, blog e contato.
-- Validar sitemap e dados estruturados nos ambientes públicos.
-- Configurar fallback de `index.html` na hospedagem.
-- Conferir o site em telas pequenas e em navegação por teclado.
-
-## Licença e direitos autorais
-
-O conteúdo institucional, a marca, os textos clínicos e os dados de contato pertencem à UnoVitta Clínicas. As imagens temporárias do Unsplash devem ser substituídas ou revisadas conforme a licença e a política de uso definida para a publicação final.
-
-Desenvolvido por Salas Tech.
+Desenvolvido por **Salas Tech**.
