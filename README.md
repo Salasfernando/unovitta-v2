@@ -1,7 +1,7 @@
 # UnoVitta Clínicas
 
 <p align="center">
-  <img src="public/images/logo.png" alt="UnoVitta Clínicas" width="240" />
+  <img src="public/logo.png" alt="UnoVitta Clínicas" width="240" />
 </p>
 
 <p align="center">
@@ -28,7 +28,7 @@
 ## Print da página inicial
 
 <p align="center">
-  <img src="docs/hero-preview.webp" alt="Preview da página inicial da UnoVitta Clínicas" width="100%" />
+  <img src="public/print.png" alt="Preview da página inicial da UnoVitta Clínicas" width="100%" />
 </p>
 
 ---
