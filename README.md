@@ -1,7 +1,7 @@
 # UnoVitta Clínicas
 
 <p align="center">
-  <img src="public/assets/logo.svg" alt="UnoVitta Clínicas" width="240" />
+  <img src="public/assets/logo.png" alt="UnoVitta Clínicas" width="240" />
 </p>
 
 <p align="center">
