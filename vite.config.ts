@@ -4,6 +4,12 @@ import react from '@vitejs/plugin-react'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
+  ssr: {
+    noExternal: ['styled-components'],
+    resolve: {
+      externalConditions: ['node', 'module-sync'],
+    },
+  },
   server: {
     host: '0.0.0.0',
     allowedHosts: true,

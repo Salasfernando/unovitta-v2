@@ -2,7 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import SEO from '../../components/SEO';
-import { openWhatsAppLink } from '../../utils/whatsapp';
+import { buildWhatsAppUrl, openWhatsAppLink } from '../../utils/whatsapp';
+import { trackWhatsAppStart } from '../../utils/analytics';
 
 const ServicesContainer = styled.div`
   padding: var(--spacing-20) 0;
@@ -323,18 +324,9 @@ const Services: React.FC = () => {
   ];
 
   const handleSchedule = (_serviceId: number, serviceTitle: string) => {
-    if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('event', 'conversion', {
-        send_to: 'AW-CONVERSION_ID/CONVERSION_LABEL',
-        event_category: 'Services',
-        event_label: `Schedule_${serviceTitle}`,
-        value: 1
-      });
-    }
-
-    const whatsappNumber = '556134794514';
     const message = `Olá, gostaria de agendar uma avaliação odontológica para: ${serviceTitle}`;
-    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = buildWhatsAppUrl(message, true);
+    trackWhatsAppStart({ location: 'services_schedule', treatment: serviceTitle });
     openWhatsAppLink(whatsappUrl);
   };
 
@@ -360,10 +352,11 @@ const Services: React.FC = () => {
 
         <PageActions>
           <PrimaryLink
-            href="https://api.whatsapp.com/send/?phone=556134794514&text=Ol%C3%A1%2C+gostaria+de+agendar+uma+avalia%C3%A7%C3%A3o+odontol%C3%B3gica+na+UnoVitta."
+            href={buildWhatsAppUrl('Olá, gostaria de agendar uma avaliação odontológica na UnoVitta.')}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Agendar avaliação odontológica pelo WhatsApp"
+            onClick={() => trackWhatsAppStart({ location: 'services_header' })}
           >
             Agendar avaliação pelo WhatsApp
           </PrimaryLink>

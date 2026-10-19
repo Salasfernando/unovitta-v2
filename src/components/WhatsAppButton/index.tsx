@@ -1,13 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { getWhatsAppLinkProps } from '../../utils/whatsapp';
-
-declare global {
-  interface Window {
-    gtag?: (...args: unknown[]) => void;
-    gtag_report_conversion_whatsapp?: (url?: string) => boolean;
-  }
-}
+import { buildWhatsAppUrl, getWhatsAppLinkProps } from '../../utils/whatsapp';
+import { trackWhatsAppStart } from '../../utils/analytics';
 
 const WhatsAppButtonContainer = styled.a`
   position: fixed;
@@ -38,21 +32,13 @@ const WhatsAppIcon = styled.svg`
 const WhatsAppButton: React.FC = () => {
   const whatsappLinkProps = getWhatsAppLinkProps();
 
-  const handleWhatsAppClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
-
-    const url = event.currentTarget.href;
-
-    if (typeof window !== 'undefined' && typeof window.gtag_report_conversion_whatsapp === 'function') {
-      window.gtag_report_conversion_whatsapp(url);
-    } else {
-      console.warn('gtag_report_conversion_whatsapp function not found.');
-
-    }
+  const handleWhatsAppClick = () => {
+    trackWhatsAppStart({ location: 'floating_whatsapp' });
   };
 
   return (
     <WhatsAppButtonContainer
-      href="https://wa.me/556134794514?text=Ol%C3%A1,%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o%20odontol%C3%B3gica%20na%20UnoVitta"
+      href={buildWhatsAppUrl('Olá, gostaria de agendar uma avaliação odontológica na UnoVitta', true)}
       {...whatsappLinkProps}
       aria-label="Contato via WhatsApp"
       onClick={handleWhatsAppClick} 

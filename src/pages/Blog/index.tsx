@@ -147,21 +147,21 @@ const Pagination = styled.div`
   gap: var(--spacing-2);
 `;
 
-const PaginationButton = styled.button<{ active?: boolean }>`
+const PaginationButton = styled.button<{ $active?: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 0.7rem;
-  background-color: ${props => props.active ? 'var(--color-primary)' : 'var(--color-white)'};
-  color: ${props => props.active ? 'var(--color-white)' : 'var(--color-gray-700)'};
-  border: 1px solid ${props => props.active ? 'var(--color-primary)' : 'var(--color-gray-300)'};
+  background-color: ${props => props.$active ? 'var(--color-primary)' : 'var(--color-white)'};
+  color: ${props => props.$active ? 'var(--color-white)' : 'var(--color-gray-700)'};
+  border: 1px solid ${props => props.$active ? 'var(--color-primary)' : 'var(--color-gray-300)'};
   transition: var(--transition-default);
   cursor: pointer;
   
   &:hover {
-    background-color: ${props => props.active ? 'var(--color-primary)' : 'var(--color-gray-100)'};
+    background-color: ${props => props.$active ? 'var(--color-primary)' : 'var(--color-gray-100)'};
   }
   
   &:disabled {
@@ -334,7 +334,7 @@ const Blog: React.FC = () => {
             {Array.from({ length: totalPages }).map((_, index) => (
               <PaginationButton
                 key={index}
-                active={currentPage === index + 1}
+                $active={currentPage === index + 1}
                 onClick={() => handlePageChange(index + 1)}
               >
                 {index + 1}

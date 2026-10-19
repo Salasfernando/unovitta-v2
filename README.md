@@ -69,7 +69,7 @@ O site está publicado e disponível para navegação em:
 - **Canais Diretos de Contato:** Formulário responsivo, botão flutuante animado do WhatsApp, e-mail e ligação direta.
 - **Design Responsivo & Acessibilidade:** Experiência fluida em mobile, tablet e desktop, com HTML semântico e navegação via teclado.
 - **SEO & Dados Estruturados:** Metatags completas, Open Graph, Twitter Cards, Schema.org (`LocalBusiness`, `FAQPage`, `MedicalWebPage`, `BlogPosting`), sitemap.xml e robots.txt.
-- **Rastreamento de Conversões:** Disparo otimizado de eventos (`cta_click`, `whatsapp_start`, `phone_click`) via Google Tag Manager / Analytics.
+- **Eventos de Interação:** O código envia eventos (`cta_click`, `whatsapp_start`, `phone_click`, `contact_form_submit`) pelo Google tag. A conversão do WhatsApp no Ads usa a tag direta atualmente configurada; se a conversão for importada do GA4, altere a origem em `src/utils/analytics.ts` para não contar as duas vezes.
 
 ---
 
@@ -127,11 +127,17 @@ unovitta-v2/
 │   └── utils/
 │       ├── analytics.ts               # Eventos de conversão
 │       └── whatsapp.ts                # Formatador de mensagens e links
+├── scripts/
+│   └── prerender.mjs                  # Pré-renderização das rotas do sitemap
 ├── public/
-│   ├── docs/                          # Prints e documentos
 │   ├── images/                        # Ativos visuais e fotos
+│   ├── _redirects                     # Fallback de rotas na hospedagem
+│   ├── iconyellow.png
+│   ├── logo.png
+│   ├── print.png                       # Captura da página inicial
 │   ├── robots.txt
 │   └── sitemap.xml
+├── index.html
 ├── package.json
 └── README.md
 ```
@@ -197,10 +203,10 @@ npm run preview
 
 **UnoVitta Clínicas**  
 📍 Brazlândia · Brasília, DF  
-📞 Telefone/WhatsApp: [(61) 99626-3616](tel:+5561996263616)  
+📞 Telefone/WhatsApp: [(61) 3479-4514](tel:+556134794514)
 🌐 Site: [https://www.unovitta.com.br](https://www.unovitta.com.br)  
 
-[Conversar pelo WhatsApp](https://wa.me/5561996263616)
+[Conversar pelo WhatsApp](https://wa.me/556134794514)
 
 ---
 

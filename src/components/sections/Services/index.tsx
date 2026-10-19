@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { FaHospital, FaSmile, FaTooth, FaShieldAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { trackWhatsAppStart } from '../../../utils/analytics';
-import { getWhatsAppLinkProps } from '../../../utils/whatsapp';
+import { buildWhatsAppUrl, getWhatsAppLinkProps } from '../../../utils/whatsapp';
 
 
 const ServicesContainer = styled.section`
@@ -172,7 +172,7 @@ const ServicesSection: React.FC = () => {
       title: 'Implantes Dentários',
       description: 'Recupere função, estética e segurança para sorrir. Solução definitiva e durável.',
       problem: 'Dentes faltando?',
-      message: 'Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20para%20implantes%20dent%C3%A1rios%20e%20saber%20o%20melhor%20plano%20para%20meu%20caso.',
+      message: 'Quero agendar uma avaliação para implantes dentários e saber o melhor plano para meu caso.',
       icon: <FaShieldAlt />,
 
     },
@@ -183,7 +183,7 @@ const ServicesSection: React.FC = () => {
       title: 'Lentes de Contato Dental',
       description: 'Transforme seu sorriso com estética perfeita. Aparência natural e brilhante em 2 consultas.',
       problem: 'Quer um sorriso perfeito?',
-      message: 'Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20para%20lentes%20de%20contato%20dental%20e%20entender%20o%20processo.',
+      message: 'Quero agendar uma avaliação para lentes de contato dental e entender o processo.',
       icon: <FaSmile />,
     },
 
@@ -193,7 +193,7 @@ const ServicesSection: React.FC = () => {
       title: 'Alinhadores Invisíveis',
       description: 'Dentes alinhados sem aparelho. Tratamento discreto e confortável no seu ritmo.',
       problem: 'Dentes desalinhados?',
-      message: 'Quero%20saber%20se%20posso%20usar%20alinhadores%20invis%C3%ADveis%20e%20agendar%20uma%20avalia%C3%A7%C3%A3o.',
+      message: 'Quero saber se posso usar alinhadores invisíveis e agendar uma avaliação.',
       icon: <FaTooth />,
     },
 
@@ -203,7 +203,7 @@ const ServicesSection: React.FC = () => {
       title: 'Clareamento Dentário',
       description: 'Dentes mais brancos em poucas semanas. Seguro, rápido e com resultado duradouro.',
       problem: 'Dentes amarelados?',
-      message: 'Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20para%20clareamento%20dental.',
+      message: 'Quero agendar uma avaliação para clareamento dental.',
       icon: <FaSmile />,
     },
 
@@ -213,7 +213,7 @@ const ServicesSection: React.FC = () => {
       title: 'Ortodontia Fixa',
       description: 'Melhor e mais moderno alinhamento dentário. Técnicas atualizadas para resultados impecáveis.',
       problem: 'Precisa alinhar os dentes?',
-      message: 'Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20para%20ortodontia%20e%20entender%20as%20op%C3%A7%C3%B5es.',
+      message: 'Quero agendar uma avaliação para ortodontia e entender as opções.',
       icon: <FaHospital />,
     },
 
@@ -223,7 +223,7 @@ const ServicesSection: React.FC = () => {
       title: 'Reabilitação Oral',
       description: 'Recupere a função mastigatória completa. Soluções personalizadas para seu caso.',
       problem: 'Múltiplos problemas dentários?',
-      message: 'Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20para%20reabilita%C3%A7%C3%A3o%20oral.',
+      message: 'Quero agendar uma avaliação para reabilitação oral.',
       icon: <FaSmile />,
 
     },
@@ -254,7 +254,7 @@ const ServicesSection: React.FC = () => {
                 <ServiceTitle>{service.title}</ServiceTitle>
                 <ServiceDescription>{service.description}</ServiceDescription>
                 <ServiceLink
-                  href={`https://api.whatsapp.com/send?phone=556134794514&text=${service.message}`}
+                  href={buildWhatsAppUrl(service.message)}
                   {...whatsappLinkProps}
                   onClick={() => trackWhatsAppStart({ location: `home_service_${service.slug}`, treatment: service.title })}
                   aria-label={`Agendar avaliação para ${service.title}`}

@@ -3,14 +3,8 @@ import { FaFacebook, FaInstagram, FaPhoneAlt, FaWhatsapp } from 'react-icons/fa'
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import imgLogo from '../../../assets/images/logowhite.png'; 
-import { getWhatsAppLinkProps } from '../../../utils/whatsapp';
-
-declare global {
-  interface Window {
-    gtag?: (...args: unknown[]) => void;
-    gtag_report_conversion_whatsapp?: (url?: string) => boolean;
-  }
-}
+import { buildWhatsAppUrl, DISPLAY_PHONE_NUMBER, getWhatsAppLinkProps, TELEPHONE_LINK } from '../../../utils/whatsapp';
+import { trackWhatsAppStart } from '../../../utils/analytics';
 
 const FooterContainer = styled.footer`
   background-color: var(--color-primary-dark);
@@ -229,13 +223,8 @@ const FooterCTAButton = styled.a`
 const Footer: React.FC = () => {
   const whatsappLinkProps = getWhatsAppLinkProps();
 
-  const handleWhatsAppClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
-    const url = event.currentTarget.href;
-    if (typeof window !== 'undefined' && typeof window.gtag_report_conversion_whatsapp === 'function') {
-      window.gtag_report_conversion_whatsapp(url);
-    } else {
-      console.warn('gtag_report_conversion_whatsapp function not found.');
-    }
+  const handleWhatsAppClick = () => {
+    trackWhatsAppStart({ location: 'footer' });
   };
 
   return (
@@ -248,7 +237,7 @@ const Footer: React.FC = () => {
           </FooterCTADescription>
           <FooterCTAButtons>
             <FooterCTAButton 
-              href="https://api.whatsapp.com/send?phone=556134794514&text=Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20odontol%C3%B3gica!"
+              href={buildWhatsAppUrl('Quero agendar uma avaliação odontológica!')}
               {...whatsappLinkProps}
               onClick={handleWhatsAppClick} 
             >
@@ -281,7 +270,7 @@ const Footer: React.FC = () => {
                 <FaInstagram />
               </SocialLink>
               <SocialLink
-                href="https://api.whatsapp.com/send?phone=556134794514&text=Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20odontol%C3%B3gica!"
+                href={buildWhatsAppUrl('Quero agendar uma avaliação odontológica!')}
                 {...whatsappLinkProps}
                 aria-label="WhatsApp"
                 onClick={handleWhatsAppClick} 
@@ -333,8 +322,8 @@ const Footer: React.FC = () => {
             <ContactItem>
               <ContactIconWrapper><FaPhoneAlt /></ContactIconWrapper>
               <ContactText>
-                <a href="tel:+556134794514" aria-label="Ligue para nós">
-                  (61) 3479-4514
+                <a href={`tel:${TELEPHONE_LINK}`} aria-label="Ligue para nós">
+                  {DISPLAY_PHONE_NUMBER}
                 </a>
               </ContactText>
             </ContactItem>
@@ -342,12 +331,12 @@ const Footer: React.FC = () => {
               <ContactIconWrapper><FaWhatsapp /></ContactIconWrapper>
               <ContactText>
                 <a
-                  href="https://api.whatsapp.com/send?phone=556134794514&text=Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20odontol%C3%B3gica!"
+                  href={buildWhatsAppUrl('Quero agendar uma avaliação odontológica!')}
                   {...whatsappLinkProps}
                   aria-label="Agende sua avaliação via WhatsApp"
                   onClick={handleWhatsAppClick}
                 >
-                  (61) 3479-4514
+                  {DISPLAY_PHONE_NUMBER}
                 </a>
               </ContactText>
             </ContactItem>

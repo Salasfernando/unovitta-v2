@@ -813,7 +813,8 @@ const BlogPost = () => {
             </FeaturedImage>
           )}
 
-          {/* Correção: Usar postData e dangerouslySetInnerHTML para renderizar o conteúdo HTML */}
+          {/* O HTML vem do mapa postsData local. Se a origem mudar para um CMS ou outra fonte externa,
+              sanitizar postData.content antes de renderizar. */}
           <BlogContent dangerouslySetInnerHTML={{ __html: postData.content }} />
 
           <ShareSection>

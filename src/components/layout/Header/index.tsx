@@ -2,15 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link, useLocation } from 'react-router-dom';
 import imgLogo from '../../../assets/logo.png';
-import { getWhatsAppLinkProps } from '../../../utils/whatsapp';
+import { buildWhatsAppUrl, getWhatsAppLinkProps } from '../../../utils/whatsapp';
 import { trackWhatsAppStart } from '../../../utils/analytics';
-
-declare global {
-  interface Window {
-    gtag?: (...args: unknown[]) => void;
-    gtag_report_conversion_whatsapp?: (url?: string) => boolean;
-  }
-}
 
 const navItems = [
   { label: 'Início', to: '/' },
@@ -170,18 +163,12 @@ const Header: React.FC = () => {
 
   const isActive = (path: string) => location.pathname === path || (path !== '/' && location.pathname.startsWith(path));
 
-  const handleWhatsAppClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
-    const url = event.currentTarget.href;
-    if (typeof window !== 'undefined' && typeof window.gtag_report_conversion_whatsapp === 'function') {
-      window.gtag_report_conversion_whatsapp(url);
-    } else {
-      console.warn('gtag_report_conversion_whatsapp function not found.');
-    }
+  const handleWhatsAppClick = () => {
     trackWhatsAppStart({ location: 'header' });
   };
 
-  const handleMobileWhatsAppClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
-    handleWhatsAppClick(event);
+  const handleMobileWhatsAppClick = () => {
+    handleWhatsAppClick();
     setIsMenuOpen(false);
   };
 
@@ -215,7 +202,7 @@ const Header: React.FC = () => {
         </DesktopNav>
 
         <CTAButton
-          href="https://api.whatsapp.com/send/?phone=556134794514&text=Ol%C3%A1%2C+gostaria+de+agendar+uma+avalia%C3%A7%C3%A3o+odontol%C3%B3gica+na+UnoVitta&type=phone_number&app_absent=0"
+          href={buildWhatsAppUrl('Olá, gostaria de agendar uma avaliação odontológica na UnoVitta')}
           {...whatsappLinkProps}
           aria-label="Agende sua avaliação via WhatsApp"
           onClick={handleWhatsAppClick}
@@ -262,7 +249,7 @@ const Header: React.FC = () => {
             </MobileNavLink>
           ))}
           <MobileCTAButton
-            href="https://api.whatsapp.com/send/?phone=556134794514&text=Ol%C3%A1%2C+gostaria+de+agendar+uma+avalia%C3%A7%C3%A3o+odontol%C3%B3gica+na+UnoVitta&type=phone_number&app_absent=0"
+            href={buildWhatsAppUrl('Olá, gostaria de agendar uma avaliação odontológica na UnoVitta')}
             {...whatsappLinkProps}
             aria-label="Agende sua avaliação via WhatsApp"
             onClick={handleMobileWhatsAppClick}

@@ -4,12 +4,11 @@ import { FaMapMarkerAlt, FaPhoneAlt, FaWhatsapp } from 'react-icons/fa';
 import { ContactCard as SharedContactCard } from '../../ui';
 import { trackFormSubmit, trackPhoneClick, trackWhatsAppStart } from '../../../utils/analytics';
 import SEO from '../../SEO';
-import { getWhatsAppLinkProps, openWhatsAppLink } from '../../../utils/whatsapp';
+import { buildWhatsAppUrl, DISPLAY_PHONE_NUMBER, getWhatsAppLinkProps, openWhatsAppLink, TELEPHONE_LINK } from '../../../utils/whatsapp';
 
 declare global {
   interface Window {
     gtag?: (...args: unknown[]) => void;
-    gtag_report_conversion_whatsapp?: (url?: string) => boolean;
     gtag_report_conversion_contact?: (url?: string) => boolean;
   }
 }
@@ -256,7 +255,7 @@ const contactSchema = {
   '@type': 'Dentist',
   name: 'UnoVitta Clínicas',
   url: 'https://unovitta.com.br',
-  telephone: '+556134794514',
+  telephone: TELEPHONE_LINK,
   image: ['https://unovitta.com.br/logo.png'],
   address: {
     '@type': 'PostalAddress',
@@ -309,9 +308,10 @@ const Contact: React.FC = () => {
     event.preventDefault();
 
     const message = `Olá, gostaria de agendar uma avaliação odontológica.\n\nNome: ${name}\nTelefone: ${phone}\nTratamento de interesse: ${treatment || 'Não informado'}\nMelhor horário para contato: ${bestTime || 'Não informado'}`;
-    const url = `https://api.whatsapp.com/send?phone=556134794514&text=${encodeURIComponent(message)}`;
+    const url = buildWhatsAppUrl(message);
 
     trackFormSubmit('contact_form');
+    trackWhatsAppStart({ location: 'contact_form', treatment });
     openWhatsAppLink(url);
   };
 
@@ -337,7 +337,7 @@ const Contact: React.FC = () => {
 
         <ContactCardsGrid>
           <SharedContactCard
-            href="https://api.whatsapp.com/send?phone=556134794514&text=Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20odontol%C3%B3gica!"
+            href={buildWhatsAppUrl('Quero agendar uma avaliação odontológica!')}
             {...whatsappLinkProps}
             onClick={() => trackWhatsAppStart({ location: 'contact_whatsapp' })}
             icon={<FaWhatsapp />}
@@ -346,7 +346,7 @@ const Contact: React.FC = () => {
             ariaLabel="Abrir conversa no WhatsApp"
           />
           <SharedContactCard
-            href="tel:+556134794514"
+            href={`tel:${TELEPHONE_LINK}`}
             onClick={() => trackPhoneClick('contact_phone')}
             icon={<FaPhoneAlt />}
             title="Telefone"
@@ -454,8 +454,8 @@ const Contact: React.FC = () => {
                 </ContactIcon>
                 <ContactDetails>
                   <ContactLabel>
-                    <ContactLink href="tel:+556134794514" aria-label="Ligue para nós" onClick={handleContactClick}>
-                      (61) 3479-4514
+                    <ContactLink href={`tel:${TELEPHONE_LINK}`} aria-label="Ligue para nós" onClick={handleContactClick}>
+                      {DISPLAY_PHONE_NUMBER}
                     </ContactLink>
                   </ContactLabel>
                 </ContactDetails>

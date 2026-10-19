@@ -4,8 +4,9 @@ import styled from 'styled-components';
 import { FaArrowRight, FaCheck, FaWhatsapp } from 'react-icons/fa';
 import SEO from '../../components/SEO';
 import { Button, FAQItem, SectionHeader, TrustMetric } from '../../components/ui';
-import { getWhatsAppLinkProps } from '../../utils/whatsapp';
+import { buildWhatsAppUrl, getWhatsAppLinkProps } from '../../utils/whatsapp';
 import { trackWhatsAppStart } from '../../utils/analytics';
+import PriorityImage from '../../components/ui/PriorityImage';
 
 type TreatmentData = {
   slug: string;
@@ -149,7 +150,7 @@ const HeroDescription = styled.p`
   line-height: 1.75;
 `;
 
-const HeroImage = styled.img`
+const HeroImage = styled(PriorityImage)`
   width: 100%;
   aspect-ratio: 4 / 3;
   border: 0.6rem solid var(--color-secondary);
@@ -279,7 +280,7 @@ const TreatmentPage: React.FC = () => {
     return <Page><ContentSection><Container><SectionHeader title="Tratamento não encontrado" description="Volte para a página de tratamentos e escolha um novo caminho." /></Container></ContentSection></Page>;
   }
 
-  const whatsappUrl = `https://api.whatsapp.com/send?phone=556134794514&text=${encodeURIComponent(`Olá, gostaria de agendar uma avaliação sobre ${treatment.title} na UnoVitta.`)}`;
+  const whatsappUrl = buildWhatsAppUrl(`Olá, gostaria de agendar uma avaliação sobre ${treatment.title} na UnoVitta.`);
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'MedicalWebPage',

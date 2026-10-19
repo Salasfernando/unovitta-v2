@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 const SITE_URL = 'https://unovitta.com.br';
 const SITE_NAME = 'UnoVitta Clínicas';
@@ -36,59 +36,28 @@ const SEO: React.FC<SEOProps> = ({
   const siteName = SITE_NAME;
   const locale = 'pt_BR';
 
-  useEffect(() => {
-    document.title = fullTitle;
-
-    const metaTags = [
-      { name: 'description', content: description },
-      { name: 'author', content: author },
-      { name: 'robots', content: 'index, follow' },
-      { property: 'og:type', content: type },
-      { property: 'og:url', content: fullUrl },
-      { property: 'og:title', content: fullTitle },
-      { property: 'og:description', content: description },
-      { property: 'og:image', content: imageUrl },
-      { property: 'og:site_name', content: siteName },
-      { property: 'og:locale', content: locale },
-      { property: 'og:image:alt', content: `${fullTitle} — ${siteName}` },
-      { name: 'twitter:card', content: 'summary_large_image' },
-      { name: 'twitter:url', content: fullUrl },
-      { name: 'twitter:title', content: fullTitle },
-      { name: 'twitter:description', content: description },
-      { name: 'twitter:image', content: imageUrl },
-      { name: 'twitter:image:alt', content: `${fullTitle} — ${siteName}` }
-    ];
-
-    if (keywords) {
-      metaTags.push({ name: 'keywords', content: keywords });
-    }
-
-    document.querySelectorAll('meta[data-seo="true"]').forEach(el => el.remove());
-
-    metaTags.forEach(tag => {
-      const meta = document.createElement('meta');
-      Object.entries(tag).forEach(([key, value]) => {
-        meta.setAttribute(key, value);
-      });
-      meta.setAttribute('data-seo', 'true');
-      document.head.appendChild(meta);
-    });
-
-    let canonicalLink = document.querySelector('link[rel="canonical"]');
-    if (!canonicalLink) {
-      canonicalLink = document.createElement('link');
-      canonicalLink.setAttribute('rel', 'canonical');
-      document.head.appendChild(canonicalLink);
-    }
-    canonicalLink.setAttribute('href', fullUrl);
-
-    return () => {
-      document.querySelectorAll('meta[data-seo="true"]').forEach(el => el.remove());
-    };
-  }, [fullTitle, description, author, type, fullUrl, imageUrl, keywords, siteName]);
-
   return (
     <>
+      <title data-seo="true">{fullTitle}</title>
+      <meta name="description" content={description} data-seo="true" />
+      <meta name="author" content={author} data-seo="true" />
+      <meta name="robots" content="index, follow" data-seo="true" />
+      <meta property="og:type" content={type} data-seo="true" />
+      <meta property="og:url" content={fullUrl} data-seo="true" />
+      <meta property="og:title" content={fullTitle} data-seo="true" />
+      <meta property="og:description" content={description} data-seo="true" />
+      <meta property="og:image" content={imageUrl} data-seo="true" />
+      <meta property="og:site_name" content={siteName} data-seo="true" />
+      <meta property="og:locale" content={locale} data-seo="true" />
+      <meta property="og:image:alt" content={`${fullTitle} — ${siteName}`} data-seo="true" />
+      <meta name="twitter:card" content="summary_large_image" data-seo="true" />
+      <meta name="twitter:url" content={fullUrl} data-seo="true" />
+      <meta name="twitter:title" content={fullTitle} data-seo="true" />
+      <meta name="twitter:description" content={description} data-seo="true" />
+      <meta name="twitter:image" content={imageUrl} data-seo="true" />
+      <meta name="twitter:image:alt" content={`${fullTitle} — ${siteName}`} data-seo="true" />
+      {keywords && <meta name="keywords" content={keywords} data-seo="true" />}
+      <link rel="canonical" href={fullUrl} data-seo="true" />
       {schema ? (
         <script
           type="application/ld+json"

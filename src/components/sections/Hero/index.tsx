@@ -1,15 +1,9 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import { Link } from 'react-router-dom';
-import { getWhatsAppLinkProps } from '../../../utils/whatsapp';
+import { buildWhatsAppUrl, getWhatsAppLinkProps } from '../../../utils/whatsapp';
 import { trackWhatsAppStart } from '../../../utils/analytics';
-
-declare global {
-  interface Window {
-    gtag?: (...args: unknown[]) => void;
-    gtag_report_conversion_whatsapp?: (url?: string) => boolean;
-  }
-}
+import PriorityImage from '../../ui/PriorityImage';
 
 const HeroContainer = styled.section`
   position: relative;
@@ -212,7 +206,7 @@ const ImageFrame = styled.div`
   }
 `;
 
-const HeroImage = styled.img`
+const HeroImage = styled(PriorityImage)`
   display: block;
   width: 100%;
   aspect-ratio: 4 / 3;
@@ -243,11 +237,7 @@ const Caption = styled.div`
 const HeroSection: React.FC = () => {
   const whatsappLinkProps = getWhatsAppLinkProps();
 
-  const handleWhatsAppClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
-    const url = event.currentTarget.href;
-    if (typeof window !== 'undefined' && typeof window.gtag_report_conversion_whatsapp === 'function') {
-      window.gtag_report_conversion_whatsapp(url);
-    }
+  const handleWhatsAppClick = () => {
     trackWhatsAppStart({ location: 'home_hero' });
   };
 
@@ -263,7 +253,7 @@ const HeroSection: React.FC = () => {
             </HeroText>
             <ButtonGroup>
               <PrimaryButton
-                href="https://api.whatsapp.com/send/?phone=556134794514&text=Ol%C3%A1%2C+gostaria+de+agendar+uma+avalia%C3%A7%C3%A3o+odontol%C3%B3gica+em+Brazl%C3%A2ndia&type=phone_number&app_absent=0"
+                href={buildWhatsAppUrl('Olá, gostaria de agendar uma avaliação odontológica em Brazlândia')}
                 {...whatsappLinkProps}
                 aria-label="Agendar minha avaliação pelo WhatsApp"
                 onClick={handleWhatsAppClick}

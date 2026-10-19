@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { getWhatsAppLinkProps } from '../../../utils/whatsapp';
+import { buildWhatsAppUrl, getWhatsAppLinkProps } from '../../../utils/whatsapp';
+import { trackWhatsAppStart } from '../../../utils/analytics';
 
 const PainPointsContainer = styled.section`
   padding: var(--spacing-20) 0;
@@ -107,37 +108,37 @@ const painPoints = [
     id: 1,
     title: 'Perdi dentes e quero recuperar o sorriso',
     description: 'Implantes odontológicos para devolver função e estética ao seu sorriso.',
-    whatsappText: 'Quero%20avaliar%20meu%20implante%20dent%C3%A1rio%20e%20agendar%20uma%20avalia%C3%A7%C3%A3o%20em%20Brazl%C3%A2ndia.'
+    whatsappText: 'Quero avaliar meu implante dentário e agendar uma avaliação em Brazlândia.'
   },
   {
     id: 2,
     title: 'Tenho vergonha de sorrir',
     description: 'Soluções estéticas para devolver confiança e um sorriso natural.',
-    whatsappText: 'Quero%20avaliar%20op%C3%A7%C3%B5es%20est%C3%A9ticas%20para%20meu%20sorriso%20e%20agendar%20uma%20avalia%C3%A7%C3%A3o.'
+    whatsappText: 'Quero avaliar opções estéticas para meu sorriso e agendar uma avaliação.'
   },
   {
     id: 3,
     title: 'Dentes desalinhados me incomodam',
     description: 'Tratamentos modernos para alinhar dentes com conforto e discrição.',
-    whatsappText: 'Quero%20saber%20se%20posso%20usar%20alinhadores%20invis%C3%ADveis%20e%20agendar%20uma%20avalia%C3%A7%C3%A3o.'
+    whatsappText: 'Quero saber se posso usar alinhadores invisíveis e agendar uma avaliação.'
   },
   {
     id: 4,
     title: 'Quero clarear meus dentes',
     description: 'Clareamento seguro e eficiente com diagnóstico profissional.',
-    whatsappText: 'Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20para%20clareamento%20dental.'
+    whatsappText: 'Quero agendar uma avaliação para clareamento dental.'
   },
   {
     id: 5,
     title: 'Preciso retomar um tratamento interrompido',
     description: 'Revisão completa do plano para continuar o tratamento com segurança.',
-    whatsappText: 'Preciso%20retomar%20meu%20tratamento%20odontol%C3%B3gico%20e%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o.'
+    whatsappText: 'Preciso retomar meu tratamento odontológico e gostaria de agendar uma avaliação.'
   },
   {
     id: 6,
     title: 'Ainda não sei qual tratamento preciso',
     description: 'Avaliação completa para entender o melhor caminho para o seu caso.',
-    whatsappText: 'Ainda%20n%C3%A3o%20sei%20qual%20tratamento%20preciso%20e%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o.'
+    whatsappText: 'Ainda não sei qual tratamento preciso e gostaria de agendar uma avaliação.'
   }
 ];
 
@@ -159,8 +160,9 @@ const PainPointsSection: React.FC = () => {
           {painPoints.map((point) => (
             <Card
               key={point.id}
-              href={`https://api.whatsapp.com/send?phone=556134794514&text=${point.whatsappText}`}
+              href={buildWhatsAppUrl(point.whatsappText)}
               {...whatsappLinkProps}
+              onClick={() => trackWhatsAppStart({ location: `pain_point_${point.id}`, treatment: point.title })}
             >
               <CardBadge>{point.id}</CardBadge>
               <CardTitle>{point.title}</CardTitle>

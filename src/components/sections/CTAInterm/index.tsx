@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FaWhatsapp, FaPhoneAlt } from 'react-icons/fa';
-import { getWhatsAppLinkProps } from '../../../utils/whatsapp';
+import { buildWhatsAppUrl, getWhatsAppLinkProps, TELEPHONE_LINK } from '../../../utils/whatsapp';
 import { trackPhoneClick, trackWhatsAppStart } from '../../../utils/analytics';
 
 const CTAContainer = styled.section`
@@ -136,11 +136,7 @@ const CTAIntermediate: React.FC<CTAIntermediateProps> = ({
 }) => {
   const whatsappLinkProps = getWhatsAppLinkProps();
 
-  const handleWhatsAppClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
-    const url = event.currentTarget.href;
-    if (typeof window !== 'undefined' && typeof window.gtag_report_conversion_whatsapp === 'function') {
-      window.gtag_report_conversion_whatsapp(url);
-    }
+  const handleWhatsAppClick = () => {
     trackWhatsAppStart({ location: 'cta_intermediate' });
   };
 
@@ -155,14 +151,14 @@ const CTAIntermediate: React.FC<CTAIntermediateProps> = ({
         </CTADescription>
         <CTAButtons>
           <CTAButton
-            href="https://api.whatsapp.com/send?phone=556134794514&text=Quero%20agendar%20minha%20avalia%C3%A7%C3%A3o%20odontol%C3%B3gica%20e%20entender%20o%20melhor%20tratamento%20para%20meu%20caso."
+            href={buildWhatsAppUrl('Quero agendar minha avaliação odontológica e entender o melhor tratamento para meu caso.')}
             {...whatsappLinkProps}
             onClick={handleWhatsAppClick}
           >
             <FaWhatsapp />
             {buttonText}
           </CTAButton>
-          <SecondaryCTAButton href="tel:+556134794514" onClick={() => trackPhoneClick('cta_intermediate_phone')}>
+          <SecondaryCTAButton href={`tel:${TELEPHONE_LINK}`} onClick={() => trackPhoneClick('cta_intermediate_phone')}>
             <FaPhoneAlt />
             Ligar agora
           </SecondaryCTAButton>

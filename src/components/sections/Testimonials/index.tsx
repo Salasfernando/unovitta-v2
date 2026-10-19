@@ -103,12 +103,12 @@ const CarouselDots = styled.div`
   flex: 1;
 `;
 
-const CarouselDot = styled.button<{ active: boolean }>`
+const CarouselDot = styled.button<{ $active: boolean }>`
   width: 0.75rem;
   height: 0.75rem;
   border-radius: 50%;
   border: none;
-  background: ${({ active }) => (active ? 'var(--color-primary)' : 'var(--color-gray-300)')};
+  background: ${({ $active }) => ($active ? 'var(--color-primary)' : 'var(--color-gray-300)')};
   cursor: pointer;
   transition: background 0.2s ease;
 `;
@@ -376,7 +376,7 @@ const TestimonialsSection: React.FC = () => {
                 <CarouselDot
                   key={index}
                   type="button"
-                  active={index === activeIndex}
+                  $active={index === activeIndex}
                   onClick={() => setActiveIndex(index)}
                   aria-label={`Ir para slide ${index + 1}`}
                 />

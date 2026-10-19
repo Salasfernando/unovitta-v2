@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import SEO from '../../components/SEO';
+import { TELEPHONE_LINK } from '../../utils/whatsapp';
 import HeroSection from '../../components/sections/Hero';
 import PainPointsSection from '../../components/sections/PainPoints';
 import HowItWorksSection from '../../components/sections/HowItWorks';
@@ -17,7 +18,7 @@ const homeSchema = {
   '@type': 'Dentist',
   name: 'UnoVitta Clínicas',
   url: 'https://unovitta.com.br/',
-  telephone: '+55-61-3479-4514',
+  telephone: TELEPHONE_LINK,
   image: 'https://unovitta.com.br/images/hero-equipe-paciente.jpg',
   address: {
     '@type': 'PostalAddress',

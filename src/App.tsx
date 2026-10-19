@@ -46,31 +46,37 @@ function ScrollToTop() {
   return null;
 }
 
+export function AppShell() {
+  return (
+    <AppContainer>
+      <GlobalStyles />
+      <ScrollToTop />
+
+      <Header />
+      <MainContent>
+        <Suspense fallback={<RouteFallback aria-live="polite">Carregando conteúdo…</RouteFallback>}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/sobre" element={<About />} />
+            <Route path="/servicos" element={<Services />} />
+            <Route path="/servicos/:slug" element={<Treatment />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:slug" element={<BlogPost />} />
+            <Route path="/contato" element={<Contact />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Suspense>
+      </MainContent>
+      <Footer />
+      <WhatsAppButton />
+    </AppContainer>
+  );
+}
+
 function App() {
   return (
     <Router>
-      <AppContainer>
-        <GlobalStyles />
-        <ScrollToTop />
-
-        <Header />
-        <MainContent>
-          <Suspense fallback={<RouteFallback aria-live="polite">Carregando conteúdo…</RouteFallback>}>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/sobre" element={<About />} />
-              <Route path="/servicos" element={<Services />} />
-              <Route path="/servicos/:slug" element={<Treatment />} />
-              <Route path="/blog" element={<Blog />} />
-              <Route path="/blog/:slug" element={<BlogPost />} />
-              <Route path="/contato" element={<Contact />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </Suspense>
-        </MainContent>
-        <Footer />
-        <WhatsAppButton />
-      </AppContainer>
+      <AppShell />
     </Router>
   );
 }
