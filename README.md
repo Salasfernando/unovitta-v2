@@ -69,7 +69,7 @@ O site está publicado e disponível para navegação em:
 - **Canais Diretos de Contato:** Formulário responsivo, botão flutuante animado do WhatsApp, e-mail e ligação direta.
 - **Design Responsivo & Acessibilidade:** Experiência fluida em mobile, tablet e desktop, com HTML semântico e navegação via teclado.
 - **SEO & Dados Estruturados:** Metatags completas, Open Graph, Twitter Cards, Schema.org (`LocalBusiness`, `FAQPage`, `MedicalWebPage`, `BlogPosting`), sitemap.xml e robots.txt.
-- **Eventos de Interação:** O código envia eventos (`cta_click`, `whatsapp_start`, `phone_click`, `contact_form_submit`) pelo Google tag. A conversão do WhatsApp no Ads usa a tag direta atualmente configurada; se a conversão for importada do GA4, altere a origem em `src/utils/analytics.ts` para não contar as duas vezes.
+- **Conversão de WhatsApp:** Os links de contato usam a conversão direta do Google Ads (`AW-962820594`), centralizada em `src/utils/analytics.ts`. O compartilhamento de artigos pelo WhatsApp não é contado como lead. Cliques em telefone continuam registrados separadamente como evento `phone_click`.
 
 ---
 

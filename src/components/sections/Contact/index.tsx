@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { FaMapMarkerAlt, FaPhoneAlt, FaWhatsapp } from 'react-icons/fa';
 import { ContactCard as SharedContactCard } from '../../ui';
-import { trackFormSubmit, trackPhoneClick, trackWhatsAppStart } from '../../../utils/analytics';
+import { trackPhoneClick, trackWhatsAppConversion } from '../../../utils/analytics';
 import SEO from '../../SEO';
 import { buildWhatsAppUrl, DISPLAY_PHONE_NUMBER, getWhatsAppLinkProps, openWhatsAppLink, TELEPHONE_LINK } from '../../../utils/whatsapp';
 
@@ -310,8 +310,7 @@ const Contact: React.FC = () => {
     const message = `Olá, gostaria de agendar uma avaliação odontológica.\n\nNome: ${name}\nTelefone: ${phone}\nTratamento de interesse: ${treatment || 'Não informado'}\nMelhor horário para contato: ${bestTime || 'Não informado'}`;
     const url = buildWhatsAppUrl(message);
 
-    trackFormSubmit('contact_form');
-    trackWhatsAppStart({ location: 'contact_form', treatment });
+    trackWhatsAppConversion();
     openWhatsAppLink(url);
   };
 
@@ -339,7 +338,7 @@ const Contact: React.FC = () => {
           <SharedContactCard
             href={buildWhatsAppUrl('Quero agendar uma avaliação odontológica!')}
             {...whatsappLinkProps}
-            onClick={() => trackWhatsAppStart({ location: 'contact_whatsapp' })}
+            onClick={trackWhatsAppConversion}
             icon={<FaWhatsapp />}
             title="WhatsApp"
             description="Resposta rápida para dúvidas e agendamentos."

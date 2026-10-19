@@ -5,7 +5,7 @@ import { FaArrowRight, FaCheck, FaWhatsapp } from 'react-icons/fa';
 import SEO from '../../components/SEO';
 import { Button, FAQItem, SectionHeader, TrustMetric } from '../../components/ui';
 import { buildWhatsAppUrl, getWhatsAppLinkProps } from '../../utils/whatsapp';
-import { trackWhatsAppStart } from '../../utils/analytics';
+import { trackWhatsAppConversion } from '../../utils/analytics';
 import PriorityImage from '../../components/ui/PriorityImage';
 
 type TreatmentData = {
@@ -313,7 +313,7 @@ const TreatmentPage: React.FC = () => {
                 href={whatsappUrl}
                 {...whatsappProps}
                 $variant="secondary"
-                onClick={() => trackWhatsAppStart({ location: `treatment_${treatment.slug}`, treatment: treatment.title })}
+                onClick={trackWhatsAppConversion}
               >
                 <FaWhatsapp aria-hidden="true" /> Agendar avaliação
               </Button>
@@ -359,7 +359,7 @@ const TreatmentPage: React.FC = () => {
         <Container>
           <CTATitle>Quer saber se este tratamento é para você?</CTATitle>
           <CTAText>Converse com a UnoVitta e receba uma orientação inicial para entender o próximo passo.</CTAText>
-          <Button href={whatsappUrl} {...whatsappProps} $variant="primary" onClick={() => trackWhatsAppStart({ location: `treatment_final_${treatment.slug}`, treatment: treatment.title })}>
+          <Button href={whatsappUrl} {...whatsappProps} $variant="primary" onClick={trackWhatsAppConversion}>
             Falar com a equipe <FaArrowRight aria-hidden="true" />
           </Button>
         </Container>

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { buildWhatsAppUrl, getWhatsAppLinkProps } from '../../../utils/whatsapp';
-import { trackWhatsAppStart } from '../../../utils/analytics';
+import { trackWhatsAppConversion } from '../../../utils/analytics';
 
 const PainPointsContainer = styled.section`
   padding: var(--spacing-20) 0;
@@ -162,7 +162,7 @@ const PainPointsSection: React.FC = () => {
               key={point.id}
               href={buildWhatsAppUrl(point.whatsappText)}
               {...whatsappLinkProps}
-              onClick={() => trackWhatsAppStart({ location: `pain_point_${point.id}`, treatment: point.title })}
+              onClick={trackWhatsAppConversion}
             >
               <CardBadge>{point.id}</CardBadge>
               <CardTitle>{point.title}</CardTitle>

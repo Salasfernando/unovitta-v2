@@ -2,7 +2,7 @@ import React from 'react';
 import { FaWhatsapp } from 'react-icons/fa';
 import styled, { keyframes } from 'styled-components';
 import { buildWhatsAppUrl, getWhatsAppLinkProps } from '../../utils/whatsapp';
-import { trackWhatsAppStart } from '../../utils/analytics';
+import { trackWhatsAppConversion } from '../../utils/analytics';
 
 const pulse = keyframes`
   0%, 100% {
@@ -54,7 +54,7 @@ const FloatingWhatsApp: React.FC = () => {
   const whatsappLinkProps = getWhatsAppLinkProps();
 
   const handleWhatsAppClick = () => {
-    trackWhatsAppStart({ location: 'floating_whatsapp' });
+    trackWhatsAppConversion();
   };
 
   return (

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import imgLogo from '../../../assets/images/logowhite.png'; 
 import { buildWhatsAppUrl, DISPLAY_PHONE_NUMBER, getWhatsAppLinkProps, TELEPHONE_LINK } from '../../../utils/whatsapp';
-import { trackWhatsAppStart } from '../../../utils/analytics';
+import { trackWhatsAppConversion } from '../../../utils/analytics';
 
 const FooterContainer = styled.footer`
   background-color: var(--color-primary-dark);
@@ -224,7 +224,7 @@ const Footer: React.FC = () => {
   const whatsappLinkProps = getWhatsAppLinkProps();
 
   const handleWhatsAppClick = () => {
-    trackWhatsAppStart({ location: 'footer' });
+    trackWhatsAppConversion();
   };
 
   return (

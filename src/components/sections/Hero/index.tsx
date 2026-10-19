@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import { Link } from 'react-router-dom';
 import { buildWhatsAppUrl, getWhatsAppLinkProps } from '../../../utils/whatsapp';
-import { trackWhatsAppStart } from '../../../utils/analytics';
+import { trackWhatsAppConversion } from '../../../utils/analytics';
 import PriorityImage from '../../ui/PriorityImage';
 
 const HeroContainer = styled.section`
@@ -238,7 +238,7 @@ const HeroSection: React.FC = () => {
   const whatsappLinkProps = getWhatsAppLinkProps();
 
   const handleWhatsAppClick = () => {
-    trackWhatsAppStart({ location: 'home_hero' });
+    trackWhatsAppConversion();
   };
 
   return (

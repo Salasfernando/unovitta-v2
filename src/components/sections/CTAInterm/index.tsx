@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { FaWhatsapp, FaPhoneAlt } from 'react-icons/fa';
 import { buildWhatsAppUrl, getWhatsAppLinkProps, TELEPHONE_LINK } from '../../../utils/whatsapp';
-import { trackPhoneClick, trackWhatsAppStart } from '../../../utils/analytics';
+import { trackPhoneClick, trackWhatsAppConversion } from '../../../utils/analytics';
 
 const CTAContainer = styled.section`
   position: relative;
@@ -137,7 +137,7 @@ const CTAIntermediate: React.FC<CTAIntermediateProps> = ({
   const whatsappLinkProps = getWhatsAppLinkProps();
 
   const handleWhatsAppClick = () => {
-    trackWhatsAppStart({ location: 'cta_intermediate' });
+    trackWhatsAppConversion();
   };
 
   return (

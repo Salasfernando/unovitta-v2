@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Link, useLocation } from 'react-router-dom';
 import imgLogo from '../../../assets/logo.png';
 import { buildWhatsAppUrl, getWhatsAppLinkProps } from '../../../utils/whatsapp';
-import { trackWhatsAppStart } from '../../../utils/analytics';
+import { trackWhatsAppConversion } from '../../../utils/analytics';
 
 const navItems = [
   { label: 'Início', to: '/' },
@@ -164,7 +164,7 @@ const Header: React.FC = () => {
   const isActive = (path: string) => location.pathname === path || (path !== '/' && location.pathname.startsWith(path));
 
   const handleWhatsAppClick = () => {
-    trackWhatsAppStart({ location: 'header' });
+    trackWhatsAppConversion();
   };
 
   const handleMobileWhatsAppClick = () => {

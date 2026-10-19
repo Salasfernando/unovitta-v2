@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { buildWhatsAppUrl, getWhatsAppLinkProps } from '../../utils/whatsapp';
-import { trackWhatsAppStart } from '../../utils/analytics';
+import { trackWhatsAppConversion } from '../../utils/analytics';
 
 const WhatsAppButtonContainer = styled.a`
   position: fixed;
@@ -33,7 +33,7 @@ const WhatsAppButton: React.FC = () => {
   const whatsappLinkProps = getWhatsAppLinkProps();
 
   const handleWhatsAppClick = () => {
-    trackWhatsAppStart({ location: 'floating_whatsapp' });
+    trackWhatsAppConversion();
   };
 
   return (

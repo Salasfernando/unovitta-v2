@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import SEO from '../../components/SEO';
 import { buildWhatsAppUrl, openWhatsAppLink } from '../../utils/whatsapp';
-import { trackWhatsAppStart } from '../../utils/analytics';
+import { trackWhatsAppConversion } from '../../utils/analytics';
 
 const ServicesContainer = styled.div`
   padding: var(--spacing-20) 0;
@@ -326,7 +326,7 @@ const Services: React.FC = () => {
   const handleSchedule = (_serviceId: number, serviceTitle: string) => {
     const message = `Olá, gostaria de agendar uma avaliação odontológica para: ${serviceTitle}`;
     const whatsappUrl = buildWhatsAppUrl(message, true);
-    trackWhatsAppStart({ location: 'services_schedule', treatment: serviceTitle });
+    trackWhatsAppConversion();
     openWhatsAppLink(whatsappUrl);
   };
 
@@ -356,7 +356,7 @@ const Services: React.FC = () => {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Agendar avaliação odontológica pelo WhatsApp"
-            onClick={() => trackWhatsAppStart({ location: 'services_header' })}
+            onClick={trackWhatsAppConversion}
           >
             Agendar avaliação pelo WhatsApp
           </PrimaryLink>

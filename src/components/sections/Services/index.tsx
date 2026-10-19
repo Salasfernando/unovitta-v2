@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { FaHospital, FaSmile, FaTooth, FaShieldAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import { trackWhatsAppStart } from '../../../utils/analytics';
+import { trackWhatsAppConversion } from '../../../utils/analytics';
 import { buildWhatsAppUrl, getWhatsAppLinkProps } from '../../../utils/whatsapp';
 
 
@@ -256,7 +256,7 @@ const ServicesSection: React.FC = () => {
                 <ServiceLink
                   href={buildWhatsAppUrl(service.message)}
                   {...whatsappLinkProps}
-                  onClick={() => trackWhatsAppStart({ location: `home_service_${service.slug}`, treatment: service.title })}
+                  onClick={trackWhatsAppConversion}
                   aria-label={`Agendar avaliação para ${service.title}`}
                 >
                   Agendar avaliação
