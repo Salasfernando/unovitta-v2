@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link, useLocation } from 'react-router-dom';
-import imgLogo from '../../../assets/logo.png';
 import { buildWhatsAppUrl, getWhatsAppLinkProps } from '../../../utils/whatsapp';
 import { trackWhatsAppConversion } from '../../../utils/analytics';
 
@@ -178,7 +177,7 @@ const Header: React.FC = () => {
         <LogoContainer>
           <Link to="/" style={{ display: 'flex', alignItems: 'center' }}>
             <img
-              src={imgLogo}
+              src="/logo.png"
               alt="Logo da Unovitta Clínicas"
               width={82}
               height={82}

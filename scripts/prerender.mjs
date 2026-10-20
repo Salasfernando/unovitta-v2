@@ -5,7 +5,6 @@ import { PassThrough } from 'node:stream';
 import React from 'react';
 import { renderToPipeableStream } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
-import { ServerStyleSheet } from 'styled-components';
 import { createServer } from 'vite';
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -31,6 +30,7 @@ const vite = await createServer({
 });
 
 try {
+  const { ServerStyleSheet } = await vite.ssrLoadModule('/src/ssr/styledComponents.ts');
   const { AppShell } = await vite.ssrLoadModule('/src/App.tsx');
   const template = await readFile(path.join(outputDirectory, 'index.html'), 'utf8');
 
