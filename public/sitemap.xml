@@ -1,93 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://unovitta.com.br/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>1.00</priority>
+    <loc>https://www.unovitta.com.br/</loc>
   </url>
   <url>
-    <loc>https://unovitta.com.br/sobre</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
+    <loc>https://www.unovitta.com.br/sobre</loc>
   </url>
   <url>
-    <loc>https://unovitta.com.br/servicos</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
+    <loc>https://www.unovitta.com.br/servicos</loc>
   </url>
   <url>
-    <loc>https://unovitta.com.br/servicos/implantes</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.90</priority>
+    <loc>https://www.unovitta.com.br/servicos/implantes</loc>
   </url>
   <url>
-    <loc>https://unovitta.com.br/servicos/alinhadores</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.90</priority>
+    <loc>https://www.unovitta.com.br/servicos/alinhadores</loc>
   </url>
   <url>
-    <loc>https://unovitta.com.br/servicos/estetica</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.90</priority>
+    <loc>https://www.unovitta.com.br/servicos/estetica</loc>
   </url>
   <url>
-    <loc>https://unovitta.com.br/servicos/clareamento</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.90</priority>
+    <loc>https://www.unovitta.com.br/servicos/clareamento</loc>
   </url>
   <url>
-    <loc>https://unovitta.com.br/blog</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
+    <loc>https://www.unovitta.com.br/blog</loc>
   </url>
   <url>
-    <loc>https://unovitta.com.br/contato</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
+    <loc>https://www.unovitta.com.br/contato</loc>
   </url>
   <url>
-    <loc>https://unovitta.com.br/blog/saude-bucal-perfeita</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.70</priority>
+    <loc>https://www.unovitta.com.br/blog/saude-bucal-perfeita</loc>
   </url>
   <url>
-    <loc>https://unovitta.com.br/blog/os-beneficios-da-odontologia-digital</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.70</priority>
+    <loc>https://www.unovitta.com.br/blog/os-beneficios-da-odontologia-digital</loc>
   </url>
   <url>
-    <loc>https://unovitta.com.br/blog/exames-odontologicos-preventivos</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.70</priority>
+    <loc>https://www.unovitta.com.br/blog/exames-odontologicos-preventivos</loc>
   </url>
   <url>
-    <loc>https://unovitta.com.br/blog/alimentacao-e-saude-bucal</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.70</priority>
+    <loc>https://www.unovitta.com.br/blog/alimentacao-e-saude-bucal</loc>
   </url>
   <url>
-    <loc>https://unovitta.com.br/blog/clareamento-dental-mitos-e-verdades</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.70</priority>
+    <loc>https://www.unovitta.com.br/blog/clareamento-dental-mitos-e-verdades</loc>
   </url>
   <url>
-    <loc>https://unovitta.com.br/blog/bruxismo-como-identificar-e-tratar</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.70</priority>
+    <loc>https://www.unovitta.com.br/blog/bruxismo-como-identificar-e-tratar</loc>
   </url>
   <url>
-    <loc>https://unovitta.com.br/blog/ansiedade-odontologica-como-superar</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.70</priority>
+    <loc>https://www.unovitta.com.br/blog/ansiedade-odontologica-como-superar</loc>
   </url>
   <url>
-    <loc>https://unovitta.com.br/blog/ortodontia-invisivel-vantagens</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.70</priority>
+    <loc>https://www.unovitta.com.br/blog/ortodontia-invisivel-vantagens</loc>
   </url>
   <url>
-    <loc>https://unovitta.com.br/blog/implantes-dentarios-tudo-o-que-voce-precisa-saber</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.70</priority>
+    <loc>https://www.unovitta.com.br/blog/implantes-dentarios-tudo-o-que-voce-precisa-saber</loc>
   </url>
 </urlset>

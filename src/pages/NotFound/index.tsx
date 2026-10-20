@@ -71,7 +71,7 @@ const NotFound: React.FC = () => {
       <SEO 
         title="Página Não Encontrada"
         description="A página que você está procurando não foi encontrada. Volte para a página inicial da UnoVitta."
-        canonical="/404"
+        robots="noindex, follow"
       />
       
       <ContentContainer>

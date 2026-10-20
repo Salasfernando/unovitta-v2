@@ -254,9 +254,9 @@ const contactSchema = {
   '@context': 'https://schema.org',
   '@type': 'Dentist',
   name: 'UnoVitta Clínicas',
-  url: 'https://unovitta.com.br',
+  url: 'https://www.unovitta.com.br',
   telephone: TELEPHONE_LINK,
-  image: ['https://unovitta.com.br/logo.png'],
+  image: ['https://www.unovitta.com.br/logo.png'],
   address: {
     '@type': 'PostalAddress',
     streetAddress: 'Quadra 37, Conjunto A, lote 2 - loja 3, Vila São José',

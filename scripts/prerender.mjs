@@ -9,7 +9,7 @@ import { ServerStyleSheet } from 'styled-components';
 import { createServer } from 'vite';
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const siteOrigin = 'https://unovitta.com.br';
+const siteOrigin = 'https://www.unovitta.com.br';
 const outputDirectory = path.join(projectRoot, 'dist');
 
 const sitemap = await readFile(path.join(projectRoot, 'public/sitemap.xml'), 'utf8');
@@ -34,7 +34,9 @@ try {
   const { AppShell } = await vite.ssrLoadModule('/src/App.tsx');
   const template = await readFile(path.join(outputDirectory, 'index.html'), 'utf8');
 
-  for (const routePath of [...new Set(routePaths)]) {
+  const prerenderPaths = [...new Set([...routePaths, '/__unovitta_not_found__'])];
+
+  for (const routePath of prerenderPaths) {
     const sheet = new ServerStyleSheet();
     const app = sheet.collectStyles(
       React.createElement(
@@ -66,14 +68,17 @@ try {
 
     const routeSegments = routePath.split('/').filter(Boolean);
     const pageDirectory = path.join(outputDirectory, ...routeSegments);
-    const outputPath = routePath === '/'
-      ? path.join(outputDirectory, 'index.html')
-      : path.join(pageDirectory, 'index.html');
+    const isNotFoundPage = routePath === '/__unovitta_not_found__';
+    const outputPath = isNotFoundPage
+      ? path.join(outputDirectory, '404.html')
+      : routePath === '/'
+        ? path.join(outputDirectory, 'index.html')
+        : path.join(pageDirectory, 'index.html');
 
     await mkdir(path.dirname(outputPath), { recursive: true });
     await writeFile(outputPath, renderedDocument, 'utf8');
     sheet.seal();
-    console.log(`Pré-renderizada: ${routePath}`);
+    console.log(`Pré-renderizada: ${isNotFoundPage ? '/404.html' : routePath}`);
   }
 } finally {
   await vite.close();

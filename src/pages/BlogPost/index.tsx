@@ -39,17 +39,6 @@ const BlogMeta = styled.div`
   color: var(--color-gray-500);
 `;
 
-const BlogDate = styled.span`
-  display: flex;
-  align-items: center;
-  
-  svg {
-    width: 1.25rem;
-    height: 1.25rem;
-    margin-right: var(--spacing-2);
-  }
-`;
-
 const BlogAuthor = styled.span`
   display: flex;
   align-items: center;
@@ -266,7 +255,6 @@ type PostType = {
   title: string;
   image: string;
   slug: string;
-  date: string;
   author: string;
   category: string;
   content: string;
@@ -293,37 +281,13 @@ type RelatedPostPreview = {
   slug: string;
 };
 
-const portugueseMonths: Record<string, string> = {
-  janeiro: '01',
-  fevereiro: '02',
-  março: '03',
-  abril: '04',
-  maio: '05',
-  junho: '06',
-  julho: '07',
-  agosto: '08',
-  setembro: '09',
-  outubro: '10',
-  novembro: '11',
-  dezembro: '12'
-};
-
-const toIsoDate = (dateLabel: string): string | undefined => {
-  const match = dateLabel.toLowerCase().match(/(\d{2}) de ([a-zç]+) de (\d{4})/);
-  if (!match) return undefined;
-
-  const [, day, monthName, year] = match;
-  const month = portugueseMonths[monthName];
-  return month ? `${year}-${month}-${day}` : undefined;
-};
-
 const toAuthorSchema = (authorLabel: string) => {
   const match = authorLabel.match(/^(Dra?\.)\s+(.+)$/i);
   return {
     '@type': 'Person',
     name: match ? match[2] : authorLabel,
     ...(match ? { honorificPrefix: match[1] } : {}),
-    url: 'https://unovitta.com.br/sobre'
+    url: 'https://www.unovitta.com.br/sobre'
   };
 };
 
@@ -333,7 +297,6 @@ const postsData: PostsMap = {
     title: "Os benefícios da odontologia digital para pacientes e dentistas",
     image: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
     slug: 'os-beneficios-da-odontologia-digital',
-    date: '01 de Outubro de 2023',
     author: 'Dra. Ana Oliveira',
     category: 'Tecnologia Odontológica',
     content: '<p>A odontologia moderna está em constante evolução, e a <strong>odontologia digital</strong> representa um dos avanços mais significativos das últimas décadas. Essa abordagem inovadora utiliza tecnologias digitais para aprimorar diagnósticos, planejamentos e tratamentos, oferecendo uma experiência mais eficiente, precisa e confortável tanto para os pacientes quanto para os profissionais.</p>' +
@@ -364,7 +327,6 @@ const postsData: PostsMap = {
     title: "Como manter uma saúde bucal perfeita durante todo o ano",
     image: "https://images.unsplash.com/photo-1606811971618-4486d14f3f99?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
     slug: 'saude-bucal-perfeita',
-    date: '02 de Outubro de 2023',
     author: 'Dr. Carlos Silva',
     category: 'Odontologia Preventiva',
     content: '<p>Manter uma <strong>saúde bucal impecável</strong> não é apenas sobre ter um sorriso bonito, mas sim um pilar fundamental para o bem-estar geral. Uma boca saudável previne dores, infecções e contribui significativamente para a sua qualidade de vida. Felizmente, alcançar e manter essa saúde é possível com hábitos diários consistentes e visitas regulares ao dentista.</p>' +
@@ -399,7 +361,6 @@ const postsData: PostsMap = {
     title: "Exames odontológicos preventivos: quais você deve fazer regularmente",
     image: "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
     slug: 'exames-odontologicos-preventivos',
-    date: '03 de Outubro de 2023',
     author: 'Dr. Roberto Almeida',
     category: 'Prevenção',
     content: '<p>A prevenção é a chave para uma saúde bucal duradoura e para evitar tratamentos complexos e custosos no futuro. Os <strong>exames odontológicos preventivos</strong> regulares são a ferramenta mais eficaz para monitorar a saúde da sua boca, detectar problemas em estágio inicial e intervir antes que se tornem graves.</p>' +
@@ -432,7 +393,6 @@ const postsData: PostsMap = {
     title: "Alimentação e saúde bucal: o que comer para ter dentes fortes",
     image: "https://images.unsplash.com/photo-1482049016688-2d3e1b311543?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
     slug: 'alimentacao-e-saude-bucal',
-    date: '04 de Outubro de 2023',
     author: 'Dra. Mariana Santos',
     category: 'Nutrição e Odontologia',
     content: '<p>Você sabia que o que você come tem um impacto direto e significativo na saúde dos seus dentes e gengivas? Uma <strong>alimentação equilibrada</strong> não só nutre seu corpo, mas também fortalece suas defesas bucais contra cáries, erosão ácida e doenças gengivais.</p>' +
@@ -471,7 +431,6 @@ const postsData: PostsMap = {
     title: "Clareamento dental: mitos e verdades sobre o procedimento",
     image: "https://plus.unsplash.com/premium_photo-1702598988008-b60cf858cb78?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     slug: 'clareamento-dental-mitos-e-verdades',
-    date: '05 de Outubro de 2023',
     author: 'Dr. Carlos Silva',
     category: 'Odontologia Estética',
     content: '<p>Um sorriso branco e radiante é o desejo de muitas pessoas, e o <strong>clareamento dental</strong> se tornou um dos procedimentos estéticos mais populares na odontologia. No entanto, junto com a popularidade, surgem muitas dúvidas e informações equivocadas. Vamos desmistificar alguns dos mitos mais comuns e apresentar as verdades sobre o clareamento dental.</p>' +
@@ -504,7 +463,6 @@ const postsData: PostsMap = {
     title: "Bruxismo: como identificar e tratar o ranger de dentes",
     image: "https://plus.unsplash.com/premium_photo-1673773401710-d23ef113e06f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     slug: 'bruxismo-como-identificar-e-tratar',
-    date: '06 de Outubro de 2023',
     author: 'Dra. Ana Oliveira',
     category: 'Disfunções Temporomandibulares',
     content: '<p>Você acorda com dor de cabeça ou nos músculos da mandíbula? Seus dentes parecem desgastados ou lascados? Você pode estar sofrendo de <strong>bruxismo</strong>, um hábito involuntário de ranger ou apertar os dentes, que ocorre principalmente durante o sono (bruxismo noturno), mas também pode acontecer durante o dia (bruxismo em vigília).</p>' +
@@ -557,7 +515,6 @@ const postsData: PostsMap = {
     title: "Ansiedade odontológica: como superar o medo de ir ao dentista",
     image: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
     slug: 'ansiedade-odontologica-como-superar',
-    date: '07 de Outubro de 2023',
     author: 'Dr. Roberto Almeida',
     category: 'Psicologia e Odontologia',
     content: '<p>O coração acelera, as mãos suam e a simples ideia de sentar na cadeira do dentista causa pânico? Você não está sozinho. A <strong>ansiedade odontológica</strong>, ou o medo de ir ao dentista, é um problema comum que afeta pessoas de todas idades, impedindo-as de buscar os cuidados necessários para manter a saúde bucal.</p>' +
@@ -599,7 +556,6 @@ const postsData: PostsMap = {
     title: "Ortodontia invisível: vantagens dos alinhadores transparentes",
     image: "https://images.unsplash.com/photo-1694675236489-d73651370688?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     slug: 'ortodontia-invisivel-vantagens',
-    date: '08 de Outubro de 2023',
     author: 'Dra. Mariana Santos',
     category: 'Ortodontia',
     content: '<p>Corrigir o alinhamento dos dentes e obter um sorriso perfeito é um objetivo comum, mas a ideia de usar aparelhos metálicos tradicionais pode ser um empecilho para muitos adultos e adolescentes. Felizmente, a <strong>ortodontia invisível</strong>, representada principalmente pelos <strong>alinhadores transparentes</strong> (como Invisalign® e outras marcas), surgiu como uma alternativa revolucionária, oferecendo discrição, conforto e eficácia.</p>' +
@@ -636,7 +592,6 @@ const postsData: PostsMap = {
     title: "Implantes dentários: tudo o que você precisa saber antes de fazer",
     image: "https://images.unsplash.com/photo-1468493858157-0da44aaf1d13?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     slug: 'implantes-dentarios-tudo-o-que-voce-precisa-saber',
-    date: '09 de Outubro de 2023',
     author: 'Dr. Carlos Silva',
     category: 'Implantodontia',
     content: '<p>A perda de um ou mais dentes pode impactar significativamente a estética do sorriso, a função mastigatória e até a autoestima. Felizmente, a odontologia moderna oferece uma solução altamente eficaz e duradoura: os <strong>implantes dentários</strong>. Considerados o padrão ouro para a reabilitação oral, os implantes oferecem uma alternativa superior às próteses removíveis (dentaduras) ou pontes fixas tradicionais.</p>' +
@@ -732,20 +687,19 @@ const BlogPost = () => {
     headline: postData.title,
     description: postData.seo.description,
     image: [postData.seo.image || postData.image],
-    datePublished: toIsoDate(postData.date),
     author: toAuthorSchema(postData.author),
     publisher: {
       '@type': 'Organization',
       name: 'UnoVitta Clínicas',
-      url: 'https://unovitta.com.br/',
+      url: 'https://www.unovitta.com.br/',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://unovitta.com.br/logo.png'
+        url: 'https://www.unovitta.com.br/logo.png'
       }
     },
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': currentUrl || `https://unovitta.com.br/blog/${slug}`
+      '@id': currentUrl || `https://www.unovitta.com.br/blog/${slug}`
     },
     articleSection: postData.category,
     inLanguage: 'pt-BR'
@@ -776,13 +730,6 @@ const BlogPost = () => {
             {/* Correção: Usar postData para exibir o título */}
             <BlogTitle>{postData.title}</BlogTitle>
             <BlogMeta>
-              <BlogDate>
-                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
-                {/* Correção: Usar postData para exibir a data */}
-                {postData.date}
-              </BlogDate>
               <BlogAuthor>
                 <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />

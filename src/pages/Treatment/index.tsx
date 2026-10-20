@@ -286,10 +286,10 @@ const TreatmentPage: React.FC = () => {
     '@type': 'MedicalWebPage',
     name: treatment.title,
     description: treatment.description,
-    url: `https://unovitta.com.br/servicos/${treatment.slug}`,
+    url: `https://www.unovitta.com.br/servicos/${treatment.slug}`,
     image: treatment.image,
     about: { '@type': 'MedicalProcedure', name: treatment.title },
-    publisher: { '@type': 'Organization', name: 'UnoVitta Clínicas', url: 'https://unovitta.com.br/' }
+    publisher: { '@type': 'Organization', name: 'UnoVitta Clínicas', url: 'https://www.unovitta.com.br/' }
   };
 
   return (
