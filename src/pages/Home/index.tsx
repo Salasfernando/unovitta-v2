@@ -83,7 +83,7 @@ const Home: React.FC = () => {
       <AboutSection />
       <ServicesSection />
       <TestimonialsSection />
-      <ContactSection />
+      <ContactSection includeSEO={false} />
       <HomeEnhancements />
     </HomeContainer>
   );

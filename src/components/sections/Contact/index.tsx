@@ -290,7 +290,11 @@ const contactSchema = {
   ]
 };
 
-const Contact: React.FC = () => {
+interface ContactSectionProps {
+  includeSEO?: boolean;
+}
+
+const Contact: React.FC<ContactSectionProps> = ({ includeSEO = true }) => {
   const whatsappLinkProps = getWhatsAppLinkProps();
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
@@ -316,13 +320,15 @@ const Contact: React.FC = () => {
 
   return (
     <ContactContainer>
-      <SEO
-        title="Contato"
-        description="Fale com a UnoVitta e agende sua avaliação odontológica por WhatsApp ou telefone. Atendimento rápido para Brazlândia e região com foco em cuidado, conforto e resultados reais."
-        keywords="contato, agendar avaliação, WhatsApp odontológico, clínica odontológica Brazlândia, telefone UnoVitta, avaliação odontológica"
-        canonical="/contato"
-        schema={contactSchema}
-      />
+      {includeSEO && (
+        <SEO
+          title="Contato"
+          description="Fale com a UnoVitta e agende sua avaliação odontológica por WhatsApp ou telefone. Atendimento rápido para Brazlândia e região com foco em cuidado, conforto e resultados reais."
+          keywords="contato, agendar avaliação, WhatsApp odontológico, clínica odontológica Brazlândia, telefone UnoVitta, avaliação odontológica"
+          canonical="/contato"
+          schema={contactSchema}
+        />
+      )}
 
       <ContentContainer>
         <PageHeader>
