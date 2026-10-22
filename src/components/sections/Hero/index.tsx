@@ -271,7 +271,7 @@ const HeroSection: React.FC = () => {
           <ImageFrame>
             <HeroImage
               src="/images/hero-equipe-paciente.jpg"
-              alt="Dentista conversando com paciente em uma sala da UnoVitta"
+              alt="Dentista conversa com paciente em consultório odontológico"
               width={1200}
               height={900}
               decoding="async"

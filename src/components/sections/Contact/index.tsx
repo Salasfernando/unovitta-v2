@@ -201,6 +201,47 @@ const FormButton = styled.button`
   }
 `;
 
+const PrivacyConsent = styled.div`
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  color: var(--color-gray-700);
+  font-size: 0.87rem;
+  line-height: 1.5;
+
+  label { cursor: pointer; }
+
+  input {
+    flex: 0 0 auto;
+    width: 1.1rem;
+    height: 1.1rem;
+    margin-top: 0.2rem;
+    accent-color: var(--color-primary);
+  }
+`;
+
+const MapLoadNotice = styled.div`
+  display: grid;
+  min-height: 100%;
+  place-content: center;
+  justify-items: center;
+  gap: 0.8rem;
+  padding: 2rem;
+  color: var(--color-white);
+  text-align: center;
+
+  p { margin: 0; }
+
+  button {
+    padding: 0.75rem 1rem;
+    border: 0;
+    border-radius: 0.65rem;
+    background: var(--color-secondary);
+    color: var(--color-dark);
+    font-weight: 700;
+  }
+`;
+
 const ContactLabel = styled.h4`
   font-size: 1rem;
   font-weight: 700;
@@ -300,6 +341,8 @@ const Contact: React.FC<ContactSectionProps> = ({ includeSEO = true }) => {
   const [phone, setPhone] = useState('');
   const [treatment, setTreatment] = useState('');
   const [bestTime, setBestTime] = useState('');
+  const [privacyConsent, setPrivacyConsent] = useState(false);
+  const [mapLoaded, setMapLoaded] = useState(false);
 
   const handleContactClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     const url = event.currentTarget.href;
@@ -310,8 +353,9 @@ const Contact: React.FC<ContactSectionProps> = ({ includeSEO = true }) => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (!privacyConsent) return;
 
-    const message = `Olá, gostaria de agendar uma avaliação odontológica.\n\nNome: ${name}\nTelefone: ${phone}\nTratamento de interesse: ${treatment || 'Não informado'}\nMelhor horário para contato: ${bestTime || 'Não informado'}`;
+    const message = `Olá, gostaria de agendar uma avaliação odontológica.\n\nNome: ${name}\nTelefone: ${phone}\nTratamento de interesse: ${treatment || 'Não informado'}\nMelhor horário para contato: ${bestTime || 'Não informado'}\n\nAutorizo o envio destes dados à UnoVitta pelo WhatsApp para responder ao meu pedido, conforme a Política de Privacidade.`;
     const url = buildWhatsAppUrl(message);
 
     trackWhatsAppConversion();
@@ -419,6 +463,21 @@ const Contact: React.FC<ContactSectionProps> = ({ includeSEO = true }) => {
                     <option value="tarde">Tarde</option>
                     <option value="noite">Noite</option>
                   </FormSelect>
+                  <PrivacyConsent>
+                    <input
+                      type="checkbox"
+                      name="privacy-consent"
+                      id="privacy-consent"
+                      aria-describedby="privacy-consent-description"
+                      checked={privacyConsent}
+                      onChange={(event) => setPrivacyConsent(event.target.checked)}
+                      required
+                    />
+                    <label htmlFor="privacy-consent">
+                      Autorizo o envio dos dados acima, inclusive do tratamento de interesse se preenchido, à UnoVitta pelo WhatsApp para responder ao meu pedido.
+                    </label>
+                  </PrivacyConsent>
+                  <small id="privacy-consent-description">Consulte a <a href="/privacidade">Política de Privacidade</a>. O formulário só abre o WhatsApp após seu envio.</small>
                   <FormButton type="submit" aria-label="Enviar formulário de contato para o WhatsApp">Enviar meus dados</FormButton>
                 </ContactForm>
               </ContactItem>
@@ -501,13 +560,20 @@ const Contact: React.FC<ContactSectionProps> = ({ includeSEO = true }) => {
           <MapSection role="region" aria-label="Mapa de localização da clínica">
             <MapTitle>Nossa Localização</MapTitle>
             <MapContainer>
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2716.4600899439033!2d-48.20121179276872!3d-15.663365436865906!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935bb0d587bf3913%3A0x7435c48994c69a5b!2sUnovitta%20Cl%C3%ADnicas!5e0!3m2!1spt-BR!2sbr!4v1748311575288!5m2!1spt-BR!2sbr"
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Mapa da localização da UnoVitta"
-              />
+              {mapLoaded ? (
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2716.4600899439033!2d-48.20121179276872!3d-15.663365436865906!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935bb0d587bf3913%3A0x7435c48994c69a5b!2sUnovitta%20Cl%C3%ADnicas!5e0!3m2!1spt-BR!2sbr!4v1748311575288!5m2!1spt-BR!2sbr"
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Mapa da localização da UnoVitta"
+                />
+              ) : (
+                <MapLoadNotice>
+                  <p>O mapa é fornecido pelo Google. Ao carregá-lo, seu navegador se conecta ao Google.</p>
+                  <button type="button" onClick={() => setMapLoaded(true)}>Carregar mapa do Google</button>
+                </MapLoadNotice>
+              )}
             </MapContainer>
           </MapSection>
         </ContactGrid>

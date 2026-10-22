@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import SEO from '../../components/SEO';
+import ResponsiveImage from '../../components/ui/ResponsiveImage';
 
 const AboutContainer = styled.div`
   padding: 6.5rem 0;
@@ -140,9 +141,9 @@ const About: React.FC = () => {
 
         <AboutContent>
           <AboutImage>
-            <img
+            <ResponsiveImage
               src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=80"
-              alt="Equipe UnoVitta Odontologia"
+              alt="Fotografia ilustrativa de atendimento em clínica odontológica"
               loading="lazy"
               decoding="async"
               width={900}

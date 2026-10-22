@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { useParams, Link } from 'react-router-dom';
 import SEO from '../../components/SEO';
 import { getWhatsAppLinkProps } from '../../utils/whatsapp';
+import ResponsiveImage from '../../components/ui/ResponsiveImage';
 
 const BlogPostContainer = styled.div`
   padding: 6.5rem 0;
@@ -198,7 +199,7 @@ const RelatedImageContainer = styled.div`
   overflow: hidden;
 `;
 
-const RelatedImage = styled.img`
+const RelatedImage = styled(ResponsiveImage)`
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -749,9 +750,9 @@ const BlogPost = () => {
 
           {postData.image && (
             <FeaturedImage>
-              <img
+              <ResponsiveImage
                 src={postData.image}
-                alt={postData.title}
+                alt=""
                 width={1200}
                 height={675}
                 fetchPriority="high"
@@ -795,7 +796,7 @@ const BlogPost = () => {
                     <RelatedImageContainer>
                       <RelatedImage
                         src={relatedPost.image}
-                        alt={relatedPost.title}
+                        alt=""
                         loading="lazy"
                         decoding="async"
                         width={800}

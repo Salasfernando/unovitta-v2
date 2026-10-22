@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom'; // Importar Link
 import SEO from '../../components/SEO';
+import ResponsiveImage from '../../components/ui/ResponsiveImage';
 
 const BlogContainer = styled.div`
   padding: 6.5rem 0;
@@ -78,7 +79,7 @@ const BlogImageContainer = styled.div`
   overflow: hidden;
 `;
 
-const BlogImage = styled.img`
+const BlogImage = styled(ResponsiveImage)`
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -296,7 +297,7 @@ const Blog: React.FC = () => {
               <BlogImageContainer>
                   <BlogImage
                     src={post.image}
-                    alt={post.title}
+                    alt=""
                     loading="lazy"
                     decoding="async"
                     width={800}

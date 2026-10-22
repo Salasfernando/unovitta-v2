@@ -51,12 +51,13 @@ const FooterTitle = styled.h3`
   font-size: 1.25rem;
   font-weight: 700;
   margin-bottom: var(--spacing-4);
+  color: var(--color-secondary);
 `;
 
 const FooterText = styled.p`
   margin-bottom: var(--spacing-4);
-  font-size: 0.9rem; // Slightly adjusted font size
-  line-height: 1.6; // Improved readability
+  font-size: 0.9rem; 
+  line-height: 1.6; 
 `;
 
 const SocialLinks = styled.div`
@@ -288,6 +289,16 @@ const Footer: React.FC = () => {
               <FooterLinkItem><FooterLink to="/servicos">Serviços</FooterLink></FooterLinkItem>
               <FooterLinkItem><FooterLink to="/blog">Blog</FooterLink></FooterLinkItem>
               <FooterLinkItem><FooterLink to="/contato">Contato</FooterLink></FooterLinkItem>
+              <FooterLinkItem><FooterLink to="/privacidade">Política de Privacidade</FooterLink></FooterLinkItem>
+              <FooterLinkItem>
+                <button
+                  type="button"
+                  onClick={() => window.dispatchEvent(new Event('open-privacy-preferences'))}
+                  style={{ background: 'none', border: 0, color: 'inherit', cursor: 'pointer', font: 'inherit', padding: 0, textAlign: 'left' }}
+                >
+                  Preferências de cookies
+                </button>
+              </FooterLinkItem>
             </FooterLinksList>
           </FooterColumn>
 

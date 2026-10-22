@@ -1,3 +1,5 @@
+import { readPrivacyConsent } from './privacyConsent';
+
 declare global {
   interface Window {
     gtag?: (...args: unknown[]) => void;
@@ -6,11 +8,12 @@ declare global {
 }
 
 const sendEvent = (name: string, params: Record<string, unknown>): void => {
-  if (typeof window === 'undefined' || typeof window.gtag !== 'function') return;
+  if (typeof window === 'undefined' || !readPrivacyConsent()?.marketing || typeof window.gtag !== 'function') return;
   window.gtag('event', name, params);
 };
 
 export const trackWhatsAppConversion = (): void => {
+  if (!readPrivacyConsent()?.marketing) return;
   if (typeof window !== 'undefined' && typeof window.gtag_report_conversion_whatsapp === 'function') {
     window.gtag_report_conversion_whatsapp();
   }

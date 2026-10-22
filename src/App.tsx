@@ -5,6 +5,8 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
+import PrivacyConsentBanner from './components/PrivacyConsentBanner';
+import { applySavedPrivacyConsent } from './utils/privacyConsent';
 
 import Home from './pages/Home';
 const About = lazy(() => import('./pages/About'));
@@ -14,6 +16,7 @@ const BlogPost = lazy(() => import('./pages/BlogPost'));
 const Contact = lazy(() => import('./pages/Contact'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 const Treatment = lazy(() => import('./pages/Treatment'));
+const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
 
 import GlobalStyles from './styles/GlobalStyles';
 
@@ -46,11 +49,19 @@ function ScrollToTop() {
   return null;
 }
 
+function PrivacyConsentSetup() {
+  useEffect(() => {
+    applySavedPrivacyConsent();
+  }, []);
+  return null;
+}
+
 export function AppShell() {
   return (
     <AppContainer>
       <GlobalStyles />
       <ScrollToTop />
+      <PrivacyConsentSetup />
 
       <Header />
       <MainContent>
@@ -63,12 +74,14 @@ export function AppShell() {
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/contato" element={<Contact />} />
+            <Route path="/privacidade" element={<PrivacyPolicy />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
       </MainContent>
       <Footer />
       <WhatsAppButton />
+      <PrivacyConsentBanner />
     </AppContainer>
   );
 }

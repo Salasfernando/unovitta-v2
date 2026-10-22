@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import SEO from '../../components/SEO';
 import { buildWhatsAppUrl, openWhatsAppLink } from '../../utils/whatsapp';
 import { trackWhatsAppConversion } from '../../utils/analytics';
+import ResponsiveImage from '../../components/ui/ResponsiveImage';
 
 const ServicesContainer = styled.div`
   padding: var(--spacing-20) 0;
@@ -372,9 +373,9 @@ const Services: React.FC = () => {
           {services.map(service => (
             <ServiceCard key={service.id}>
               <ServiceImage>
-                <img 
+                <ResponsiveImage
                   src={service.image} 
-                  alt={service.title}
+                  alt=""
                   loading="lazy"
                   decoding="async"
                   width={800}
