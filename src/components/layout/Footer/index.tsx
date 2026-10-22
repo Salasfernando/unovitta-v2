@@ -2,7 +2,6 @@ import React from 'react';
 import { FaFacebook, FaInstagram, FaPhoneAlt, FaWhatsapp } from 'react-icons/fa';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import imgLogo from '../../../assets/images/logowhite.png'; 
 import { buildWhatsAppUrl, DISPLAY_PHONE_NUMBER, getWhatsAppLinkProps, TELEPHONE_LINK } from '../../../utils/whatsapp';
 import { trackWhatsAppConversion } from '../../../utils/analytics';
 
@@ -253,7 +252,7 @@ const Footer: React.FC = () => {
           <FooterGrid>
           <FooterColumn>
             <img
-              src={imgLogo}
+              src="/logowhite.png"
               alt="Logo da Unovitta Clínicas"
               width={82}
               height={82}
