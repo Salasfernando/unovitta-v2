@@ -137,7 +137,7 @@ const CTAIntermediate: React.FC<CTAIntermediateProps> = ({
   const whatsappLinkProps = getWhatsAppLinkProps();
 
   const handleWhatsAppClick = () => {
-    trackWhatsAppConversion();
+    trackWhatsAppConversion('intermediate_cta', buttonText);
   };
 
   return (

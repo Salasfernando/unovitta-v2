@@ -94,7 +94,7 @@ const HomeEnhancements: React.FC = () => (
         <SectionHeader
           eyebrow="Confiança para decidir com calma"
           title="Cuidado próximo, experiência e clareza em cada etapa."
-          description="Use estes dados como prova social real e mantenha somente os números que puder confirmar na comunicação oficial da clínica."
+          description="Estrutura moderna em Brazlândia, atendimento acolhedor e planejamento transparente para cuidar da sua saúde bucal com segurança."
         />
         <MetricsGrid>
           <TrustMetric value="15+" label="Anos de atuação" />

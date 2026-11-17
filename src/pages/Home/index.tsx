@@ -25,7 +25,13 @@ const homeSchema = {
     streetAddress: 'Quadra 37, Conjunto A, lote 2 - loja 3, Vila São José',
     addressLocality: 'Brazlândia',
     addressRegion: 'DF',
+    postalCode: '72700-000',
     addressCountry: 'BR'
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: -15.663365,
+    longitude: -48.201212
   },
   areaServed: 'Brazlândia, Brasília - DF',
   openingHoursSpecification: [
@@ -41,6 +47,10 @@ const homeSchema = {
       opens: '08:00',
       closes: '12:00'
     }
+  ],
+  sameAs: [
+    'https://www.instagram.com/unovittaclinicas',
+    'https://pt-br.facebook.com/unovitta/'
   ]
 };
 
@@ -51,7 +61,7 @@ const faqSchema = {
     {
       '@type': 'Question',
       name: 'Como funciona a primeira avaliação?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Você conta o que deseja melhorar, a equipe entende seu caso e explica os próximos passos com clareza.' }
+      acceptedAnswer: { '@type': 'Answer', text: 'Você conta o que deseja melhorar, a equipe entende seu caso e explica os próximos passos com clareza. A indicação de tratamento acontece depois da avaliação.' }
     },
     {
       '@type': 'Question',
@@ -61,7 +71,12 @@ const faqSchema = {
     {
       '@type': 'Question',
       name: 'A clínica atende em Brazlândia?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Sim. A UnoVitta está localizada em Brazlândia, no Distrito Federal.' }
+      acceptedAnswer: { '@type': 'Answer', text: 'Sim. A UnoVitta está localizada em Brazlândia, no Distrito Federal. Consulte a página de Contato para endereço, telefone e rota.' }
+    },
+    {
+      '@type': 'Question',
+      name: 'Como agendo pelo WhatsApp?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Clique em qualquer botão de agendamento, revise a mensagem pronta e envie para iniciar a conversa com a equipe.' }
     }
   ]
 };

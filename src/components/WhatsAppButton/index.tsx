@@ -33,7 +33,7 @@ const WhatsAppButton: React.FC = () => {
   const whatsappLinkProps = getWhatsAppLinkProps();
 
   const handleWhatsAppClick = () => {
-    trackWhatsAppConversion();
+    trackWhatsAppConversion('floating_button', 'Contato via WhatsApp');
   };
 
   return (

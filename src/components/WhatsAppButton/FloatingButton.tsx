@@ -54,7 +54,7 @@ const FloatingWhatsApp: React.FC = () => {
   const whatsappLinkProps = getWhatsAppLinkProps();
 
   const handleWhatsAppClick = () => {
-    trackWhatsAppConversion();
+    trackWhatsAppConversion('floating_whatsapp', 'Fale conosco no WhatsApp');
   };
 
   return (

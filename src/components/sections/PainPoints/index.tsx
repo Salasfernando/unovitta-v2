@@ -162,7 +162,8 @@ const PainPointsSection: React.FC = () => {
               key={point.id}
               href={buildWhatsAppUrl(point.whatsappText)}
               {...whatsappLinkProps}
-              onClick={trackWhatsAppConversion}
+              onClick={(event) => trackWhatsAppConversion(event)}
+              data-analytics-location="home_pain_point_cta"
             >
               <CardBadge>{point.id}</CardBadge>
               <CardTitle>{point.title}</CardTitle>

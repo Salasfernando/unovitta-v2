@@ -281,7 +281,7 @@ const TreatmentPage: React.FC = () => {
   }
 
   const whatsappUrl = buildWhatsAppUrl(`Olá, gostaria de agendar uma avaliação sobre ${treatment.title} na UnoVitta.`);
-  const schema = {
+  const medicalWebPageSchema = {
     '@context': 'https://schema.org',
     '@type': 'MedicalWebPage',
     name: treatment.title,
@@ -292,6 +292,44 @@ const TreatmentPage: React.FC = () => {
     publisher: { '@type': 'Organization', name: 'UnoVitta Clínicas', url: 'https://www.unovitta.com.br/' }
   };
 
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: treatment.faqs.map(faq => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer
+      }
+    }))
+  };
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Início',
+        item: 'https://www.unovitta.com.br/'
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Tratamentos',
+        item: 'https://www.unovitta.com.br/servicos'
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: treatment.title,
+        item: `https://www.unovitta.com.br/servicos/${treatment.slug}`
+      }
+    ]
+  };
+
   return (
     <Page>
       <SEO
@@ -300,7 +338,7 @@ const TreatmentPage: React.FC = () => {
         keywords={treatment.keywords}
         canonical={`/servicos/${treatment.slug}`}
         image={treatment.image}
-        schema={schema}
+        schema={[medicalWebPageSchema, faqSchema, breadcrumbSchema]}
       />
       <Hero>
         <Container>
@@ -313,7 +351,8 @@ const TreatmentPage: React.FC = () => {
                 href={whatsappUrl}
                 {...whatsappProps}
                 $variant="secondary"
-                onClick={trackWhatsAppConversion}
+                onClick={(event) => trackWhatsAppConversion(event)}
+                data-analytics-location="treatment_primary_cta"
               >
                 <FaWhatsapp aria-hidden="true" /> Agendar avaliação
               </Button>
@@ -359,7 +398,7 @@ const TreatmentPage: React.FC = () => {
         <Container>
           <CTATitle>Quer saber se este tratamento é para você?</CTATitle>
           <CTAText>Converse com a UnoVitta e receba uma orientação inicial para entender o próximo passo.</CTAText>
-          <Button href={whatsappUrl} {...whatsappProps} $variant="primary" onClick={trackWhatsAppConversion}>
+          <Button href={whatsappUrl} {...whatsappProps} $variant="primary" onClick={(event) => trackWhatsAppConversion(event)} data-analytics-location="treatment_bottom_cta">
             Falar com a equipe <FaArrowRight aria-hidden="true" />
           </Button>
         </Container>

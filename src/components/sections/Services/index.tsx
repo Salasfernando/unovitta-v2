@@ -256,7 +256,8 @@ const ServicesSection: React.FC = () => {
                 <ServiceLink
                   href={buildWhatsAppUrl(service.message)}
                   {...whatsappLinkProps}
-                  onClick={trackWhatsAppConversion}
+                  onClick={(event) => trackWhatsAppConversion(event)}
+                  data-analytics-location="home_services_cta"
                   aria-label={`Agendar avaliação para ${service.title}`}
                 >
                   Agendar avaliação

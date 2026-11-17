@@ -163,7 +163,7 @@ const Header: React.FC = () => {
   const isActive = (path: string) => location.pathname === path || (path !== '/' && location.pathname.startsWith(path));
 
   const handleWhatsAppClick = () => {
-    trackWhatsAppConversion();
+    trackWhatsAppConversion('header_cta', 'Agende sua avaliação');
   };
 
   const handleMobileWhatsAppClick = () => {

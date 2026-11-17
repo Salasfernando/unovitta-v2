@@ -457,8 +457,8 @@ const TestimonialsSection: React.FC = () => {
               <IndicatorText>Avaliação média dos pacientes</IndicatorText>
             </IndicatorCard>
             <IndicatorCard>
-              <IndicatorNumber>+2.5k</IndicatorNumber>
-              <IndicatorText>Atendimentos realizados</IndicatorText>
+              <IndicatorNumber>8K+</IndicatorNumber>
+              <IndicatorText>Pacientes atendidos</IndicatorText>
             </IndicatorCard>
             <IndicatorCard>
               <IndicatorNumber>100%</IndicatorNumber>

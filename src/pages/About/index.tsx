@@ -118,14 +118,37 @@ const HighlightCard = styled.div`
   }
 `;
 
+const aboutSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'AboutPage',
+  name: 'Sobre a UnoVitta Clínicas em Brazlândia',
+  url: 'https://www.unovitta.com.br/sobre',
+  description: 'Conheça a UnoVitta em Brazlândia, DF: clínica odontológica comprometida com a excelência em saúde bucal, atendimento humanizado e soluções personalizadas.',
+  mainEntity: {
+    '@type': 'Dentist',
+    name: 'UnoVitta Clínicas',
+    url: 'https://www.unovitta.com.br/',
+    telephone: '+556134794514',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'Quadra 37, Conjunto A, lote 2 - loja 3, Vila São José',
+      addressLocality: 'Brazlândia',
+      addressRegion: 'DF',
+      postalCode: '72700-000',
+      addressCountry: 'BR'
+    }
+  }
+};
+
 const About: React.FC = () => {
   return (
     <AboutContainer>
       <SEO
-        title="Sobre Nós"
-        description="Conheça a UnoVitta, uma clínica odontológica comprometida com a excelência em saúde bucal, oferecendo atendimento humanizado e soluções personalizadas para cada paciente."
-        keywords="clínica odontológica, sobre nós, equipe odontológica, dentistas, missão, valores, história"
+        title="Sobre a UnoVitta Clínicas em Brazlândia"
+        description="Conheça a UnoVitta em Brazlândia, DF: uma clínica odontológica comprometida com a excelência em saúde bucal, atendimento humanizado e soluções personalizadas para cada paciente."
+        keywords="clínica odontológica em Brazlândia, sobre a UnoVitta, equipe odontológica, dentistas em Brazlândia, missão, valores, história"
         canonical="/sobre"
+        schema={aboutSchema}
       />
 
       <ContentContainer>

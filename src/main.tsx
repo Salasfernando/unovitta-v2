@@ -2,6 +2,9 @@ import React from 'react';
 import { createRoot, hydrateRoot } from 'react-dom/client';
 import App from './App.tsx';
 import './index.css';
+import { initializeGA4 } from './utils/analytics';
+
+initializeGA4();
 
 const rootElement = document.getElementById('root')!;
 const app = (

@@ -238,7 +238,7 @@ const HeroSection: React.FC = () => {
   const whatsappLinkProps = getWhatsAppLinkProps();
 
   const handleWhatsAppClick = () => {
-    trackWhatsAppConversion();
+    trackWhatsAppConversion('home_hero', 'Agendar minha avaliação');
   };
 
   return (

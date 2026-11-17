@@ -16,6 +16,7 @@ const NotFound = lazy(() => import('./pages/NotFound'));
 const Treatment = lazy(() => import('./pages/Treatment'));
 
 import GlobalStyles from './styles/GlobalStyles';
+import { trackPageView } from './utils/analytics';
 
 const AppContainer = styled.div`
   display: flex;
@@ -46,11 +47,24 @@ function ScrollToTop() {
   return null;
 }
 
+function RoutePageView() {
+  const location = useLocation();
+
+  useEffect(() => {
+    const pagePath = `${location.pathname}${location.search}${location.hash}`;
+    const timer = window.setTimeout(() => trackPageView(pagePath, document.title), 0);
+    return () => window.clearTimeout(timer);
+  }, [location]);
+
+  return null;
+}
+
 export function AppShell() {
   return (
     <AppContainer>
       <GlobalStyles />
       <ScrollToTop />
+      <RoutePageView />
 
       <Header />
       <MainContent>

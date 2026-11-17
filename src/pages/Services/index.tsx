@@ -195,6 +195,13 @@ const ServiceFeatureItem = styled.li`
   }
 `;
 
+const ServiceCardActions = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.9rem;
+`;
+
 const ServiceCTA = styled.button`
   display: inline-flex;
   align-items: center;
@@ -210,6 +217,19 @@ const ServiceCTA = styled.button`
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 12px 24px rgba(15, 118, 110, 0.2);
+  }
+`;
+
+const ServiceDetailLink = styled(Link)`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--color-primary);
+  font-weight: 700;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
   }
 `;
 
@@ -245,7 +265,8 @@ const Services: React.FC = () => {
         'Orientação de higiene bucal',
         'Prevenção de cáries'
       ],
-      image: 'https://images.unsplash.com/photo-1606811971618-4486d14f3f99?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'
+      image: 'https://images.unsplash.com/photo-1606811971618-4486d14f3f99?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+      detailUrl: '/servicos/clareamento'
     },
 
     {
@@ -260,7 +281,8 @@ const Services: React.FC = () => {
         'Correção de gengivas',
         'Design de sorriso'
       ],
-      image: 'https://images.unsplash.com/photo-1694675236489-d73651370688?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+      image: 'https://images.unsplash.com/photo-1694675236489-d73651370688?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      detailUrl: '/servicos/estetica'
     },
 
     {
@@ -275,7 +297,8 @@ const Services: React.FC = () => {
         'Tratamento para crianças',
         'Tratamento para adultos'
       ],
-      image: 'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'
+      image: 'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+      detailUrl: '/servicos/alinhadores'
     },
 
     {
@@ -290,7 +313,8 @@ const Services: React.FC = () => {
         'Próteses sobre implantes',
         'Reabilitação total'
       ],
-      image: 'https://images.unsplash.com/photo-1468493858157-0da44aaf1d13?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+      image: 'https://images.unsplash.com/photo-1468493858157-0da44aaf1d13?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      detailUrl: '/servicos/implantes'
     },
 
     {
@@ -326,7 +350,7 @@ const Services: React.FC = () => {
   const handleSchedule = (_serviceId: number, serviceTitle: string) => {
     const message = `Olá, gostaria de agendar uma avaliação odontológica para: ${serviceTitle}`;
     const whatsappUrl = buildWhatsAppUrl(message, true);
-    trackWhatsAppConversion();
+    trackWhatsAppConversion('services_schedule', `Agendar avaliação: ${serviceTitle}`);
     openWhatsAppLink(whatsappUrl);
   };
 
@@ -356,7 +380,8 @@ const Services: React.FC = () => {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Agendar avaliação odontológica pelo WhatsApp"
-            onClick={trackWhatsAppConversion}
+            onClick={(event) => trackWhatsAppConversion(event)}
+            data-analytics-location="services_page_cta"
           >
             Agendar avaliação pelo WhatsApp
           </PrimaryLink>
@@ -394,9 +419,16 @@ const Services: React.FC = () => {
                     </ServiceFeatureItem>
                   ))}
                 </ServiceFeatures>
-                <ServiceCTA onClick={() => handleSchedule(service.id, service.title)} aria-label={`Agendar avaliação para ${service.title}`}>
-                  Agendar avaliação
-                </ServiceCTA>
+                <ServiceCardActions>
+                  <ServiceCTA onClick={() => handleSchedule(service.id, service.title)} aria-label={`Agendar avaliação para ${service.title}`}>
+                    Agendar avaliação
+                  </ServiceCTA>
+                  {service.detailUrl && (
+                    <ServiceDetailLink to={service.detailUrl} aria-label={`Saiba mais sobre ${service.title}`}>
+                      Ver detalhes <span aria-hidden="true">→</span>
+                    </ServiceDetailLink>
+                  )}
+                </ServiceCardActions>
               </ServiceContent>
             </ServiceCard>
           ))}

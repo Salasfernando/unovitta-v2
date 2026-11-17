@@ -69,7 +69,19 @@ O site está publicado e disponível para navegação em:
 - **Canais Diretos de Contato:** Formulário responsivo, botão flutuante animado do WhatsApp, e-mail e ligação direta.
 - **Design Responsivo & Acessibilidade:** Experiência fluida em mobile, tablet e desktop, com HTML semântico e navegação via teclado.
 - **SEO & Dados Estruturados:** Metatags completas, Open Graph, Twitter Cards, Schema.org (`LocalBusiness`, `FAQPage`, `MedicalWebPage`, `BlogPosting`), sitemap.xml e robots.txt.
-- **Conversão de WhatsApp:** Os links de contato usam a conversão direta do Google Ads (`AW-962820594`), centralizada em `src/utils/analytics.ts`. O compartilhamento de artigos pelo WhatsApp não é contado como lead. Cliques em telefone continuam registrados separadamente como evento `phone_click`.
+- **Medição de contatos:** A conversão direta do Google Ads (`AW-962820594`) continua ativa. O GA4 pode ser habilitado com `VITE_GA4_MEASUREMENT_ID`, sem duplicar a tag Google. São preparados eventos para navegação entre rotas, cliques em WhatsApp, telefone, email, localização, envio do formulário e compartilhamento de artigos (separado dos leads).
+
+## 📊 Analytics e rastreamento
+
+O site compartilha a tag Google já carregada em `index.html` para Google Ads e GA4. Para habilitar o GA4 localmente:
+
+1. Copie `.env.example` para `.env.local`.
+2. Preencha `VITE_GA4_MEASUREMENT_ID` com o ID do fluxo web GA4 (`G-...`).
+3. Reinicie o servidor Vite. Na hospedagem, cadastre a mesma variável no ambiente de produção e publique um novo build.
+
+Os eventos enviados ao GA4 são `page_view`, `click_whatsapp`, `phone_click`, `email_click`, `directions_click`, `contact_form_submit` e `share`. `button_location` e `button_text` devem ser cadastrados como dimensões personalizadas com escopo de evento. Nome, telefone e texto do formulário não são enviados ao GA4.
+
+Google Search Console e Bing Webmaster Tools são serviços externos: verifique a propriedade de domínio por DNS, envie `https://www.unovitta.com.br/sitemap.xml` e consulte os relatórios de desempenho dentro de cada ferramenta. O arquivo `public/robots.txt` já referencia o sitemap. Para atribuição de campanhas externas, use UTMs consistentes; não marque como conversão do Google Ads o mesmo evento que já é contado pela tag direta `AW-962820594`.
 
 ---
 

@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { useParams, Link } from 'react-router-dom';
 import SEO from '../../components/SEO';
 import { getWhatsAppLinkProps } from '../../utils/whatsapp';
+import { trackArticleShare } from '../../utils/analytics';
 
 const BlogPostContainer = styled.div`
   padding: 6.5rem 0;
@@ -282,6 +283,13 @@ type RelatedPostPreview = {
 };
 
 const toAuthorSchema = (authorLabel: string) => {
+  if (/unovitta/i.test(authorLabel)) {
+    return {
+      '@type': 'Organization',
+      name: 'UnoVitta Clínicas',
+      url: 'https://www.unovitta.com.br/sobre'
+    };
+  }
   const match = authorLabel.match(/^(Dra?\.)\s+(.+)$/i);
   return {
     '@type': 'Person',
@@ -297,7 +305,7 @@ const postsData: PostsMap = {
     title: "Os benefícios da odontologia digital para pacientes e dentistas",
     image: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
     slug: 'os-beneficios-da-odontologia-digital',
-    author: 'Dra. Ana Oliveira',
+    author: 'Equipe UnoVitta Clínicas',
     category: 'Tecnologia Odontológica',
     content: '<p>A odontologia moderna está em constante evolução, e a <strong>odontologia digital</strong> representa um dos avanços mais significativos das últimas décadas. Essa abordagem inovadora utiliza tecnologias digitais para aprimorar diagnósticos, planejamentos e tratamentos, oferecendo uma experiência mais eficiente, precisa e confortável tanto para os pacientes quanto para os profissionais.</p>' +
       '<h2>O que é Odontologia Digital?</h2>' +
@@ -320,14 +328,14 @@ const postsData: PostsMap = {
       description: 'Descubra como a odontologia digital está transformando o atendimento odontológico com mais precisão, conforto e eficiência.',
       keywords: 'odontologia digital, tecnologia odontológica, benefícios odontológicos, scanner intraoral, CAD/CAM, radiografia digital',
       image: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-      author: 'Dra. Ana Oliveira'
+      author: 'Equipe UnoVitta Clínicas'
     }
   },
   'saude-bucal-perfeita': {
     title: "Como manter uma saúde bucal perfeita durante todo o ano",
     image: "https://images.unsplash.com/photo-1606811971618-4486d14f3f99?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
     slug: 'saude-bucal-perfeita',
-    author: 'Dr. Carlos Silva',
+    author: 'Equipe UnoVitta Clínicas',
     category: 'Odontologia Preventiva',
     content: '<p>Manter uma <strong>saúde bucal impecável</strong> não é apenas sobre ter um sorriso bonito, mas sim um pilar fundamental para o bem-estar geral. Uma boca saudável previne dores, infecções e contribui significativamente para a sua qualidade de vida. Felizmente, alcançar e manter essa saúde é possível com hábitos diários consistentes e visitas regulares ao dentista.</p>' +
       '<h2>Pilares da Higiene Bucal Diária:</h2>' +
@@ -354,14 +362,14 @@ const postsData: PostsMap = {
       description: 'Dicas essenciais e hábitos diários para manter dentes e gengivas saudáveis, prevenindo problemas e garantindo um sorriso perfeito.',
       keywords: 'saúde bucal, higiene dental, escovação, fio dental, prevenção dental, cuidados odontológicos, dentista',
       image: "https://images.unsplash.com/photo-1606811971618-4486d14f3f99?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-      author: 'Dr. Carlos Silva'
+      author: 'Equipe UnoVitta Clínicas'
     }
   },
   'exames-odontologicos-preventivos': {
     title: "Exames odontológicos preventivos: quais você deve fazer regularmente",
     image: "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
     slug: 'exames-odontologicos-preventivos',
-    author: 'Dr. Roberto Almeida',
+    author: 'Equipe UnoVitta Clínicas',
     category: 'Prevenção',
     content: '<p>A prevenção é a chave para uma saúde bucal duradoura e para evitar tratamentos complexos e custosos no futuro. Os <strong>exames odontológicos preventivos</strong> regulares são a ferramenta mais eficaz para monitorar a saúde da sua boca, detectar problemas em estágio inicial e intervir antes que se tornem graves.</p>' +
       '<h2>Por que os Exames Preventivos são Essenciais?</h2>' +
@@ -386,14 +394,14 @@ const postsData: PostsMap = {
       description: 'Saiba quais exames odontológicos preventivos são cruciais para a detecção precoce de problemas e a manutenção da saúde bucal.',
       keywords: 'exames odontológicos, prevenção dental, saúde bucal, profilaxia, limpeza dental, radiografia dentária, consulta odontológica',
       image: "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-      author: 'Dr. Roberto Almeida'
+      author: 'Equipe UnoVitta Clínicas'
     }
   },
   'alimentacao-e-saude-bucal': {
     title: "Alimentação e saúde bucal: o que comer para ter dentes fortes",
     image: "https://images.unsplash.com/photo-1482049016688-2d3e1b311543?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
     slug: 'alimentacao-e-saude-bucal',
-    author: 'Dra. Mariana Santos',
+    author: 'Equipe UnoVitta Clínicas',
     category: 'Nutrição e Odontologia',
     content: '<p>Você sabia que o que você come tem um impacto direto e significativo na saúde dos seus dentes e gengivas? Uma <strong>alimentação equilibrada</strong> não só nutre seu corpo, mas também fortalece suas defesas bucais contra cáries, erosão ácida e doenças gengivais.</p>' +
       '<h2>Alimentos Amigos do Sorriso:</h2>' +
@@ -424,14 +432,14 @@ const postsData: PostsMap = {
       description: 'Descubra quais alimentos fortalecem seus dentes e gengivas e quais devem ser evitados para garantir um sorriso saudável.',
       keywords: 'alimentação saudável, saúde bucal, dentes fortes, nutrição odontológica, cálcio, prevenção de cáries, dieta',
       image: "https://images.unsplash.com/photo-1482049016688-2d3e1b311543?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-      author: 'Dra. Mariana Santos'
+      author: 'Equipe UnoVitta Clínicas'
     }
   },
   'clareamento-dental-mitos-e-verdades': {
     title: "Clareamento dental: mitos e verdades sobre o procedimento",
     image: "https://plus.unsplash.com/premium_photo-1702598988008-b60cf858cb78?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     slug: 'clareamento-dental-mitos-e-verdades',
-    author: 'Dr. Carlos Silva',
+    author: 'Equipe UnoVitta Clínicas',
     category: 'Odontologia Estética',
     content: '<p>Um sorriso branco e radiante é o desejo de muitas pessoas, e o <strong>clareamento dental</strong> se tornou um dos procedimentos estéticos mais populares na odontologia. No entanto, junto com a popularidade, surgem muitas dúvidas e informações equivocadas. Vamos desmistificar alguns dos mitos mais comuns e apresentar as verdades sobre o clareamento dental.</p>' +
       '<h2>Mitos Comuns:</h2>' +
@@ -456,14 +464,14 @@ const postsData: PostsMap = {
       description: 'Tudo sobre clareamento dental: segurança, eficácia, sensibilidade, tipos de tratamento e o que esperar do procedimento.',
       keywords: 'clareamento dental, dentes brancos, estética dental, mitos odontológicos, clareamento caseiro, clareamento a laser, sensibilidade dental',
       image: "https://plus.unsplash.com/premium_photo-1702598988008-b60cf858cb78?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      author: 'Dr. Carlos Silva'
+      author: 'Equipe UnoVitta Clínicas'
     }
   },
   'bruxismo-como-identificar-e-tratar': {
     title: "Bruxismo: como identificar e tratar o ranger de dentes",
     image: "https://plus.unsplash.com/premium_photo-1673773401710-d23ef113e06f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     slug: 'bruxismo-como-identificar-e-tratar',
-    author: 'Dra. Ana Oliveira',
+    author: 'Equipe UnoVitta Clínicas',
     category: 'Disfunções Temporomandibulares',
     content: '<p>Você acorda com dor de cabeça ou nos músculos da mandíbula? Seus dentes parecem desgastados ou lascados? Você pode estar sofrendo de <strong>bruxismo</strong>, um hábito involuntário de ranger ou apertar os dentes, que ocorre principalmente durante o sono (bruxismo noturno), mas também pode acontecer durante o dia (bruxismo em vigília).</p>' +
       '<h2>Sinais e Sintomas Comuns do Bruxismo:</h2>' +
@@ -508,14 +516,14 @@ const postsData: PostsMap = {
       description: 'Entenda o que é bruxismo (ranger de dentes), seus sintomas, causas comuns e as opções de tratamento disponíveis para proteger seus dentes e aliviar a dor.',
       keywords: 'bruxismo, ranger dentes, apertar dentes, DTM, dor orofacial, placa de bruxismo, desgaste dental, dor de cabeça tensional',
       image: "https://plus.unsplash.com/premium_photo-1673773401710-d23ef113e06f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      author: 'Dra. Ana Oliveira'
+      author: 'Equipe UnoVitta Clínicas'
     }
   },
   'ansiedade-odontologica-como-superar': {
     title: "Ansiedade odontológica: como superar o medo de ir ao dentista",
     image: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
     slug: 'ansiedade-odontologica-como-superar',
-    author: 'Dr. Roberto Almeida',
+    author: 'Equipe UnoVitta Clínicas',
     category: 'Psicologia e Odontologia',
     content: '<p>O coração acelera, as mãos suam e a simples ideia de sentar na cadeira do dentista causa pânico? Você não está sozinho. A <strong>ansiedade odontológica</strong>, ou o medo de ir ao dentista, é um problema comum que afeta pessoas de todas idades, impedindo-as de buscar os cuidados necessários para manter a saúde bucal.</p>' +
       '<p>Esse medo pode variar de uma leve apreensão a uma fobia severa (odontofobia), levando ao adiamento ou cancelamento de consultas e, consequentemente, ao agravamento de problemas bucais que poderiam ser tratados de forma simples no início.</p>' +
@@ -549,14 +557,14 @@ const postsData: PostsMap = {
       description: 'Entenda as causas do medo de dentista e conheça estratégias eficazes, técnicas de relaxamento e opções de sedação para cuidar da sua saúde bucal sem estresse.',
       keywords: 'medo de dentista, ansiedade odontológica, fobia dental, odontofobia, dentista para pacientes com medo, sedação consciente, óxido nitroso',
       image: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-      author: 'Dr. Roberto Almeida'
+      author: 'Equipe UnoVitta Clínicas'
     }
   },
   'ortodontia-invisivel-vantagens': {
     title: "Ortodontia invisível: vantagens dos alinhadores transparentes",
     image: "https://images.unsplash.com/photo-1694675236489-d73651370688?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     slug: 'ortodontia-invisivel-vantagens',
-    author: 'Dra. Mariana Santos',
+    author: 'Equipe UnoVitta Clínicas',
     category: 'Ortodontia',
     content: '<p>Corrigir o alinhamento dos dentes e obter um sorriso perfeito é um objetivo comum, mas a ideia de usar aparelhos metálicos tradicionais pode ser um empecilho para muitos adultos e adolescentes. Felizmente, a <strong>ortodontia invisível</strong>, representada principalmente pelos <strong>alinhadores transparentes</strong> (como Invisalign® e outras marcas), surgiu como uma alternativa revolucionária, oferecendo discrição, conforto e eficácia.</p>' +
       '<h2>O que são Alinhadores Transparentes?</h2>' +
@@ -585,14 +593,14 @@ const postsData: PostsMap = {
       description: 'Descubra os benefícios dos alinhadores transparentes (como Invisalign) em comparação com aparelhos fixos: estética, conforto, higiene e previsibilidade.',
       keywords: 'ortodontia invisível, alinhadores transparentes, aparelho invisível, Invisalign, aparelho estético, tratamento ortodôntico, correção de sorriso',
       image: "https://images.unsplash.com/photo-1694675236489-d73651370688?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      author: 'Dra. Mariana Santos'
+      author: 'Equipe UnoVitta Clínicas'
     }
   },
   'implantes-dentarios-tudo-o-que-voce-precisa-saber': {
     title: "Implantes dentários: tudo o que você precisa saber antes de fazer",
     image: "https://images.unsplash.com/photo-1468493858157-0da44aaf1d13?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     slug: 'implantes-dentarios-tudo-o-que-voce-precisa-saber',
-    author: 'Dr. Carlos Silva',
+    author: 'Equipe UnoVitta Clínicas',
     category: 'Implantodontia',
     content: '<p>A perda de um ou mais dentes pode impactar significativamente a estética do sorriso, a função mastigatória e até a autoestima. Felizmente, a odontologia moderna oferece uma solução altamente eficaz e duradoura: os <strong>implantes dentários</strong>. Considerados o padrão ouro para a reabilitação oral, os implantes oferecem uma alternativa superior às próteses removíveis (dentaduras) ou pontes fixas tradicionais.</p>' +
       '<h2>O que são Implantes Dentários?</h2>' +
@@ -628,7 +636,7 @@ const postsData: PostsMap = {
       description: 'Tudo o que você precisa saber sobre implantes dentários: o que são, benefícios, procedimento, indicações, cuidados e como eles podem restaurar seu sorriso.',
       keywords: 'implantes dentários, implantodontia, perda de dentes, reabilitação oral, prótese sobre implante, osseointegração, titânio, cirurgia de implante',
       image: "https://images.unsplash.com/photo-1468493858157-0da44aaf1d13?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      author: 'Dr. Carlos Silva'
+      author: 'Equipe UnoVitta Clínicas'
     }
   }
 };
@@ -687,6 +695,8 @@ const BlogPost = () => {
     headline: postData.title,
     description: postData.seo.description,
     image: [postData.seo.image || postData.image],
+    datePublished: '2026-01-15',
+    dateModified: '2026-11-17',
     author: toAuthorSchema(postData.author),
     publisher: {
       '@type': 'Organization',
@@ -779,7 +789,7 @@ const BlogPost = () => {
                 {/* Ícone do LinkedIn (exemplo) */}
                 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-3.06v8.37h3.06v-4.93c0-.81.61-1.41 1.41-1.41 .82 0 1.41.6 1.41 1.41v4.93h3.06M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" /></svg>
               </ShareButton>
-              <ShareButton href={shareUrls.whatsapp} {...whatsappLinkProps} aria-label="Compartilhar no WhatsApp">
+              <ShareButton href={shareUrls.whatsapp} {...whatsappLinkProps} aria-label="Compartilhar no WhatsApp" onClick={() => trackArticleShare(postData.slug)}>
                 {/* Ícone do WhatsApp (exemplo) */}
                 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.07 21.94L7.27 20.56C8.72 21.33 10.35 21.78 12.04 21.78C17.5 21.78 21.95 17.33 21.95 11.87C21.95 6.41 17.5 2 12.04 2M12.04 20.13C10.56 20.13 9.12 19.74 7.89 19L7.5 18.78L4.41 19.65L5.31 16.64L5.07 16.26C4.24 14.96 3.79 13.47 3.79 11.91C3.79 7.35 7.49 3.65 12.04 3.65C16.59 3.65 20.29 7.35 20.29 11.91C20.29 16.47 16.59 20.13 12.04 20.13M17.41 14.26C17.16 14.14 16.05 13.59 15.82 13.51C15.59 13.42 15.42 13.38 15.26 13.61C15.1 13.84 14.5 14.44 14.33 14.6C14.16 14.76 14 14.78 13.75 14.66C13.5 14.54 12.6 14.24 11.53 13.29C10.69 12.54 10.13 11.64 9.96 11.31C9.79 10.98 9.89 10.89 10.02 10.76C10.13 10.66 10.27 10.47 10.4 10.33C10.53 10.19 10.57 10.08 10.65 9.92C10.73 9.76 10.69 9.61 10.63 9.5C10.57 9.39 10.06 8.18 9.87 7.73C9.68 7.28 9.49 7.34 9.36 7.34C9.23 7.34 9.07 7.34 8.9 7.34C8.74 7.34 8.49 7.39 8.29 7.73C8.09 8.06 7.49 8.65 7.49 9.82C7.49 10.99 8.33 12.11 8.49 12.3C8.65 12.49 10.06 14.83 12.49 15.76C13.01 15.97 13.4 16.09 13.73 16.18C14.26 16.32 14.78 16.27 15.21 16.18C15.68 16.08 16.79 15.48 17.02 14.88C17.25 14.28 17.25 13.79 17.16 13.67C17.08 13.55 16.92 13.49 16.67 13.37C16.42 13.25 17.66 14.38 17.41 14.26Z" /></svg>
               </ShareButton>

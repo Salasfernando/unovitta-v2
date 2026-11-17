@@ -7,13 +7,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#164b45" />
   <link rel="canonical" href="https://www.unovitta.com.br/" data-seo="true" />
-  <link rel="preload" as="image" href="/images/hero-equipe-paciente.jpg" type="image/jpeg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Manrope:wght@500;600;700;800&display=swap"
+    rel="stylesheet" />
   <title>UnoVitta Clínicas</title>
 
-  <!-- Google tag (gtag.js ) -->
+  <!-- Google Tag Manager -->
+  <script>
+    (function (w, d, s, l, i) {
+      w[l] = w[l] || [];
+      w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+      var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s),
+        dl = l != 'dataLayer' ? '&l=' + l : '';
+      j.async = true;
+      j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+      f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-NFJQ9KNC');
+  </script>
+  <!-- End Google Tag Manager -->
+
+  <!-- Google tag (gtag.js) - Google Ads & GA4 -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-962820594"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -21,8 +37,8 @@
     gtag("js", new Date());
 
     gtag("config", "AW-962820594");
+    gtag("config", "G-R46VM95LRK", { send_page_view: false });
   </script>
-
 
   <script>
     function gtag_report_conversion_whatsapp(url) {
@@ -52,15 +68,16 @@
       return false;
     }
   </script>
-  
-  <!-- Meta Tags for Microsoft Validation -->
+
+  <!-- Meta Tags for Microsoft Bing Webmaster Tools Validation -->
   <meta name="msvalidate.01" content="A7AA20554CF980331062653107736DD8" />
-
-
-
 </head>
 
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NFJQ9KNC" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
   <div id="root"></div>
   <script type="module" src="/src/main.tsx"></script>
 </body>

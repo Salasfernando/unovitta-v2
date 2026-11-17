@@ -332,7 +332,7 @@ export const FAQItem: React.FC<{ question: string; answer: string }> = ({ questi
         <span>{question}</span>
         <span aria-hidden="true">{open ? '−' : '+'}</span>
       </FAQButton>
-      {open && <FAQAnswer id={answerId}>{answer}</FAQAnswer>}
+      <FAQAnswer id={answerId} hidden={!open} aria-hidden={!open}>{answer}</FAQAnswer>
     </FAQFrame>
   );
 };

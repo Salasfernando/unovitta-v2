@@ -2,7 +2,13 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { FaMapMarkerAlt, FaPhoneAlt, FaWhatsapp } from 'react-icons/fa';
 import { ContactCard as SharedContactCard } from '../../ui';
-import { trackPhoneClick, trackWhatsAppConversion } from '../../../utils/analytics';
+import {
+  trackContactFormSubmit,
+  trackDirectionsClick,
+  trackEmailClick,
+  trackPhoneClick,
+  trackWhatsAppConversion,
+} from '../../../utils/analytics';
 import SEO from '../../SEO';
 import { buildWhatsAppUrl, DISPLAY_PHONE_NUMBER, getWhatsAppLinkProps, openWhatsAppLink, TELEPHONE_LINK } from '../../../utils/whatsapp';
 
@@ -303,6 +309,8 @@ const Contact: React.FC<ContactSectionProps> = ({ includeSEO = true }) => {
 
   const handleContactClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     const url = event.currentTarget.href;
+    if (url.startsWith('tel:')) trackPhoneClick('contact_details_phone');
+    if (url.startsWith('mailto:')) trackEmailClick('contact_email');
     if (typeof window !== 'undefined' && typeof window.gtag_report_conversion_contact === 'function') {
       window.gtag_report_conversion_contact(url);
     }
@@ -314,7 +322,8 @@ const Contact: React.FC<ContactSectionProps> = ({ includeSEO = true }) => {
     const message = `Olá, gostaria de agendar uma avaliação odontológica.\n\nNome: ${name}\nTelefone: ${phone}\nTratamento de interesse: ${treatment || 'Não informado'}\nMelhor horário para contato: ${bestTime || 'Não informado'}`;
     const url = buildWhatsAppUrl(message);
 
-    trackWhatsAppConversion();
+    trackContactFormSubmit();
+    trackWhatsAppConversion('contact_form', 'Enviar meus dados');
     openWhatsAppLink(url);
   };
 
@@ -322,7 +331,7 @@ const Contact: React.FC<ContactSectionProps> = ({ includeSEO = true }) => {
     <ContactContainer>
       {includeSEO && (
         <SEO
-          title="Contato"
+          title="Contato e Localização em Brazlândia"
           description="Fale com a UnoVitta e agende sua avaliação odontológica por WhatsApp ou telefone. Atendimento rápido para Brazlândia e região com foco em cuidado, conforto e resultados reais."
           keywords="contato, agendar avaliação, WhatsApp odontológico, clínica odontológica Brazlândia, telefone UnoVitta, avaliação odontológica"
           canonical="/contato"
@@ -333,7 +342,7 @@ const Contact: React.FC<ContactSectionProps> = ({ includeSEO = true }) => {
       <ContentContainer>
         <PageHeader>
           <Eyebrow>Pronto para começar?</Eyebrow>
-          <ContactSectionTitle>Agende sua avaliação agora</ContactSectionTitle>
+          <ContactSectionTitle as={includeSEO ? 'h1' : 'h2'}>Agende sua avaliação agora</ContactSectionTitle>
           <Divider />
           <ContactSectionDescription>
             Escolha o melhor canal para falar conosco e dê o próximo passo com segurança.
@@ -344,7 +353,7 @@ const Contact: React.FC<ContactSectionProps> = ({ includeSEO = true }) => {
           <SharedContactCard
             href={buildWhatsAppUrl('Quero agendar uma avaliação odontológica!')}
             {...whatsappLinkProps}
-            onClick={trackWhatsAppConversion}
+            onClick={() => trackWhatsAppConversion('contact_whatsapp_card', 'Abrir conversa no WhatsApp')}
             icon={<FaWhatsapp />}
             title="WhatsApp"
             description="Resposta rápida para dúvidas e agendamentos."
@@ -362,6 +371,7 @@ const Contact: React.FC<ContactSectionProps> = ({ includeSEO = true }) => {
             href="https://ul.waze.com/ul?place=ChIJEzm_h9WwW5MRW5rGlInENXQ&ll=-15.66357120%2C-48.19969900&navigate=yes&utm_campaign=default&utm_source=waze_website&utm_medium=lm_share_location"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackDirectionsClick('contact_location_card')}
             icon={<FaMapMarkerAlt />}
             title="Localização"
             description="Veja a rota até a nossa clínica com facilidade."
@@ -445,7 +455,7 @@ const Contact: React.FC<ContactSectionProps> = ({ includeSEO = true }) => {
                       Brazlândia, Brasília DF.
                     </ContactLink>
                   </ContactText>
-                  <ContactLink href="https://ul.waze.com/ul?place=ChIJEzm_h9WwW5MRW5rGlInENXQ&ll=-15.66357120%2C-48.19969900&navigate=yes&utm_campaign=default&utm_source=waze_website&utm_medium=lm_share_location" target="_blank" rel="noopener noreferrer">
+                  <ContactLink href="https://ul.waze.com/ul?place=ChIJEzm_h9WwW5MRW5rGlInENXQ&ll=-15.66357120%2C-48.19969900&navigate=yes&utm_campaign=default&utm_source=waze_website&utm_medium=lm_share_location" target="_blank" rel="noopener noreferrer" onClick={() => trackDirectionsClick('contact_address_map_link')}>
                     Ver no mapa
                   </ContactLink>
                 </ContactDetails>
@@ -474,8 +484,8 @@ const Contact: React.FC<ContactSectionProps> = ({ includeSEO = true }) => {
                 </ContactIcon>
                 <ContactDetails>
                   <ContactLabel>Email</ContactLabel>
-                  <ContactText>contato@unovitta.com.br</ContactText>
-                  <ContactLink href="mailto:contato@unovitta.com.br" onClick={handleContactClick}>
+                  <ContactText>unovittaclinicas@gmail.com</ContactText>
+                  <ContactLink href="mailto:unovittaclinicas@gmail.com" onClick={handleContactClick}>
                     Enviar email
                   </ContactLink>
                 </ContactDetails>

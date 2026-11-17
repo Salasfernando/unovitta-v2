@@ -2,9 +2,8 @@ import React from 'react';
 import { FaFacebook, FaInstagram, FaPhoneAlt, FaWhatsapp } from 'react-icons/fa';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import imgLogo from '../../../assets/images/logowhite.png'; 
 import { buildWhatsAppUrl, DISPLAY_PHONE_NUMBER, getWhatsAppLinkProps, TELEPHONE_LINK } from '../../../utils/whatsapp';
-import { trackWhatsAppConversion } from '../../../utils/analytics';
+import { trackDirectionsClick, trackEmailClick, trackPhoneClick, trackWhatsAppConversion } from '../../../utils/analytics';
 
 const FooterContainer = styled.footer`
   background-color: var(--color-primary-dark);
@@ -223,9 +222,8 @@ const FooterCTAButton = styled.a`
 const Footer: React.FC = () => {
   const whatsappLinkProps = getWhatsAppLinkProps();
 
-  const handleWhatsAppClick = () => {
-    trackWhatsAppConversion();
-  };
+  const handleFooterCTAWhatsAppClick = () => trackWhatsAppConversion('footer_cta', 'Agendar avaliação');
+  const handleFooterSocialWhatsAppClick = () => trackWhatsAppConversion('footer_social', 'WhatsApp');
 
   return (
     <>
@@ -239,7 +237,7 @@ const Footer: React.FC = () => {
             <FooterCTAButton 
               href={buildWhatsAppUrl('Quero agendar uma avaliação odontológica!')}
               {...whatsappLinkProps}
-              onClick={handleWhatsAppClick} 
+              onClick={handleFooterCTAWhatsAppClick}
             >
               <FaWhatsapp /> Agendar avaliação
             </FooterCTAButton>
@@ -252,7 +250,7 @@ const Footer: React.FC = () => {
           <FooterGrid>
           <FooterColumn>
             <img
-              src={imgLogo}
+              src="/logowhite.png"
               alt="Logo da Unovitta Clínicas"
               width={82}
               height={82}
@@ -273,7 +271,7 @@ const Footer: React.FC = () => {
                 href={buildWhatsAppUrl('Quero agendar uma avaliação odontológica!')}
                 {...whatsappLinkProps}
                 aria-label="WhatsApp"
-                onClick={handleWhatsAppClick} 
+                onClick={handleFooterSocialWhatsAppClick}
               >
                 <FaWhatsapp />
               </SocialLink>
@@ -313,7 +311,7 @@ const Footer: React.FC = () => {
                 </svg>
               </ContactIconWrapper>
               <ContactText>
-                <a href="https://ul.waze.com/ul?place=ChIJEzm_h9WwW5MRW5rGlInENXQ&ll=-15.66357120%2C-48.19969900&navigate=yes&utm_campaign=default&utm_source=waze_website&utm_medium=lm_share_location" target="_blank" rel="noopener noreferrer" aria-label="Endereço">
+                <a href="https://ul.waze.com/ul?place=ChIJEzm_h9WwW5MRW5rGlInENXQ&ll=-15.66357120%2C-48.19969900&navigate=yes&utm_campaign=default&utm_source=waze_website&utm_medium=lm_share_location" target="_blank" rel="noopener noreferrer" aria-label="Endereço" onClick={() => trackDirectionsClick('footer_address')}>
                   Quadra 37, Conjunto A, lote 2 - loja 3, Vila São José<br />
                   Brazlândia, Brasília DF.
                 </a>
@@ -322,7 +320,7 @@ const Footer: React.FC = () => {
             <ContactItem>
               <ContactIconWrapper><FaPhoneAlt /></ContactIconWrapper>
               <ContactText>
-                <a href={`tel:${TELEPHONE_LINK}`} aria-label="Ligue para nós">
+                <a href={`tel:${TELEPHONE_LINK}`} aria-label="Ligue para nós" onClick={() => trackPhoneClick('footer_phone')}>
                   {DISPLAY_PHONE_NUMBER}
                 </a>
               </ContactText>
@@ -334,7 +332,7 @@ const Footer: React.FC = () => {
                   href={buildWhatsAppUrl('Quero agendar uma avaliação odontológica!')}
                   {...whatsappLinkProps}
                   aria-label="Agende sua avaliação via WhatsApp"
-                  onClick={handleWhatsAppClick}
+                  onClick={() => trackWhatsAppConversion('footer_contact_whatsapp', 'Agende sua avaliação via WhatsApp')}
                 >
                   {DISPLAY_PHONE_NUMBER}
                 </a>
@@ -347,7 +345,7 @@ const Footer: React.FC = () => {
                 </svg>
               </ContactIconWrapper>
               <ContactText>
-                <a href="mailto:unovittaclinicas@gmail.com" rel="noopener noreferrer">
+                <a href="mailto:unovittaclinicas@gmail.com" rel="noopener noreferrer" onClick={() => trackEmailClick('footer_email')}>
                   unovittaclinicas@gmail.com
                 </a>
               </ContactText>

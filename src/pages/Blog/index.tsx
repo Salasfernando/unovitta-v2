@@ -271,14 +271,39 @@ const Blog: React.FC = () => {
   // Correção: Remover handleReadMore e usar Link diretamente
   // A navegação agora é feita pelo componente Link
 
+  const blogSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Blog',
+    name: 'Blog de Saúde Bucal e Odontologia — UnoVitta Clínicas',
+    url: 'https://www.unovitta.com.br/blog',
+    description: 'Artigos e dicas de saúde bucal da UnoVitta Clínicas em Brazlândia. Conteúdos sobre odontologia preventiva, implantes, alinhadores, clareamento e cuidados diários.',
+    publisher: {
+      '@type': 'Organization',
+      name: 'UnoVitta Clínicas',
+      url: 'https://www.unovitta.com.br/',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://www.unovitta.com.br/logo.png'
+      }
+    },
+    blogPost: blogPosts.map(post => ({
+      '@type': 'BlogPosting',
+      headline: post.title,
+      description: post.excerpt,
+      url: `https://www.unovitta.com.br/blog/${post.slug}`,
+      image: post.image
+    }))
+  };
+
   return (
     <BlogContainer>
       <SEO
-        title="Blog e Artigos"
-        description="Artigos e dicas de saúde bucal da UnoVitta. Compartilhamos conhecimento e informações relevantes sobre odontologia, procedimentos dentários e cuidados preventivos."
-        keywords="blog odontológico, artigos de saúde bucal, dicas de higiene dental, odontologia preventiva, tratamentos dentários"
+        title="Blog de Saúde Bucal e Odontologia"
+        description="Artigos e dicas de saúde bucal da UnoVitta Clínicas em Brazlândia. Conteúdos sobre odontologia preventiva, implantes, alinhadores, clareamento e cuidados diários."
+        keywords="blog odontológico, artigos de saúde bucal, dicas de higiene dental, odontologia preventiva, tratamentos dentários, dentista Brazlândia"
         canonical="/blog"
         type="website"
+        schema={blogSchema}
       />
 
       <ContentContainer>
