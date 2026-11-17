@@ -50,7 +50,6 @@ function ScrollToTop() {
   return null;
 }
 
-<<<<<<< HEAD
 function RoutePageView() {
   const location = useLocation();
 
@@ -60,12 +59,14 @@ function RoutePageView() {
     return () => window.clearTimeout(timer);
   }, [location]);
 
-=======
+  return null;
+}
+
 function PrivacyConsentSetup() {
   useEffect(() => {
     applySavedPrivacyConsent();
   }, []);
->>>>>>> 320556f73353db1f77d02b3c95ab44cfbd725808
+
   return null;
 }
 
@@ -74,11 +75,8 @@ export function AppShell() {
     <AppContainer>
       <GlobalStyles />
       <ScrollToTop />
-<<<<<<< HEAD
-      <RoutePageView />
-=======
       <PrivacyConsentSetup />
->>>>>>> 320556f73353db1f77d02b3c95ab44cfbd725808
+      <RoutePageView />
 
       <Header />
       <MainContent>

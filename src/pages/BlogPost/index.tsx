@@ -2,11 +2,8 @@ import styled from 'styled-components';
 import { useParams, Link } from 'react-router-dom';
 import SEO from '../../components/SEO';
 import { getWhatsAppLinkProps } from '../../utils/whatsapp';
-<<<<<<< HEAD
 import { trackArticleShare } from '../../utils/analytics';
-=======
 import ResponsiveImage from '../../components/ui/ResponsiveImage';
->>>>>>> 320556f73353db1f77d02b3c95ab44cfbd725808
 
 const BlogPostContainer = styled.div`
   padding: 6.5rem 0;

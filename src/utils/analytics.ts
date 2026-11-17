@@ -19,8 +19,8 @@ export const initializeGA4 = (): void => {
 };
 
 const sendEvent = (name: string, params: Record<string, unknown>): void => {
-<<<<<<< HEAD
   if (!GA4_MEASUREMENT_ID || typeof window === 'undefined' || typeof window.gtag !== 'function') return;
+  if (readPrivacyConsent()?.marketing === false) return;
   window.gtag('event', name, params);
 };
 
@@ -41,14 +41,7 @@ export const trackWhatsAppConversion = (context?: WhatsAppClickContext, textOver
     page_location: getPageLocation(),
   });
 
-=======
-  if (typeof window === 'undefined' || !readPrivacyConsent()?.marketing || typeof window.gtag !== 'function') return;
-  window.gtag('event', name, params);
-};
-
-export const trackWhatsAppConversion = (): void => {
-  if (!readPrivacyConsent()?.marketing) return;
->>>>>>> 320556f73353db1f77d02b3c95ab44cfbd725808
+  if (readPrivacyConsent()?.marketing === false) return;
   if (typeof window !== 'undefined' && typeof window.gtag_report_conversion_whatsapp === 'function') {
     window.gtag_report_conversion_whatsapp();
   }

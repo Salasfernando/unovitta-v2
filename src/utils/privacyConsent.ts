@@ -85,8 +85,9 @@ function enableGoogleAds(): void {
     ad_storage: 'granted',
     ad_user_data: 'granted',
     ad_personalization: 'granted',
-    analytics_storage: 'denied',
+    analytics_storage: 'granted',
   });
+  window.gtag('config', 'G-R46VM95LRK', { send_page_view: false });
 }
 
 export function savePrivacyConsent(marketing: boolean): void {

@@ -21,6 +21,14 @@ const LastUpdated = styled.p`
   font-size: 0.92rem;
 `;
 
+const privacySchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'Política de Privacidade — UnoVitta Clínicas',
+  url: 'https://www.unovitta.com.br/privacidade',
+  description: 'Saiba como a UnoVitta trata dados pessoais enviados pelo site, utiliza cookies e compartilha informações com serviços externos.'
+};
+
 const PrivacyPolicy: React.FC = () => (
   <Page>
     <SEO
@@ -28,6 +36,7 @@ const PrivacyPolicy: React.FC = () => (
       description="Saiba como a UnoVitta trata dados pessoais enviados pelo site, utiliza cookies e compartilha informações com serviços externos."
       canonical="/privacidade"
       robots="index, follow"
+      schema={privacySchema}
     />
     <h1>Política de Privacidade</h1>
     <LastUpdated>Última atualização: 22 de outubro de 2026</LastUpdated>
@@ -37,7 +46,7 @@ const PrivacyPolicy: React.FC = () => (
 
     <h2>Quem trata os dados e como falar conosco</h2>
     <p>
-      A clínica divulgada neste site como UnoVitta Clínicas é responsável pelas decisões sobre o tratamento descrito aqui. Para solicitar informações ou exercer seus direitos, escreva para <a href="mailto:contato@unovitta.com.br">contato@unovitta.com.br</a> ou ligue para <a href="tel:+556134794514">(61) 3479-4514</a>. Informe que o assunto é privacidade para direcionarmos sua solicitação.
+      A clínica divulgada neste site como UnoVitta Clínicas é responsável pelas decisões sobre o tratamento descrito aqui. Para solicitar informações ou exercer seus direitos, escreva para <a href="mailto:unovittaclinicas@gmail.com">unovittaclinicas@gmail.com</a> ou ligue para <a href="tel:+556134794514">(61) 3479-4514</a>. Informe que o assunto é privacidade para direcionarmos sua solicitação.
     </p>
 
     <h2>Dados tratados e finalidades</h2>
