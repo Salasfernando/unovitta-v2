@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import type { AnchorHTMLAttributes, ReactNode } from 'react';
 import styled from 'styled-components';
+import ResponsiveImage from './ResponsiveImage';
 
 export const Button = styled.a<{ $variant?: 'primary' | 'secondary' | 'light' }>`
   display: inline-flex;
@@ -103,7 +104,7 @@ const TreatmentCardFrame = styled.article`
   }
 `;
 
-const TreatmentImage = styled.img`
+const TreatmentImage = styled(ResponsiveImage)`
   width: 100%;
   aspect-ratio: 16 / 9;
   object-fit: cover;

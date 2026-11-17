@@ -5,6 +5,8 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
+import PrivacyConsentBanner from './components/PrivacyConsentBanner';
+import { applySavedPrivacyConsent } from './utils/privacyConsent';
 
 import Home from './pages/Home';
 const About = lazy(() => import('./pages/About'));
@@ -14,6 +16,7 @@ const BlogPost = lazy(() => import('./pages/BlogPost'));
 const Contact = lazy(() => import('./pages/Contact'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 const Treatment = lazy(() => import('./pages/Treatment'));
+const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
 
 import GlobalStyles from './styles/GlobalStyles';
 import { trackPageView } from './utils/analytics';
@@ -47,6 +50,7 @@ function ScrollToTop() {
   return null;
 }
 
+<<<<<<< HEAD
 function RoutePageView() {
   const location = useLocation();
 
@@ -56,6 +60,12 @@ function RoutePageView() {
     return () => window.clearTimeout(timer);
   }, [location]);
 
+=======
+function PrivacyConsentSetup() {
+  useEffect(() => {
+    applySavedPrivacyConsent();
+  }, []);
+>>>>>>> 320556f73353db1f77d02b3c95ab44cfbd725808
   return null;
 }
 
@@ -64,7 +74,11 @@ export function AppShell() {
     <AppContainer>
       <GlobalStyles />
       <ScrollToTop />
+<<<<<<< HEAD
       <RoutePageView />
+=======
+      <PrivacyConsentSetup />
+>>>>>>> 320556f73353db1f77d02b3c95ab44cfbd725808
 
       <Header />
       <MainContent>
@@ -77,12 +91,14 @@ export function AppShell() {
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/contato" element={<Contact />} />
+            <Route path="/privacidade" element={<PrivacyPolicy />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
       </MainContent>
       <Footer />
       <WhatsAppButton />
+      <PrivacyConsentBanner />
     </AppContainer>
   );
 }

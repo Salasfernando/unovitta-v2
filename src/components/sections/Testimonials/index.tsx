@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import ResponsiveImage from '../../ui/ResponsiveImage';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 const TestimonialsContainer = styled.section`
@@ -429,7 +430,7 @@ const TestimonialsSection: React.FC = () => {
                     <TestimonialText>{testimonial.text}</TestimonialText>
                     <TestimonialAuthor>
                       <AuthorAvatar>
-                        <img
+                        <ResponsiveImage
                           src={testimonial.avatar}
                           alt={testimonial.author}
                           loading="lazy"
